@@ -15,3 +15,18 @@
 .input-blur {
     --bs-focus-ring-blur: 14px
 }
+
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+.nav-item.dropdown {
+    list-style-type: none;
+}
+
+.nav-item .nav-link.active .nav-icon path {
+    stroke: #ffffff;
+}
