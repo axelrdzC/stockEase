@@ -14,8 +14,8 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">{{ __('Email Address') }}</label>
 
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" 
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror focus-ring input-blur" name="email" 
+                                    value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -24,23 +24,27 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="password" class="form-label">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
-                                name="password" required autocomplete="current-password">
+                            <div class="row">
+                                <label for="password" class="form-label w-25">{{ __('Password') }}</label>
+                                @if (Route::has('password.request'))
+                                <div class="text-end w-75">
+                                    <a class="text-decoration-none" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                </div>
+                                @endif
+                            </div>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror focus-ring input-blur" name="password" 
+                                    required autocomplete="current-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <div class="text-end row">
-                                @if (Route::has('password.request'))
-                                    <a class="text-decoration-none w-50" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                                <div class="row w-50 gap-0">
-                                    <div class="col gap-0">
-                                        <div class="form-check gap-0">
+                            <div class="row text-nowrap mt-3">
+                                <div class="row w-50">
+                                    <div class="col">
+                                        <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
