@@ -56,16 +56,16 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="mb-3 row gap-3">
                             <button type="submit" class="btn btn-primary w-100">{{ __('Login') }}</button>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span class="mx-2">Ó</span>
+                            </div>
+                            <button class="btn btn-outline-secondary text-dark w-100 mb-4">
+                                <img src="https://pluspng.com/img-png/google-logo-png-open-2000.png" alt="Google logo" style="width: 20px; margin-right: 8px;">
+                                Iniciar Sesión con Google
+                            </button>
                         </div>
-                        <div class="d-flex align-items-center justify-content-center mb-3">
-                            <span class="mx-2">- o -</span>
-                        </div>
-                        <button class="btn btn-outline-secondary text-dark w-100 mb-4">
-                            <img src="https://pluspng.com/img-png/google-logo-png-open-2000.png" alt="Google logo" style="width: 20px; margin-right: 8px;">
-                            Iniciar Sesión con Google
-                        </button>
 
                     </form>
 
