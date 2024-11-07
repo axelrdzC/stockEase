@@ -1,0 +1,13 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+.welcome-txt {
+    font-weight: 900;
+    font-size: 2.5em;
+}
