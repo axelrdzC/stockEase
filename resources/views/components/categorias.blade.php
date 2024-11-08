@@ -35,7 +35,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link p-2 px-3 " href="">
+        <a class="nav-link p-2 px-3 {{ request()->is('almacenes*') ? 'active' : ''}}" href="{{ route('almacenes.index') }}">
             <svg width="24" height="24" class="nav-icon me-2">
                 <g clip-path="url(#clip0_53_456)">
                 <path d="M14.1668 0H5.83348C4.72881 0.00132321 3.66977 0.440735 2.88866 1.22185C2.10754 2.00296 1.66813 3.062 1.66681 4.16667V15.8333C1.66813 16.938 2.10754 17.997 2.88866 18.7781C3.66977 19.5593 4.72881 19.9987 5.83348 20H14.1668C15.2715 19.9987 16.3305 19.5593 17.1116 18.7781C17.8927 17.997 18.3322 16.938 18.3335 15.8333V4.16667C18.3322 3.062 17.8927 2.00296 17.1116 1.22185C16.3305 0.440735 15.2715 0.00132321 14.1668 0V0ZM5.83348 1.66667H14.1668C14.8299 1.66667 15.4657 1.93006 15.9346 2.3989C16.4034 2.86774 16.6668 3.50362 16.6668 4.16667V9.16666H3.33348V4.16667C3.33348 3.50362 3.59687 2.86774 4.06571 2.3989C4.53455 1.93006 5.17043 1.66667 5.83348 1.66667V1.66667ZM14.1668 18.3333H5.83348C5.17043 18.3333 4.53455 18.0699 4.06571 17.6011C3.59687 17.1323 3.33348 16.4964 3.33348 15.8333V10.8333H16.6668V15.8333C16.6668 16.4964 16.4034 17.1323 15.9346 17.6011C15.4657 18.0699 14.8299 18.3333 14.1668 18.3333Z" fill="#53545C"/>
@@ -48,43 +48,43 @@
                 </clipPath>
                 </defs>   
             </svg>
-            <span class="nav-text">{{ __('Almacenes') }}</span>
+            <span class="nav-text {{ request()->is('almacenes*') ? '' : 'd-none' }}">{{ __('Almacenes') }}</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link p-2 px-3 " href="">
+        <a class="nav-link p-2 px-3 {{ request()->is('ordenes*') ? 'active' : ''}}" href="{{ route('ordenes.index') }}">
             <svg width="24" height="24" class="nav-icon me-2">
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M11.7378 0.761809H5.0848C3.0048 0.753809 1.2998 2.41181 1.2508 4.49081V15.2038C1.2048 17.3168 2.8798 19.0678 4.9928 19.1148C5.0238 19.1148 5.0538 19.1158 5.0848 19.1148H13.0738C15.1678 19.0298 16.8178 17.2998 16.8028 15.2038V6.03781L11.7378 0.761809Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M11.4751 0.75V3.659C11.4751 5.079 12.6231 6.23 14.0431 6.234H16.7981" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M11.2881 13.3585H5.88812" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M9.24321 9.60599H5.88721" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text">{{ __('Ordenes') }}</span>
+            <span class="nav-text {{ request()->is('ordenes*') ? '' : 'd-none' }}">{{ __('Ordenes') }}</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link p-2 px-3 " href="">
+        <a class="nav-link p-2 px-3 {{ request()->is('proveedores*') ? 'active' : ''}}" href="{{ route('proveedores.index') }}">
             <svg width="24" height="24" class="nav-icon me-2">
                 <path fill="none" d="M0.750122 1.24991L2.83012 1.60991L3.79312 13.0829C3.87012 14.0199 4.65312 14.7389 5.59312 14.7359H16.5021C17.3991 14.7379 18.1601 14.0779 18.2871 13.1899L19.2361 6.63191C19.3421 5.89891 18.8331 5.21891 18.1011 5.11291C18.0371 5.10391 3.16412 5.09891 3.16412 5.09891" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M12.1251 8.7948H14.8981" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M5.15441 18.2025C5.45541 18.2025 5.69841 18.4465 5.69841 18.7465C5.69841 19.0475 5.45541 19.2915 5.15441 19.2915C4.85341 19.2915 4.61041 19.0475 4.61041 18.7465C4.61041 18.4465 4.85341 18.2025 5.15441 18.2025Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M16.4347 18.2025C16.7357 18.2025 16.9797 18.4465 16.9797 18.7465C16.9797 19.0475 16.7357 19.2915 16.4347 19.2915C16.1337 19.2915 15.8907 19.0475 15.8907 18.7465C15.8907 18.4465 16.1337 18.2025 16.4347 18.2025Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text">{{ __('Proveedores') }}</span>
+            <span class="nav-text {{ request()->is('proveedores*') ? '' : 'd-none' }}">{{ __('Proveedores') }}</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link p-2 px-3 " href="">
+        <a class="nav-link p-2 px-3 {{ request()->is('informes*') ? 'active' : ''}}" href="{{ route('informes.index') }}">
             <svg width="24" height="24" class="nav-icon me-2">
                 <path fill="none" d="M6.37145 9.20172V16.0619" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M11.0381 5.91913V16.0618" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M15.6286 12.8268V16.0619" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M15.6857 1H6.31429C3.04762 1 1 3.31208 1 6.58516V15.4148C1 18.6879 3.0381 21 6.31429 21H15.6857C18.9619 21 21 18.6879 21 15.4148V6.58516C21 3.31208 18.9619 1 15.6857 1Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text">{{ __('Informes') }}</span>
+            <span class="nav-text {{ request()->is('informes*') ? '' : 'd-none' }}">{{ __('Informes') }}</span>
         </a>
     </li>
 

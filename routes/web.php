@@ -18,5 +18,17 @@ Route::middleware('auth')->group(function () {
 
     /* vistas clientes  */
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
+    
+    /* vistas almacenes  */
+    Route::get('/almacenes', [App\Http\Controllers\AlmacenController::class, 'index'])->name('almacenes.index');
+
+    /* vistas ordenes  */
+    Route::get('/ordenes', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');
+    
+    /* vistas proveedores  */
+    Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores.index');
+
+    /* vistas informes  */
+    Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
 
 });
