@@ -11,7 +11,7 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="container-fluid mt-4 ms-4">
-        <h1><a class="navbar-brand fw-bold" href="#">Stock<span class="text-primary">Ease</span></a></h1>
+        <h1><a class="navbar-brand fw-bold">Stock<span class="text-primary">Ease</span></a></h1>
     </div>    
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center vh-100 position-relative">
             <div class="text-center">
