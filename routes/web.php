@@ -6,6 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* rutas de inicio de sesion / registro generadas por laravel/ui */
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
