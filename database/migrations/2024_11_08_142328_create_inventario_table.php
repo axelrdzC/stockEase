@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('stock_max');
             $table->integer('id_productos');
             $table->foreign('id_productos')->references('id')->on('productos');
+            $table->integer('id_almacen');
+            $table->foreign('id_almacen')->references('id')->on('almacenes');
             $table->timestamps();
         });
     }
