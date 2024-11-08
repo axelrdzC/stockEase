@@ -4,7 +4,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="row w-100 gap-5" style="max-width: 1000px;">
 
-                <div class="col-lg-4 col-md-6 d-flex flex-column justify-content-center p-4">
+                <div class="col-lg-4 col-md-6 d-flex flex-column justify-content-center p-4 me-5">
                     <h1 class="fw-bold mb-3">Bienvenido 👋</h1>
                     <p class="mb-4">Today is a new day. It's your day. You shape it. Sign in to start managing your inventory.</p>
 
@@ -73,7 +73,7 @@
 
                 </div>
 
-                <div class="col-lg-7 col-md-2 d-flex justify-content-center align-items-center">
+                <div class="d-flex flex-grow-1 w-50 justify-content-center align-items-center">
                     <img src="{{ asset('img/login-guy.png') }}" alt="Login illustration" class="img-fluid ml-10" style="max-width: 100%; height: auto;">
                 </div>
         </div>
