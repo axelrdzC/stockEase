@@ -1,4 +1,4 @@
-<header class="header header-sticky mb-4 p-2 bg-white">
+<header class="header header-sticky mb-4 py-3 px-4 bg-white">
     <nav class="navbar navbar-expand-lg bg-transparent p-0">
         <div class="container-fluid bg-transparent">
             <!-- logo -->
@@ -10,14 +10,6 @@
             <!-- menu normal -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- modulos -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Tablero</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                </ul>
                 <ul class="header-nav d-flex justify-content-center flex-grow-1 m-0">
                     @include('components.categorias')
                 </ul>
@@ -30,9 +22,15 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('Cerrar sesion') }}
+                                </a>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </div>
