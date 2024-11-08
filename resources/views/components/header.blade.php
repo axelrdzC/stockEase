@@ -22,7 +22,7 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Ver perfil</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
