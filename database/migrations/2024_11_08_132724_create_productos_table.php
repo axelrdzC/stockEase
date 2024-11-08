@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->nombre();
+            $table->string('nombre');
             $table->descripcion();
             $table->SKU()->unique();
             $table->unidad_medida();
