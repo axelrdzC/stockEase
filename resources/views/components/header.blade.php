@@ -1,6 +1,6 @@
-<header class="header header-sticky mb-4 py-3 px-4 bg-white">
+<header class="header header-sticky mb-4 py-3 px-5 bg-white">
     <nav class="navbar navbar-expand-lg bg-transparent p-0">
-        <div class="container-fluid bg-transparent">
+        <div class="container-fluid bg-transparent p-0">
             <!-- logo -->
         <h1><a class="navbar-brand fw-bold" href="#">Stock<span class="text-primary">Ease</span></a></h1>
             <!-- boton menu responsivo -->
