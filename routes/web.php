@@ -13,8 +13,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function () {
     
+    /* vistas users  */
+    Route::get('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('users.show');
+
     /* vistas productos  */
     Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
+
+    /* vistas productos  */
+    Route::get('/productos/create', [App\Http\Controllers\ProductoController::class, 'create'])->name('productos.create');
 
     /* vistas clientes  */
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
