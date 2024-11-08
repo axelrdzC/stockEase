@@ -3,7 +3,7 @@
 @section('content')
 <div class="col px-5">
     <!-- header seccion -->
-    <div class="d-flex justify-content-center mb-4">
+    <div class="d-flex justify-content-center align-items-center mb-4">
         <!-- titulo de la seccion -->
         <div class="col-md-8 p-0">
             <div class="fs-2 fw-semibold"> {{ __('Dashboard') }} </div>
@@ -52,12 +52,12 @@
     <!-- almacenes & productos -->
     <div class="d-flex justify-content-center gap-3 w-100">
         <div class=" p-0">
-            <div class="card bg-white p-4 w-auto">
+            <div class="card bg-white p-4">
 
                 <div class="d-flex align-items-center gap-4">
-                    <div class="fs-5 fw-semibold m-0">Gráfico de ventas</div>
-                    <div class="col" id="botones">
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">DESDE EL PRINCIPIO</button>            
+                    <div class="fs-5 fw-semibold m-0">Mis almacenes</div>
+                    <div class="fs-5 text-end">
+                        <a href="#" class="fw-bold link-underline link-underline-opacity-0">Ver todos ></a>
                     </div>
                 </div>
 
@@ -67,17 +67,16 @@
             <div class="card bg-white p-4">
 
                 <div class="d-flex align-items-center gap-4">
-                    <div class="fs-5 fw-semibold m-0">Gráfico de ventas</div>
+                    <div class="fs-5 fw-semibold m-0">Productos</div>
                     <div class="col" id="botones">
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">ESTE MES</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">ESTE AÑO</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">DESDE EL PRINCIPIO</button>            
+                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">MAS VENDIDOS</button>
+                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">MENOS VENDIDOS</button>
+                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">NIVEL BAJO DE STOCK</button>
+                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">NIVEL ALTO DE STOCK</button>             
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 @endsection

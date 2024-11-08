@@ -16,4 +16,7 @@ Route::middleware('auth')->group(function () {
     /* vistas productos  */
     Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
 
+    /* vistas clientes  */
+    Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
+
 });
