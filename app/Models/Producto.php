@@ -11,8 +11,11 @@ class Producto extends Model
 
     protected $fillable = [
         'nombre', 
-        'precio', 
-        'cantidad'
+        'descripcion', 
+        'SKU',
+        'unidad_medida',
+        'precio',
+        'categoria_id'
     ];
     
 }

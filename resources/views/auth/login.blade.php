@@ -4,14 +4,14 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="row w-100 gap-5" style="max-width: 1000px;">
 
-                <div class="col-lg-4 col-md-6 d-flex flex-column justify-content-center p-4 me-5">
+                <div class="col-lg-4 col-md-6 d-flex flex-column justify-content-center me-5">
                     <h1 class="fw-bold mb-3">Bienvenido 👋</h1>
                     <p class="mb-4">Today is a new day. It's your day. You shape it. Sign in to start managing your inventory.</p>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label for="email" class="form-label">{{ __('Email Address') }}</label>
 
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror focus-ring input-blur" name="email" 
@@ -56,10 +56,10 @@
                             </div>
                         </div>
 
-                        <div class="mb-3 row gap-3">
+                        <div class="mb-3 w-100">
                             <button type="submit" class="btn btn-primary w-100">{{ __('Login') }}</button>
                             <div class="d-flex align-items-center justify-content-center">
-                                <span class="mx-2">Ó</span>
+                                <span class="mx-2 my-2">Ó</span>
                             </div>
                             <button class="btn btn-outline-secondary text-dark w-100 mb-4">
                                 <img src="https://pluspng.com/img-png/google-logo-png-open-2000.png" alt="Google logo" style="width: 20px; margin-right: 8px;">

@@ -14,7 +14,7 @@
                     @include('components.categorias')
                 </ul>
                 <!-- profile -->
-                <li class="nav-item dropdown d-flex justify-content-start align-items-center" style="width: 15%;">
+                <li class="nav-item dropdown d-flex col-md-2 justify-content-start align-items-center">
                     <button class="btn btn-light dropdown-toggle d-flex align-items-center w-100" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="avatar me-2 w-100 d-flex justify-content-start align-items-center">
                             <img class="avatar-img me-3" src="{{ asset('img/default-avatar.jpg') }}" alt="{{ Auth::user()->email }}">
