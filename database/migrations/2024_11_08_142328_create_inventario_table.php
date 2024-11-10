@@ -16,9 +16,9 @@ return new class extends Migration
             $table->integer('cantidad_actual');
             $table->integer('stock_min');
             $table->integer('stock_max');
-            $table->integer('id_productos');
+            $table->unsignedBigInteger('id_productos');
             $table->foreign('id_productos')->references('id')->on('productos');
-            $table->integer('id_almacen');
+            $table->unsignedBigInteger('id_almacen');
             $table->foreign('id_almacen')->references('id')->on('almacenes');
             $table->timestamps();
         });
