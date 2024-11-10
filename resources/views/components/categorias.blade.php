@@ -8,7 +8,7 @@
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M3 17.5C3 14.8748 3.02811 14 6.5 14C9.97189 14 10 14.8748 10 17.5C10 20.1252 10.0111 21 6.5 21C2.98893 21 3 20.1252 3 17.5Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M14 17.5C14 14.8748 14.0281 14 17.5 14C20.97189 14 21 14.8748 21 17.5C21 20.1252 21.0111 21 17.5 21C13.9889 21 14 20.1252 14 17.5Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text fw-bold {{ request()->is('home') ? '' : 'd-none' }}">{{ __('Dashboard') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('home') ? '' : 'd-none' }}">{{ __('Dashboard') }}</span>
         </a>
     </li>
 
@@ -18,7 +18,7 @@
                 <path d="M13.7729 8.30504V5.27304C13.7729 3.18904 12.0839 1.50004 10.0009 1.50004C7.91688 1.49104 6.21988 3.17204 6.21088 5.25604V5.27304V8.30504" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M14.7422 20.0003H5.25778C2.90569 20.0003 1 18.0953 1 15.7453V10.2293C1 7.87933 2.90569 5.97433 5.25778 5.97433H14.7422C17.0943 5.97433 19 7.87933 19 10.2293V15.7453C19 18.0953 17.0943 20.0003 14.7422 20.0003Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text {{ request()->is('productos*') ? '' : 'd-none' }}">{{ __('Productos') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('productos*') ? '' : 'd-none' }}">{{ __('Productos') }}</span>
         </a>
     </li>
 
@@ -30,7 +30,7 @@
                 <path fill="none" d="M14.4831 8.88159C16.0841 8.65659 17.3171 7.28259 17.3201 5.61959C17.3201 3.98059 16.1251 2.62059 14.5581 2.36359" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M16.5954 12.7322C18.1464 12.9632 19.2294 13.5072 19.2294 14.6272C19.2294 15.3982 18.7194 15.8982 17.8954 16.2112" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text {{ request()->is('clientes*') ? '' : 'd-none' }}">{{ __('Clientes') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('clientes*') ? '' : 'd-none' }}">{{ __('Clientes') }}</span>
         </a>
     </li>
 
@@ -48,7 +48,7 @@
                 </clipPath>
                 </defs>   
             </svg>
-            <span class="nav-text {{ request()->is('almacenes*') ? '' : 'd-none' }}">{{ __('Almacenes') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('almacenes*') ? '' : 'd-none' }}">{{ __('Almacenes') }}</span>
         </a>
     </li>
 
@@ -60,7 +60,7 @@
                 <path fill="none" d="M11.2881 13.3585H5.88812" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" d="M9.24321 9.60599H5.88721" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text {{ request()->is('ordenes*') ? '' : 'd-none' }}">{{ __('Ordenes') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('ordenes*') ? '' : 'd-none' }}">{{ __('Ordenes') }}</span>
         </a>
     </li>
 
@@ -72,7 +72,7 @@
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M5.15441 18.2025C5.45541 18.2025 5.69841 18.4465 5.69841 18.7465C5.69841 19.0475 5.45541 19.2915 5.15441 19.2915C4.85341 19.2915 4.61041 19.0475 4.61041 18.7465C4.61041 18.4465 4.85341 18.2025 5.15441 18.2025Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M16.4347 18.2025C16.7357 18.2025 16.9797 18.4465 16.9797 18.7465C16.9797 19.0475 16.7357 19.2915 16.4347 19.2915C16.1337 19.2915 15.8907 19.0475 15.8907 18.7465C15.8907 18.4465 16.1337 18.2025 16.4347 18.2025Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text {{ request()->is('proveedores*') ? '' : 'd-none' }}">{{ __('Proveedores') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('proveedores*') ? '' : 'd-none' }}">{{ __('Proveedores') }}</span>
         </a>
     </li>
 
@@ -84,7 +84,7 @@
                 <path fill="none" d="M15.6286 12.8268V16.0619" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path fill="none" fill-rule="evenodd" clip-rule="evenodd" d="M15.6857 1H6.31429C3.04762 1 1 3.31208 1 6.58516V15.4148C1 18.6879 3.0381 21 6.31429 21H15.6857C18.9619 21 21 18.6879 21 15.4148V6.58516C21 3.31208 18.9619 1 15.6857 1Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="nav-text {{ request()->is('informes*') ? '' : 'd-none' }}">{{ __('Informes') }}</span>
+            <span class="nav-text fw-medium {{ request()->is('informes*') ? '' : 'd-none' }}">{{ __('Informes') }}</span>
         </a>
     </li>
 

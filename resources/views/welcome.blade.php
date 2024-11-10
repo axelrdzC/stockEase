@@ -9,11 +9,11 @@
         <!-- Styles / Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div class="container-fluid mt-4 ms-4">
-        <h1><a class="navbar-brand fw-bold">Stock<span class="text-primary">Ease</span></a></h1>
+    <body class="font-sans antialiased dark:bg-black dark:text-white/50 m-0">
+    <div class="container-fluid mt-4 ms-4 w-auto">
+        <h2 class="m-0"><a class="navbar-brand fw-bold">Stock<span class="text-primary">Ease</span></a></h2>
     </div>    
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center vh-100 position-relative">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="text-center">
                 <img src="img/welcome-guy.png" alt="just the welcome guy" class="position-relative img-fluid mx-auto d-block z-1" style="max-width: 32%;">
                 <div class="welcome-txt text-nowrap position-absolute top-50 start-50 translate-middle mt-4 z-0">    
