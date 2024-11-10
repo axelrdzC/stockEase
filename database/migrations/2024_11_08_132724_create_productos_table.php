@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('unidad_medida');
             $table->float('precio');
             $table->timestamps();
-            $table->integer('categotia_id');
+            $table->integer('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }
