@@ -19,6 +19,10 @@ return new class extends Migration
             $table->decimal('unidad_medida', 8, 2);
             $table->decimal('precio', 8, 2);
             $table->timestamps();
+            $table->unsignedBigInteger('almacen_id');
+            $table->foreign('almacen_id')->references('id')->on('almacenes');
+            $table->unsignedBigInteger('proveedor_id');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores');
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');
         });
