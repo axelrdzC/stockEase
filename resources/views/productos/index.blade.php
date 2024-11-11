@@ -103,9 +103,9 @@
                             <div class="d-flex flex-column w-50">
                                 <h1 class="fs-5 fw-bold">{{ $producto->id }}. {{ $producto->nombre }}</h1>
                                 <div class="d-flex gap-2">
-                                    <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria_id }}</small>
+                                    <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria->nombre }}</small>
                                     <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                        Cantidad en stock: <span class="fw-medium">{{ $producto->categoria_id }}</span>
+                                        Cantidad en stock: <span class="fw-medium">{{ $producto->cantidad_producto }}</span>
                                     </small>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="col-4">
                                     <small class="row">Ubicacion</small>
-                                    <small class="row fs-6 fw-bold">{{ $producto->SKU }}</small>
+                                    <small class="row fs-6 fw-bold">{{ $producto->almacen->nombre }}</small>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -135,6 +135,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Ver</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('productos.edit', $producto) }}">Editar</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $producto->id }}">Eliminar</a></li>
                                     </ul>
                                     <!-- el modal aka mensajito de confirmacion -->

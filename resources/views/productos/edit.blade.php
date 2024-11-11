@@ -5,7 +5,7 @@
 @section('content')
 <div class="col px-5">
     <div class="text-center">
-        <small class="text-muted fs-6">Agregar Producto</small>
+        <small class="text-muted fs-6">Editar Producto</small>
         <h2 class="fw-bold">INFROMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center align-items-center">
@@ -29,12 +29,12 @@
             </div>-->
             <div class="col">
                 <!-- formulario -->
-                <form method="POST" action="{{ route('productos.store.general') }}" class="shadow-sm bg-white p-4 rounded" style="width: 50rem;">
-                    @csrf
+                <form method="POST" action="{{ route('productos.update', $producto) }}" class="shadow-sm bg-white p-4 rounded" style="width: 50rem;">
+                    @csrf @method('PATCH')
                     <!-- nombre producto -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del producto</label>
-                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" required value="{{ $producto->nombre }}">
                     </div>
                     <!-- proveedor -->
                     <div class="mb-3">
@@ -49,8 +49,8 @@
                     <!-- sku y categoria -->
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="sku" class="form-label">Codigo SKU</label>
-                            <input type="text" class="form-control bg-white" id="sku" name="sku" required>
+                            <label class="form-label">Codigo SKU</label>
+                            <input disabled type="text" class="form-control bg-white" value="{{ $producto->SKU }}">
                         </div>
                         <div class="col-md-6">
                             <label for="categoria" class="form-label">Categoria</label>
@@ -66,23 +66,24 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="tipo" class="form-label">Precio unitario</label>
-                            <input type="number" class="form-control bg-white" id="precio" name="precio" required>
+                            <input type="number" class="form-control bg-white" id="precio" name="precio" required value="{{ $producto->precio }}">
                         </div>
                         <div class="col-md-6">
                             <label for="unidad_medida" class="form-label">Unidad de medida</label>
-                            <input type="number" class="form-control bg-white" id="unidad_medida" name="unidad_medida" required>
+                            <input type="number" class="form-control bg-white" id="unidad_medida" name="unidad_medida" required value="{{ $producto->unidad_medida }}">
                         </div>
                     </div>
                     <!-- desc -->
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3" required></textarea>
+                        <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3" required>{{ $producto->descripcion }}
+                        </textarea>
                     </div>
                     <!-- cant y almacen -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="cantidad_producto" class="form-label">Cantidad de unidades</label>
-                            <input type="number" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required>
+                            <input type="number" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required value="{{ $producto->cantidad_producto }}">
                         </div>
                         <div class="col-md-6">
                             <label for="almacen" class="form-label">Almacen</label>
