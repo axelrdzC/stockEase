@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
     
     /* vistas almacenes  */
     Route::get('/almacenes', [App\Http\Controllers\AlmacenController::class, 'index'])->name('almacenes.index');
-    Route::get('/almacenes/create', [App\Http\Controllers\AlmacenController::class, 'create'])->name('almacenes.create');
-    Route::post('/almacenes', [App\Http\Controllers\AlmacenController::class, 'store'])->name('almacenes.store');
+    Route::get('/almacenes/create/general', [App\Http\Controllers\AlmacenController::class, 'create'])->name('almacenes.create.general');
+    Route::post('/almacenes', [App\Http\Controllers\AlmacenController::class, 'store'])->name('almacenes.store.general');
 
 
     /* vistas ordenes  */
