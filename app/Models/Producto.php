@@ -15,7 +15,20 @@ class Producto extends Model
         'sku',
         'unidad_medida',
         'precio',
+        'cantidad_producto',
+        'almacen_id',
+        'proveedor_id',
         'categoria_id'
     ];
+
+    public function almacen()
+    {
+        return $this->belongsTo(Almacen::class, 'almacen_id');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
     
 }

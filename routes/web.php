@@ -18,9 +18,12 @@ Route::middleware('auth')->group(function () {
 
     /* vistas productos  */
     Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
+
     Route::get('/productos/create/general', [App\Http\Controllers\ProductoController::class, 'createGeneral'])->name('productos.create.general');
     Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'storeGeneral'])->name('productos.store.general');
     
+    Route::get('/productos/{producto}/edit', [App\Http\Controllers\ProductoController::class, 'edit'])->name('productos.edit');
+    Route::patch('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'update'])->name('productos.update');
     Route::delete('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'destroy'])->name('productos.destroy');
 
     /* vistas clientes  */

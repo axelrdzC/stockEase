@@ -33,5 +33,6 @@ class AlmacenController extends Controller
 
         $almacen->delete();
         return redirect()->route('almacenes.index')->with('status', 'el almacen ha sido eliminado');
+        
     }
 }
