@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                            <label for="email" class="form-label">{{ __('Correo electronico') }}</label>
 
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror focus-ring input-blur" name="email" 
                                     value="{{ old('email') }}" required autocomplete="email">
@@ -25,11 +25,11 @@
 
                         <div class="mb-4">
                             <div class="row">
-                                <label for="password" class="form-label w-25">{{ __('Password') }}</label>
+                                <label for="password" class="form-label w-25">{{ __('Contraseña') }}</label>
                                 @if (Route::has('password.request'))
                                 <div class="text-end w-75">
                                     <a class="text-decoration-none" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Olvidaste tu contraseña?') }}
                                     </a>
                                 </div>
                                 @endif
@@ -48,7 +48,7 @@
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
+                                                {{ __('Recuerdame') }}
                                             </label>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="mb-3 w-100">
-                            <button type="submit" class="btn btn-primary w-100">{{ __('Login') }}</button>
+                            <button type="submit" class="btn btn-primary w-100">{{ __('Iniciar Sesión') }}</button>
                             <div class="d-flex align-items-center justify-content-center">
                                 <span class="mx-2 my-2">Ó</span>
                             </div>

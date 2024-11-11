@@ -25,16 +25,16 @@
                             <label for="pais" class="form-label">País</label>
                             <select class="form-select bg-white" id="pais" name="pais" required>
                                 <option selected disabled>Selecciona un país</option>
-                                <option value="1">México</option>
-                                <option value="2">Estados Unidos</option>
+                                <option value="México">México</option>
+                                <option value="Estados Unidos">Estados Unidos</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="estado" class="form-label">Estado</label>
                             <select class="form-select bg-white" id="estado" name="estado" required>
                                 <option selected disabled>Selecciona un estado</option>
-                                <option value="1">Tamaulipas</option>
-                                <option value="2">Nuevo León</option>
+                                <option value="Tamaulipas">Tamaulipas</option>
+                                <option value="Nuevo León">Nuevo León</option>
                             </select>
                         </div>
                     </div>
@@ -44,14 +44,19 @@
                             <label for="ciudad" class="form-label">Ciudad</label>
                             <select class="form-select bg-white" id="ciudad" name="ciudad" required>
                                 <option selected disabled>Selecciona una ciudad</option>
-                                <option value="1">Ciudad Victoria</option>
-                                <option value="2">Tampico</option>
+                                <option value="Ciudad Victoria">Ciudad Victoria</option>
+                                <option value="Tampico">Tampico</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="codigo_p" class="form-label">Código Postal</label>
                             <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" required>
                         </div>
+                    </div>
+                    <!-- colonia / calles -->
+                    <div class="mb-3">
+                        <label for="colonia" class="form-label">Colonia y calle</label>
+                        <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
                     </div>
                     <!-- subir img -->
                     <div class="mb-3">
@@ -69,4 +74,25 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function makeUbicacion() {
+        const pais = document.getElementById('pais').value
+        const estado = document.getElementById('estado').value
+        const ciudad = document.getElementById('ciudad').value
+        const codigo_p = document.getElementById('codigo_p').value
+        const colonia = document.getElementById('colonia').value
+
+        const ubicacion = `${ciudad} ${estado}, ${pais}.  ${calle}, CP. ${codigoPostal}`.trim()
+        document.getElementById('ubicacion').value = ubicacion
+    }
+
+    document.getElementById('pais').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('estado').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('ciudad').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('codigo_postal').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('calle').addEventListener('input', actualizarDireccionCompleta)
+
+</script>
 @endsection

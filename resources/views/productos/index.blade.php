@@ -138,8 +138,8 @@
                                         <li><a class="dropdown-item" href="{{ route('productos.edit', $producto) }}">Editar</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $producto->id }}">Eliminar</a></li>
                                     </ul>
-                                    <!-- el modal aka mensajito de confirmacion -->
-                                    <div class="modal fade" id="eliminar-{{ $producto->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <!-- el modal aka mensajito de confirmacion -->
+                                        <div class="modal fade" id="eliminar-{{ $producto->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
