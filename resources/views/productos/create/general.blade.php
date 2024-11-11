@@ -37,8 +37,14 @@
                         <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
                     </div>
                     <!-- proveedor -->
-                    <div class="mb-3">
-                        <label for="proveedor" class="form-label">Nombre del proveedor</label>
+                    <div class="mb-4">
+                        <div class="d-flex">                            
+                            <label for="proveedor" class="form-label">Nombre del proveedor</label>
+                            <a href="#" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end
+                            data-bs-toggle="modal" data-bs-target="#addCategoria">
+                                Agregar un proveedor +
+                            </a>
+                        </div>
                             <select class="form-select bg-white" id="proveedor" name="proveedor" required>
                                 <option selected disabled>Selecciona un proveedor</option>
                                 @foreach ($proveedores as $proveedor)
@@ -47,13 +53,18 @@
                             </select>
                     </div>
                     <!-- sku y categoria -->
-                    <div class="row mb-3">
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="sku" class="form-label">Codigo SKU</label>
                             <input type="text" class="form-control bg-white" id="sku" name="sku" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="categoria" class="form-label">Categoria</label>
+                            <div class="row">                            
+                                <label for="categoria" class="form-label col">Categoria</label>
+                                <a href="#" class="text-primary fw-medium col link-underline link-underline-opacity-0" data-bs-toggle="modal" data-bs-target="#addCategoria">
+                                    Agregar una categoría +
+                                </a>
+                            </div>
                             <select class="form-select bg-white" id="categoria" name="categoria" required>
                                 <option selected disabled>Selecciona una categoria</option>
                                 @foreach ($categorias as $categoria)
@@ -63,7 +74,7 @@
                         </div>
                     </div>
                     <!-- precio y unidad -->
-                    <div class="row mb-3">
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="tipo" class="form-label">Precio unitario</label>
                             <input type="number" class="form-control bg-white" id="precio" name="precio" required>
@@ -74,12 +85,12 @@
                         </div>
                     </div>
                     <!-- desc -->
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="descripcion" class="form-label">Descripcion</label>
                         <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3" required></textarea>
                     </div>
                     <!-- cant y almacen -->
-                    <div class="row mb-3">
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="cantidad_producto" class="form-label">Cantidad de unidades</label>
                             <input type="number" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required>
@@ -95,7 +106,7 @@
                         </div>
                     </div>
                     <!-- subir img -->
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="imagen" class="form-label">Subir imagen</label>
                         <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
                     </div>
@@ -110,4 +121,8 @@
         </div>
     </div>
 </div>
+
+<!-- el modal aka formulario add categoria -->
+@include('components.modales.addCategoria')
+
 @endsection

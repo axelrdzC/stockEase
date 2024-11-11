@@ -34,6 +34,7 @@
                             <select class="form-select bg-white" id="estado" name="estado" required>
                                 <option selected disabled>Selecciona un estado</option>
                                 <option value="Tamaulipas">Tamaulipas</option>
+                                <option value="Nuevo León">Nuevo León</option>
                                 <option value="Nuevo Leon">Nuevo León</option>
                             </select>
                         </div>
@@ -53,6 +54,11 @@
                             <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" required>
                         </div>
                     </div>
+                    <!-- colonia / calles -->
+                    <div class="mb-3">
+                        <label for="colonia" class="form-label">Colonia y calle</label>
+                        <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
+                    </div>
                     <!-- subir img -->
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Subir imagen</label>
@@ -69,4 +75,25 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function makeUbicacion() {
+        const pais = document.getElementById('pais').value
+        const estado = document.getElementById('estado').value
+        const ciudad = document.getElementById('ciudad').value
+        const codigo_p = document.getElementById('codigo_p').value
+        const colonia = document.getElementById('colonia').value
+
+        const ubicacion = `${ciudad} ${estado}, ${pais}.  ${calle}, CP. ${codigoPostal}`.trim()
+        document.getElementById('ubicacion').value = ubicacion
+    }
+
+    document.getElementById('pais').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('estado').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('ciudad').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('codigo_postal').addEventListener('input', actualizarDireccionCompleta)
+    document.getElementById('calle').addEventListener('input', actualizarDireccionCompleta)
+
+</script>
 @endsection
