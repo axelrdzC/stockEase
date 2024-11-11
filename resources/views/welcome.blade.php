@@ -27,7 +27,7 @@
                 @if (Route::has('login'))
                     <div class="d-flex gap-2 justify-content-center">
                     @auth
-                    <a href="{{ url('/dashboard') }}" class="btn btn-primary col-4 z-2"> Dashboard </a>
+                    <a href="{{ route('home') }}" class="btn btn-primary col-4 z-2"> Dashboard </a>
                         @else
                         <a href="{{ route('login') }}" class="btn btn-primary col-4 z-2"> Log in </a>
 

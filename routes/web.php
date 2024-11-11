@@ -18,9 +18,10 @@ Route::middleware('auth')->group(function () {
 
     /* vistas productos  */
     Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
-
-    /* vistas productos  */
-    Route::get('/productos/create', [App\Http\Controllers\ProductoController::class, 'create'])->name('productos.create');
+    Route::get('/productos/create/general', [App\Http\Controllers\ProductoController::class, 'createGeneral'])->name('productos.create.general');
+    Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'storeGeneral'])->name('productos.store.general');
+    
+    Route::delete('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'destroy'])->name('productos.destroy');
 
     /* vistas clientes  */
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
