@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     
     Route::delete('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('almacenes.destroy');
 
+    Route::delete('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('almacenes.destroy');
 
     /* vistas ordenes  */
     Route::get('/ordenes', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');

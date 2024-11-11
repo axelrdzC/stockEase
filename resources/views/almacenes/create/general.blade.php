@@ -35,6 +35,7 @@
                                 <option selected disabled>Selecciona un estado</option>
                                 <option value="Tamaulipas">Tamaulipas</option>
                                 <option value="Nuevo León">Nuevo León</option>
+                                <option value="Nuevo Leon">Nuevo León</option>
                             </select>
                         </div>
                     </div>
