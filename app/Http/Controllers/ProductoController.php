@@ -24,7 +24,7 @@ class ProductoController extends Controller
         $dataGeneral-> sku = $request->input('sku');
         $dataGeneral-> categoria_id = $request->input('categoria');
         $dataGeneral-> precio = $request->input('precio');
-        $dataGeneral-> unidad_medida = $request->input('unidad_medida');
+        $dataGeneral-> unidad_medida = $request->input('cantidad');
         $dataGeneral-> descripcion = $request->input('descripcion');
 
         Producto::create([

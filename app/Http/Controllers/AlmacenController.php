@@ -22,7 +22,7 @@ class AlmacenController extends Controller
         $dataGeneral-> pais = $request->input('pais');
         $dataGeneral-> estado = $request->input('estado');
         $dataGeneral-> ciudad = $request->input('ciudad');
-        $dataGeneral-> codigo_p = $request->input('codigo_postal');
+        $dataGeneral-> codigo_p = $request->input('codigo_p');
 
         $ubicacion = "{$dataGeneral->pais}, {$dataGeneral->estado}, {$dataGeneral->ciudad}, {$dataGeneral->codigo_p}";
 

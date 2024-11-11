@@ -25,16 +25,16 @@
                             <label for="pais" class="form-label">País</label>
                             <select class="form-select bg-white" id="pais" name="pais" required>
                                 <option selected disabled>Selecciona un país</option>
-                                <option value="1">México</option>
-                                <option value="2">Estados Unidos</option>
+                                <option value="México">México</option>
+                                <option value="Estados Unidos">Estados Unidos</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="estado" class="form-label">Estado</label>
                             <select class="form-select bg-white" id="estado" name="estado" required>
                                 <option selected disabled>Selecciona un estado</option>
-                                <option value="1">Tamaulipas</option>
-                                <option value="2">Nuevo León</option>
+                                <option value="Tamaulipas">Tamaulipas</option>
+                                <option value="Nuevo Leon">Nuevo León</option>
                             </select>
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                             <label for="ciudad" class="form-label">Ciudad</label>
                             <select class="form-select bg-white" id="ciudad" name="ciudad" required>
                                 <option selected disabled>Selecciona una ciudad</option>
-                                <option value="1">Ciudad Victoria</option>
-                                <option value="2">Tampico</option>
+                                <option value="Ciudad Victoria">Ciudad Victoria</option>
+                                <option value="Tampico">Tampico</option>
                             </select>
                         </div>
                         <div class="col-md-6">

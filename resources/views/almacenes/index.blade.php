@@ -28,7 +28,7 @@
         <div class="col-2">
             <div class="d-flex align-items-center">
                 <button type="button" onclick="window.location.href='{{ route('almacenes.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
-                    Agregar almacen +
+                    <strong>Agregar almacen +</strong>
                 </button>
             </div>
         </div>
@@ -87,34 +87,19 @@
         <div class="d-flex flex-grow-1 w-50">
             <div class="row w-100 gap-2">
                 @foreach ($almacenes as $almacen)
-                    <!--
                     <div class="card shadow-sm bg-white border-0 m-0">
                         <div class="card-body d-flex align-items-center">
                             <div class="d-flex flex-column w-50">
-                                <h1 class="fs-5 fw-bold">{{ $almacen->id }}. {{ $almacen->nombre }}</h1>
-                                <<div class="d-flex gap-2">
-                                    <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $almacen->categoria_id }}</small>
-                                    <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                        Cantidad en stock: <span class="fw-medium">{{ $almacen->categoria_id }}</span>
-                                    </small>
-                                </div>
+                                <h1 class="fs-5 fw-bold">{{ $almacen->id }} {{ $almacen->nombre }}</h1>
                             </div>
                             <div class="d-flex flex-grow-1">
                                 <div class="col-4">
-                                    <small class="row">Precio unitario</small>
-                                    <small class="row fs-6 fw-bold">$ {{ $almacen->precio }}</small>
-                                </div>
-                                <div class="col-4">
-                                    <small class="row">Codigo SKU</small>
-                                    <small class="row fs-6 fw-bold">{{ $almacen->SKU }}</small>
-                                </div>
-                                <div class="col-4">
                                     <small class="row">Ubicacion</small>
-                                    <small class="row fs-6 fw-bold">{{ $almacen->SKU }}</small>
+                                    <small class="row fs-6 fw-bold">{{ $almacen->ubicacion }}</small>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                 ver mas opcs 
+                                <!-- ver mas opcs -->
                                 <div class="dropdown">
                                     <button type="button" class="btn rounded-3 border-2 btn-outline-secondary p-0" data-bs-toggle="dropdown" aria-expanded="false">
                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="svgs">
@@ -127,7 +112,7 @@
                                         <li><a class="dropdown-item" href="#">Ver</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $almacen->id }}">Eliminar</a></li>
                                     </ul>
-                                    < el modal aka mensajito de confirmacion >
+                                    <!-- el modal aka mensajito de confirmacion -->
                                     <div class="modal fade" id="eliminar-{{ $almacen->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
@@ -136,17 +121,18 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="">Esta seguro de querer borrar el siguiente alma$almacen: </p>
+                                                    <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
+                                                    <p></p>
                                                     <p class="m-0"> ID: {{ $almacen->id }} </p>
                                                     <p class="m-0"> Nombre: {{ $almacen->nombre }} </p>
-                                                    <p class="m-0"> SKU: {{ $almacen->SKU }} </p>
+                                                    <p class="m-0"> Ubicacion: {{ $almacen->ubicacion }} </p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('productos.destroy', $almacen) }}" method="POST">
+                                                    <form action="{{ route('almacenes.destroy', $almacen) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-primary">Eliminar alma$almacen</button>
+                                                        <button type="submit" class="btn btn-primary">Eliminar almacen</button>
                                                     </form>
                                                 </div>
                                                 </div>
@@ -155,7 +141,7 @@
                                     </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
                 @endforeach
             </div>
         </div>

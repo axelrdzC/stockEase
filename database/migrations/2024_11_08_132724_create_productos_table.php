@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('SKU')->unique();
-            $table->decimal('unidad_medida', 8, 2);
             $table->decimal('precio', 8, 2);
             $table->integer('cantidad_producto');
             $table->timestamps();
