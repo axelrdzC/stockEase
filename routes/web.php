@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     
     /* vistas almacenes  */
     Route::get('/almacenes', [App\Http\Controllers\AlmacenController::class, 'index'])->name('almacenes.index');
+    Route::get('/almacenes/create', [App\Http\Controllers\AlmacenController::class, 'create'])->name('almacenes.create');
+    Route::post('/almacenes', [App\Http\Controllers\AlmacenController::class, 'store'])->name('almacenes.store');
+
 
     /* vistas ordenes  */
     Route::get('/ordenes', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');

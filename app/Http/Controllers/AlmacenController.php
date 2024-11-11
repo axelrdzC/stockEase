@@ -13,9 +13,25 @@ class AlmacenController extends Controller
         return view('almacenes.index', compact('almacenes'));
     }
 
-    public function create()
+    public function create(){ return view('almacenes.create'); }
+
+    public function store(Request $request)
     {
-        return view('almacenes.create');
+        $dataGeneral = new Almacen;
+        $dataGeneral-> nombre = $request->input('nombre');
+        $dataGeneral-> ubicacion = $request->input('ubicacion');
+
+        Almacen::create([
+            'nombre' => $dataGeneral['nombre'],
+            'ubicacion' => $dataGeneral['ubicacion'],
+        ]);
+
+        return redirect()->route('almacenes.index')->with('success', 'almacen agregado exitosamente');
     }
 
+    public function destroy(Almacen $almacen) {
+
+        $almacen->delete();
+        return redirect()->route('almacenes.index')->with('status', 'el almacen ha sido eliminado');
+    }
 }
