@@ -41,6 +41,10 @@ Route::middleware('auth')->group(function () {
     
     /* vistas proveedores  */
     Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores.index');
+    Route::get('/proveedores/create/general', [App\Http\Controllers\AlmacenController::class, 'create'])->name('proveedores.create.general');
+    Route::post('/proveedores', [App\Http\Controllers\AlmacenController::class, 'store'])->name('proveedores.store.general');
+
+    Route::delete('/proveedores/{proveedor}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('proveedores.destroy');
 
     /* vistas informes  */
     Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
