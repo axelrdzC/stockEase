@@ -87,7 +87,7 @@
                             <img src="img/almacen.png" alt="" class="rounded-top-3">
                         </div> 
                         <div class="card-body d-flex flex-column">
-                            <h1 class="fs-5 fw-bold">{{ $almacen->id }}. {{ $almacen->nombre }}</h1>
+                            <h1 class="fs-5 fw-bold">{{ $almacen->nombre }}</h1>
                             <small class="fs-6 fw-medium text-truncate">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 10.5005C14.5 9.11924 13.3808 8 12.0005 8C10.6192 8 9.5 9.11924 9.5 10.5005C9.5 11.8808 10.6192 13 12.0005 13C13.3808 13 14.5 11.8808 14.5 10.5005Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -139,18 +139,18 @@
                                 <div class="modal fade" id="editar-{{ $almacen->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
+                                            <!-- formulario -->
+                                            <form method="POST" action="{{ route('almacenes.update', $almacen) }}" class="">
+                                                @csrf @method('PATCH')
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar informacion del almacen</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- formulario -->
-                                                    <form method="POST" action="{{ route('almacenes.store.general') }}" class="">
-                                                        @csrf
                                                         <!-- nombre almacen -->
                                                         <div class="mb-3">
                                                             <label for="nombre" class="form-label">Nombre del almacen</label>
-                                                            <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
+                                                            <input type="text" class="form-control bg-white" id="nombre" name="nombre" value="{{ $almacen->nombre }}" required>
                                                         </div>
                                                         <!-- pais y estado -->
                                                         <div class="row mb-3">
@@ -197,15 +197,13 @@
                                                             <label for="imagen" class="form-label">Subir imagen</label>
                                                             <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
                                                         </div>
-                                                    </form>
+                                                    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('almacenes.destroy', $almacen) }}" method="POST">
-                                                        @csrf
-                                                            <button type="submit" class="btn btn-primary">Aceptar</button>
-                                                    </form>
+                                                    <button type="submit" class="btn btn-primary">Aceptar</button>
                                                 </div>
+                                            </form>    
                                         </div>
                                     </div>
                                 </div>

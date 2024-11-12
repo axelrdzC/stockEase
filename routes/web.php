@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/almacenes/create/general', [App\Http\Controllers\AlmacenController::class, 'create'])->name('almacenes.create.general');
     Route::post('/almacenes', [App\Http\Controllers\AlmacenController::class, 'store'])->name('almacenes.store.general');
     
+    Route::get('/almacenes/{almacen}/edit', [App\Http\Controllers\AlmacenController::class, 'edit'])->name('almacenes.edit');
+    Route::patch('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'update'])->name('almacenes.update');
     Route::delete('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('almacenes.destroy');
 
     /* vistas ordenes  */

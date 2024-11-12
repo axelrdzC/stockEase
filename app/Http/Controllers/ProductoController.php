@@ -62,8 +62,6 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('status', 'Producto modificado exitosamente');
     }
     
-    
-    
 
     public function destroy(Producto $producto) {
 
