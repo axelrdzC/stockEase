@@ -27,7 +27,7 @@
         <!-- add proveedor -->
         <div class="col-2">
             <div class="d-flex align-items-center">
-                <button type="button" onclick="window.location.href='{{ route('Proveedores.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                <button type="button" onclick="window.location.href='{{ route('proveedores.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
                     Agregar proveedor +
                 </button>
             </div>
@@ -76,7 +76,7 @@
         <!-- tabla d Proveedores -->
         <div class="d-flex flex-grow-1 w-50">
             <div class="row w-100 gap-2">
-                @foreach ($Proveedores as $proveedor)
+                @foreach ($proveedores as $proveedor)
                     <div class="card shadow-sm bg-white border-0 m-0">
                         <div class="card-body d-flex align-items-center">
                             <div class="d-flex flex-column w-50">

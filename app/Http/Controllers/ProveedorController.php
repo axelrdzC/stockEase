@@ -13,7 +13,7 @@ class ProveedorController extends Controller
         return view('proveedores.index', compact('proveedores'));
     }
 
-    public function create() { return view('proveedores.create'); }
+    public function create() { return view('proveedores.create.general'); }
 
     public function store(Request $request)
     {
