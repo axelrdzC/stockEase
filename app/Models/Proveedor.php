@@ -15,7 +15,13 @@ class Proveedor extends Model
         'nombre',
         'telefono',
         'direccion',
-        'email'
+        'email',
+        'id_categoria'
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria');
+    }
     
 }

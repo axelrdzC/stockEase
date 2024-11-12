@@ -83,7 +83,7 @@
                                 <div class="d-flex flex-column w-50">
                                     <h1 class="fs-5 fw-bold">{{ $proveedor->nombre }}</h1>
                                     <div class="d-flex gap-2">
-                                        <small class="fw-medium text-white rounded bg-primary p-1 px-2">categoria</small>
+                                        <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $proveedor->categoria->nombre }}</small>
                                         <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
                                             Cantidad en stock: <span class="fw-medium">0</span>
                                         </small>

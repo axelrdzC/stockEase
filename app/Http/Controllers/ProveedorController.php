@@ -17,15 +17,16 @@ class ProveedorController extends Controller
 
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'nombre' => 'required',
             'telefono' => 'required',
+            'id_categoria' => 'required',
         ]);
     
         $dataGeneral = Proveedor::create([
             'nombre' => $validated['nombre'],
             'telefono' => $validated['telefono'],
+            'id_categoria' => $validated['id_categoria'],
             'direccion' => '',
             'email' => '',
         ]);

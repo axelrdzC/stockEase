@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('proveedores', Proveedor::all());
         });
 
-        View::composer(['productos.create.general', 'productos.index', 'productos.edit', 'proveedores.create.general'], function ($view) {
+        View::composer(['productos.create.general', 'productos.index', 'productos.edit', 'proveedores.create.general', 'proveedores.index'], function ($view) {
             $view->with('categorias', Categoria::all());
         });
 
