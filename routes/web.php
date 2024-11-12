@@ -48,8 +48,11 @@ Route::middleware('auth')->group(function () {
     
     /* vistas proveedores  */
     Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores.index');
+    
     Route::get('/proveedores/create/general', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedores.create.general');
     Route::post('/proveedores', [App\Http\Controllers\ProveedorController::class, 'store'])->name('proveedores.store.general');
+    Route::get('/proveedores/create/{proveedor}/ubicacion', [App\Http\Controllers\ProveedorController::class, 'createUbi'])->name('proveedores.create.ubicacion');
+    Route::post('/proveedores/create/{proveedor}/ubicacion', [App\Http\Controllers\ProveedorController::class, 'storeFinal'])->name('proveedores.store.final');
 
     Route::get('/proveedores/{proveedor}/edit', [App\Http\Controllers\ProveedorController::class, 'edit'])->name('proveedores.edit');
     Route::delete('/proveedores/{proveedor}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedores.destroy');
