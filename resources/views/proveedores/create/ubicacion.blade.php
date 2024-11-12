@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Correo</label>
-                            <input type="number" class="form-control bg-white" id="email" name="email" required>
+                            <input type="text" class="form-control bg-white" id="email" name="email" required>
                         </div>
                     </div>
                     <!-- botones -->
