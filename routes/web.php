@@ -34,6 +34,14 @@ Route::middleware('auth')->group(function () {
     /* vistas clientes  */
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
     
+    Route::get('/clientes/create/general', [App\Http\Controllers\ClienteController::class, 'create'])->name('clientes.create.general');
+    Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store.general');
+    Route::get('/clientes/create/{cliente}/ubicacion', [App\Http\Controllers\ClienteController::class, 'createUbi'])->name('clientes.create.ubicacion');
+    Route::post('/clientes/create/{cliente}/ubicacion', [App\Http\Controllers\ClienteController::class, 'storeFinal'])->name('clientes.store.final');
+
+    Route::get('/clientes/{cliente}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
+    Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
+    
     /* vistas almacenes  */
     Route::get('/almacenes', [App\Http\Controllers\AlmacenController::class, 'index'])->name('almacenes.index');
     Route::get('/almacenes/create/general', [App\Http\Controllers\AlmacenController::class, 'create'])->name('almacenes.create.general');
