@@ -12,12 +12,12 @@ class Producto extends Model
     protected $fillable = [
         'nombre', 
         'descripcion', 
-        'sku',
-        'unidad_medida',
-        'precio',
-        'cantidad_producto',
-        'almacen_id',
-        'proveedor_id',
+        'sku', 
+        'unidad_medida', 
+        'precio', 
+        'cantidad_producto', 
+        'almacen_id', 
+        'proveedor_id', 
         'categoria_id'
     ];
 

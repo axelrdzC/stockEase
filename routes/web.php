@@ -41,8 +41,6 @@ Route::middleware('auth')->group(function () {
     
     Route::delete('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('almacenes.destroy');
 
-    Route::delete('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('almacenes.destroy');
-
     /* vistas ordenes  */
     Route::get('/ordenes', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');
     
@@ -51,7 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/proveedores/create/general', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedores.create.general');
     Route::post('/proveedores', [App\Http\Controllers\ProveedorController::class, 'store'])->name('proveedores.store.general');
 
-    Route::delete('/proveedores/{proveedor}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('proveedores.destroy');
+    Route::get('/proveedores/{proveedor}/edit', [App\Http\Controllers\ProveedorController::class, 'edit'])->name('proveedores.edit');
+    Route::delete('/proveedores/{proveedor}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 
     /* vistas informes  */
     Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');

@@ -101,7 +101,7 @@
                     <div class="card shadow-sm bg-white border-0 m-0">
                         <div class="card-body d-flex align-items-center">
                             <div class="d-flex flex-column w-50">
-                                <h1 class="fs-5 fw-bold">{{ $producto->id }}. {{ $producto->nombre }}</h1>
+                                <h1 class="fs-5 fw-bold">{{ $producto->nombre }}</h1>
                                 <div class="d-flex gap-2">
                                     <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria->nombre }}</small>
                                     <small class="rounded bg-white border border-secondary-subtle p-1 px-2">

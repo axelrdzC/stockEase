@@ -95,8 +95,8 @@
                                 </svg>
                                 {{ $almacen->ubicacion }}
                             </small>
-                            <div class="d-flex justify-content-end mt-auto">
-                                <a class="p-2" href="#">
+                            <div class="d-flex justify-content-end mt-2">
+                                <a class="p-2" href="#" data-bs-toggle="modal" data-bs-target="#editar-{{ $almacen->id }}">
                                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.9562 17.5358H18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.15 3.66233C11.7964 2.88982 12.9583 2.77655 13.7469 3.40978C13.7905 3.44413 15.1912 4.53232 15.1912 4.53232C16.0575 5.05599 16.3266 6.16925 15.7912 7.01882C15.7627 7.06432 7.84329 16.9704 7.84329 16.9704C7.57981 17.2991 7.17986 17.4931 6.75242 17.4978L3.71961 17.5358L3.03628 14.6436C2.94055 14.2369 3.03628 13.8098 3.29975 13.4811L11.15 3.66233Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -130,6 +130,80 @@
                                                         @csrf
                                                         @method('DELETE')
                                                             <button type="submit" class="btn btn-primary">Eliminar almacen</button>
+                                                    </form>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>                              
+                                <!-- el modal aka formulario edit almacen -->
+                                <div class="modal fade" id="editar-{{ $almacen->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar informacion del almacen</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- formulario -->
+                                                    <form method="POST" action="{{ route('almacenes.store.general') }}" class="">
+                                                        @csrf
+                                                        <!-- nombre almacen -->
+                                                        <div class="mb-3">
+                                                            <label for="nombre" class="form-label">Nombre del almacen</label>
+                                                            <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
+                                                        </div>
+                                                        <!-- pais y estado -->
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <label for="pais" class="form-label">País</label>
+                                                                <select class="form-select bg-white" id="pais" name="pais" required>
+                                                                    <option selected disabled>Selecciona un país</option>
+                                                                    <option value="México">México</option>
+                                                                    <option value="Estados Unidos">Estados Unidos</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="estado" class="form-label">Estado</label>
+                                                                <select class="form-select bg-white" id="estado" name="estado" required>
+                                                                    <option selected disabled>Selecciona un estado</option>
+                                                                    <option value="Tamaulipas">Tamaulipas</option>
+                                                                    <option value="Nuevo León">Nuevo León</option>
+                                                                    <option value="Nuevo Leon">Nuevo León</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ciudad y CP -->
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <label for="ciudad" class="form-label">Ciudad</label>
+                                                                <select class="form-select bg-white" id="ciudad" name="ciudad" required>
+                                                                    <option selected disabled>Selecciona una ciudad</option>
+                                                                    <option value="Ciudad Victoria">Ciudad Victoria</option>
+                                                                    <option value="Tampico">Tampico</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label for="codigo_p" class="form-label">Código Postal</label>
+                                                                <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" required>
+                                                            </div>
+                                                        </div>
+                                                        <!-- colonia / calles -->
+                                                        <div class="mb-3">
+                                                            <label for="colonia" class="form-label">Colonia y calle</label>
+                                                            <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
+                                                        </div>
+                                                        <!-- subir img -->
+                                                        <div class="mb-3">
+                                                            <label for="imagen" class="form-label">Subir imagen</label>
+                                                            <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <form action="{{ route('almacenes.destroy', $almacen) }}" method="POST">
+                                                        @csrf
+                                                            <button type="submit" class="btn btn-primary">Aceptar</button>
                                                     </form>
                                                 </div>
                                         </div>

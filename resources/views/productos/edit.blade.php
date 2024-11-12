@@ -37,9 +37,14 @@
                         <input type="text" class="form-control bg-white" id="nombre" name="nombre" required value="{{ $producto->nombre }}">
                     </div>
                     <!-- proveedor -->
-                    <div class="mb-3">
-                        <label for="proveedor" class="form-label">Nombre del proveedor</label>
-                            <select class="form-select bg-white" id="proveedor" name="proveedor" required>
+                    <div class="mb-4">
+                        <div class="d-flex">                            
+                            <label for="proveedor_id" class="form-label">Nombre del proveedor</label>
+                            <a href="{{ route('proveedores.create.general') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end">
+                                Agregar un proveedor +
+                            </a>
+                        </div>
+                            <select class="form-select bg-white" id="proveedor_id" name="proveedor_id" required>
                                 <option selected disabled>Selecciona un proveedor</option>
                                 @foreach ($proveedores as $proveedor)
                                     <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
@@ -53,8 +58,13 @@
                             <input disabled type="text" class="form-control bg-white" value="{{ $producto->SKU }}">
                         </div>
                         <div class="col-md-6">
-                            <label for="categoria" class="form-label">Categoria</label>
-                            <select class="form-select bg-white" id="categoria" name="categoria" required>
+                            <div class="row">                            
+                                <label for="categoria_id" class="form-label col">Categoria</label>
+                                <a href="#" class="text-primary fw-medium col link-underline link-underline-opacity-0" data-bs-toggle="modal" data-bs-target="#addCategoria">
+                                    Agregar una categoría +
+                                </a>
+                            </div>
+                            <select class="form-select bg-white" id="categoria_id" name="categoria_id" required>
                                 <option selected disabled>Selecciona una categoria</option>
                                 @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
@@ -86,8 +96,8 @@
                             <input type="number" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required value="{{ $producto->cantidad_producto }}">
                         </div>
                         <div class="col-md-6">
-                            <label for="almacen" class="form-label">Almacen</label>
-                            <select class="form-select bg-white" id="almacen" name="almacen" required>
+                            <label for="almacen_id" class="form-label">Almacen</label>
+                            <select class="form-select bg-white" id="almacen_id" name="almacen_id" required>
                                 <option selected disabled>Selecciona un almacen</option>
                                 @foreach ($almacenes as $almacen)
                                     <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
@@ -111,4 +121,8 @@
         </div>
     </div>
 </div>
+
+<!-- el modal aka formulario add categoria -->
+@include('components.modales.addCategoria')
+
 @endsection
