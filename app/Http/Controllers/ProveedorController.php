@@ -17,15 +17,16 @@ class ProveedorController extends Controller
 
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'nombre' => 'required',
             'telefono' => 'required',
+            'id_categoria' => 'required',
         ]);
     
         $dataGeneral = Proveedor::create([
             'nombre' => $validated['nombre'],
             'telefono' => $validated['telefono'],
+            'id_categoria' => $validated['id_categoria'],
             'direccion' => '',
             'email' => '',
         ]);
@@ -55,7 +56,7 @@ class ProveedorController extends Controller
     public function destroy(Proveedor $proveedor) {
 
         $proveedor->delete();
-        return redirect()->route('proveedor.index')->with('status', 'el proveedor ha sido eliminado');
+        return redirect()->route('proveedores.index')->with('status', 'el proveedor ha sido eliminado');
         
     }
 }

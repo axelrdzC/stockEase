@@ -59,7 +59,7 @@
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Mis almacenes</div>
                     <div class="fs-5 text-end">
-                        <a href="#" class="fw-bold link-underline link-underline-opacity-0">Ver todos ></a>
+                        <a href="{{ route('almacenes.index') }}" class="fw-bold link-underline link-underline-opacity-0">Ver todos ></a>
                     </div>
                 </div>
 
