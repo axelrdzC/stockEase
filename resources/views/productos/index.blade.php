@@ -34,9 +34,9 @@
         </div>
     </div>
     <!-- contenedor productos -->
-    <div class="row d-flex gap-4">
+    <div class="d-flex gap-4">
         <!-- filtros -->
-        <div class="d-flex" style="width: 18rem;">
+        <div class="d-flex h-100" style="width: 18rem;">
         <div class="card border-0 bg-white shadow-sm w-100">
             <div class="card-body">
                 <h5 class="card-title">Filtros</h5>
@@ -95,10 +95,10 @@
         </div>
         </div>
         <!-- tabla d productos -->
-        <div class="d-flex flex-grow-1 w-50">
-            <div class="row w-100 gap-2">
+        <div class="container p-0 flex-grow-1">
+            <div class="col">
                 @foreach ($productos as $producto)
-                    <div class="card shadow-sm bg-white border-0 m-0">
+                    <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                         <div class="card-body d-flex align-items-center">
                             <div class="d-flex flex-column w-50">
                                 <h1 class="fs-5 fw-bold">{{ $producto->nombre }}</h1>

@@ -34,9 +34,9 @@
         </div>
     </div>
     <!-- contenedor Proveedores -->
-    <div class="row d-flex gap-4">
+    <div class="d-flex gap-4">
         <!-- filtros -->
-        <div class="d-flex" style="width: 18rem;">
+        <div class="d-flex h-100" style="width: 18rem;">
             <div class="card border-0 bg-white shadow-sm w-100">
                 <div class="card-body">
                     <h5 class="card-title">Filtros</h5>
@@ -73,11 +73,11 @@
                 </div>
             </div>
         </div>
-        <!-- tabla d Proveedores -->
-        <div class="d-flex flex-grow-1 w-50">
-            <div class="row w-100 gap-2">
+        <!-- tabla d proveedores -->
+        <div class="container p-0 flex-grow-1">
+            <div class="col">
                 @foreach ($proveedores as $proveedor)
-                    <div class="card shadow-sm bg-white border-0 m-0">
+                    <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                         <div class="card-body d-flex align-items-center">
                             <div class="d-flex flex-column w-50">
                                 <div class="d-flex flex-column w-50">
@@ -101,7 +101,11 @@
                                 </div>
                                 <div class="col-4">
                                     <small class="row">Direccion</small>
-                                    <small class="row fs-6 fw-bold">{{ $proveedor->direccion }}</small>
+                                    <small class="row fs-6 fw-bold">
+                                        <span class="d-inline-block text-truncate p-0" style="max-width: 150px;">
+                                            {{ $proveedor->direccion }}
+                                        </span>
+                                    </small>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">

@@ -64,11 +64,11 @@
                     <!-- direccion e email -->
                     <div class="mb-3">
                         <div class="col-md-6">
-                            <label for="direccion" class="form-label">Colonia y calle</label>
+                            <label for="direccion" class="form-label">Direccion</label>
                             <input type="text" class="form-control bg-white" id="direccion" name="direccion" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="email" class="form-label">No. Exterior</label>
+                            <label for="email" class="form-label">Correo</label>
                             <input type="number" class="form-control bg-white" id="email" name="email" required>
                         </div>
                     </div>
