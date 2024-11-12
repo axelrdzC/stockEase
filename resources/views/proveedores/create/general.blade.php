@@ -9,20 +9,7 @@
         <h2 class="fw-bold">INFROMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-        <div id="paso1" class="row p-4"> 
-            <div class="col-md-4 bg-transparent">
-                <!--vista de la lista de pasos-->
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-white fw-bold rounded shadow-sm">
-                        <div class="small fw-normal">PASO 1</div>
-                        <div class="text-primary">INFORMACION GENERAL</div>
-                    </li>
-                    <li class="list-group-item bg-transparent text-muted">
-                    <div class="small fw-normal">PASO 2</div>
-                        <div>UBICACIÓN</div>
-                    </li>
-                </ul> 
-            </div>
+        <div class="row p-4"> 
             <div class="col">
                 <!-- formulario -->
                 <form method="POST" action="{{ route('proveedores.store.general') }}" class="shadow-sm bg-white p-4 rounded" style="width: 50rem;">
@@ -42,56 +29,29 @@
                                 <label for="telefono" class="form-label">Teléfono</label>
                                 <input type="text" class="form-control bg-white" id="telefono" name="telefono" required>
                             </div>
+                    </div>
+                    <!-- categoria -->
+                    <div class="mb-3">
+                        <div class="row">                            
+                            <label for="categoria" class="form-label col">Categoria</label>
+                            <a href="#" class="text-primary fw-medium col link-underline link-underline-opacity-0" data-bs-toggle="modal" data-bs-target="#addCategoria">
+                                Agregar una categoría +
+                            </a>
                         </div>
-                        <!-- ciudad y CP -->
-                        <div class="mb-3">
-                            <div class="row">                            
-                                <label for="categoria" class="form-label col">Categoria</label>
-                                <a href="#" class="text-primary fw-medium col link-underline link-underline-opacity-0" data-bs-toggle="modal" data-bs-target="#addCategoria">
-                                    Agregar una categoría +
-                                </a>
-                            </div>
-                            <select class="form-select bg-white" id="categoria" name="categoria" required>
-                                <option selected disabled>Selecciona una categoria</option>
-                                @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <select class="form-select bg-white" id="categoria" name="categoria" required>
+                            <option selected disabled>Selecciona una categoria</option>
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <!-- subir img -->
                     <div class="mb-4">
                         <label for="imagen" class="form-label">Subir imagen</label>
                         <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
                     </div>
-                    <!-- botones -->
-                    <div class="d-flex justify-content-between gap-3">
-                        <button type="button" class="btn btn-light flex-fill border" 
-                            onclick="window.location.href='{{ route('proveedores.index') }}'">Regresar</button>
-                        <button type="submit" class="btn btn-primary flex-fill" onclick="mostrarPaso2()">Siguiente</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- vista de ubicacion -->
-        <div id="paso2" class="row p-4"> 
-            <div class="col-md-4 bg-transparent">
-                <!--vista de la lista de pasos-->
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-transparent text-muted">
-                    <div class="small fw-normal">PASO 1</div>
-                        <div class="text-primary">INFORMACION GENERAL</div>
-                    </li>
-                    <li class="list-group-item bg-white fw-bold rounded shadow-sm">
-                    <div class="small fw-normal">PASO 2</div>
-                        <div>UBICACIÓN</div>
-                    </li>
-                </ul> 
-            </div>
-            <div class="col">
-                <!-- formulario -->
-                <form method="POST" action="{{ route('proveedores.store.general') }}" class="shadow-sm bg-white p-4 rounded" style="width: 50rem;">
-                    @csrf
-                    <!-- País y Estado -->
+                    <p class="text-primary fw-medium col link-underline link-underline-opacity-0"><strong>UBICACIÓN</strong></p>
+                    <!-- pais y estado -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="pais" class="form-label">País</label>
@@ -107,7 +67,6 @@
                                 <option selected disabled>Selecciona un estado</option>
                                 <option value="Tamaulipas">Tamaulipas</option>
                                 <option value="Nuevo León">Nuevo León</option>
-                                <option value="Nuevo Leon">Nuevo León</option>
                             </select>
                         </div>
                     </div>
@@ -126,7 +85,7 @@
                             <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" required>
                         </div>
                     </div>
-                    <!-- colonia,calle,numero exterior e interior -->
+                    <!-- Colonia, Calle y Números -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="colonia_calle" class="form-label">Colonia y Calle</label>
@@ -141,20 +100,15 @@
                             <input type="number" class="form-control bg-white" id="nInt" name="nInt" required>
                         </div>
                     </div>
-                    <!-- subir img -->
-                    <div class="mb-4">
-                        <label for="imagen" class="form-label">Subir imagen</label>
-                        <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
-                    </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
-                        <button type="button" onclick="mostrarPaso1()">Regresar</button>
+                        <button type="button" class="btn btn-light flex-fill border" 
+                            onclick="window.location.href='{{ route('proveedores.index') }}'">Regresar</button>
                         <button type="submit" class="btn btn-primary flex-fill">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
-        
     </div>
 </div>
 
@@ -162,14 +116,3 @@
 @include('components.modales.addCategoria')
 
 @endsection
-
-<script>
-    function mostrarPaso2() {
-        document.getElementById('paso1').style.display = 'none';
-        document.getElementById('paso2').style.display = 'block';
-    }
-    function mostrarPaso1() {
-        document.getElementById('paso2').style.display = 'none';
-        document.getElementById('paso1').style.display = 'block';
-    }
-</script>
