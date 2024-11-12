@@ -38,8 +38,8 @@
                     </div>
                     <!-- proveedor -->
                     <div class="mb-4">
-                        <div class="d-flex">                            
-                            <label for="proveedor_id" class="form-label">Nombre del proveedor</label>
+                        <div class="row">                            
+                            <label for="proveedor_id" class="form-label col-9">Nombre del proveedor</label>
                             <a href="{{ route('proveedores.create.general') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end">
                                 Agregar un proveedor +
                             </a>
@@ -94,8 +94,13 @@
                             <label for="cantidad_producto" class="form-label">Cantidad de unidades</label>
                             <input type="number" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="almacen_id" class="form-label">Almacen</label>
+                        <div class="col-md-6">    
+                            <div class="row">                            
+                                <label for="proveedor_id" class="form-label col">Almacen</label>
+                                <a href="{{ route('almacenes.create.general') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0">
+                                    Agregar un almacen +
+                                </a>
+                            </div>
                             <select class="form-select bg-white" id="almacen_id" name="almacen_id" required>
                                 <option selected disabled>Selecciona un almacen</option>
                                 @foreach ($almacenes as $almacen)
@@ -107,7 +112,14 @@
                     <!-- subir img -->
                     <div class="mb-4">
                         <label for="imagen" class="form-label">Subir imagen</label>
-                        <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
+                        <div class="rounded d-flex flex-column align-items-center justify-content-center border" style="height: 12rem;">
+                            <img src="{{ asset('img/rocket.png') }}" style="width: 6rem;">
+                            <span class="file-text mt-3">
+                                Ningún archivo seleccionado. 
+                                <a class="text-primary fw-bold link-underline link-underline-opacity-0" href="#" onclick="document.getElementById('imagen').click(); return false;">Subir imagen</a>
+                            </span>
+                            <input type="file" hidden id="imagen" name="imagen" accept="image/*" onchange="updateFileName(this)">
+                        </div>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
@@ -123,5 +135,20 @@
 
 <!-- el modal aka formulario add categoria -->
 @include('components.modales.addCategoria')
+
+<script>
+    function updateFileName(input) {
+        const fileText = document.querySelector('.file-text');
+        if (input.files && input.files[0]) {
+            fileText.innerHTML = input.files[0].name + ". ";
+            const link = document.createElement("a");
+            link.className = "text-primary fw-bold link-underline link-underline-opacity-0";
+            link.href = "#";
+            link.textContent = "Cambiar imagen";
+            link.onclick = (e) => { e.preventDefault(); input.click(); };
+            fileText.appendChild(link);
+        }
+    }
+</script>
 
 @endsection

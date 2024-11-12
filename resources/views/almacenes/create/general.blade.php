@@ -60,9 +60,16 @@
                         <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
                     </div>
                     <!-- subir img -->
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="imagen" class="form-label">Subir imagen</label>
-                        <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
+                        <div class="rounded d-flex flex-column align-items-center justify-content-center border" style="height: 12rem;">
+                            <img src="{{ asset('img/rocket.png') }}" style="width: 6rem;">
+                            <span class="file-text mt-3">
+                                Ningún archivo seleccionado. 
+                                <a class="text-primary fw-bold link-underline link-underline-opacity-0" href="#" onclick="document.getElementById('imagen').click(); return false;">Subir imagen</a>
+                            </span>
+                            <input type="file" hidden id="imagen" name="imagen" accept="image/*" onchange="updateFileName(this)">
+                        </div>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
@@ -94,6 +101,19 @@
     document.getElementById('ciudad').addEventListener('input', actualizarDireccionCompleta)
     document.getElementById('codigo_postal').addEventListener('input', actualizarDireccionCompleta)
     document.getElementById('calle').addEventListener('input', actualizarDireccionCompleta)
+
+    function updateFileName(input) {
+        const fileText = document.querySelector('.file-text');
+        if (input.files && input.files[0]) {
+            fileText.innerHTML = input.files[0].name + ". ";
+            const link = document.createElement("a");
+            link.className = "text-primary fw-bold link-underline link-underline-opacity-0";
+            link.href = "#";
+            link.textContent = "Cambiar imagen";
+            link.onclick = (e) => { e.preventDefault(); input.click(); };
+            fileText.appendChild(link);
+        }
+    }
 
 </script>
 @endsection
