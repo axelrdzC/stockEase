@@ -148,7 +148,6 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p class="">Esta seguro de querer borrar el siguiente producto: </p>
-                                                    <p class="m-0"> ID: {{ $producto->id }} </p>
                                                     <p class="m-0"> Nombre: {{ $producto->nombre }} </p>
                                                     <p class="m-0"> SKU: {{ $producto->SKU }} </p>
                                                 </div>

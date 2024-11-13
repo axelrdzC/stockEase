@@ -120,9 +120,11 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
-                                                    <p class="m-0"> ID: {{ $almacen->id }} </p>
-                                                    <p class="m-0"> Nombre: {{ $almacen->nombre }} </p>
-                                                    <p class="m-0"> Ubicacion: {{ $almacen->SKU }} </p>
+                                                    <div class="card-body d-flex flex-column p-0">
+                                                        <img src="img/almacen.png" alt="" class="rounded-3">
+                                                    </div> 
+                                                    <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
+                                                    <p class="m-0"> Ubicación: <strong> {{ $almacen->ubicacion }} </strong></p>    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
