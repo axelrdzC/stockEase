@@ -23,15 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['productos.create.general', 'productos.index', 'proveedores.create', 'productos.edit'], function ($view) {
+        View::composer(['productos.create', 'productos.index', 'proveedores.create', 'productos.edit'], function ($view) {
             $view->with('proveedores', Proveedor::all());
         });
 
-        View::composer(['productos.create.general', 'productos.index', 'productos.edit', 'proveedores.edit', 'proveedores.create.general', 'proveedores.index', 'clientes.create.general', 'clientes.index'], function ($view) {
+        View::composer(['productos.create', 'productos.index', 'productos.edit', 'proveedores.edit', 'proveedores.create.general', 'proveedores.index', 'clientes.create', 'clientes.index'], function ($view) {
             $view->with('categorias', Categoria::all());
         });
 
-        View::composer(['productos.create.general', 'productos.index', 'productos.edit'], function ($view) {
+        View::composer(['productos.create', 'productos.index', 'productos.edit'], function ($view) {
             $view->with('almacenes', Almacen::all());
         });
     }

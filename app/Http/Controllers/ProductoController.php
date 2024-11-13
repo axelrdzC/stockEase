@@ -15,10 +15,10 @@ class ProductoController extends Controller
         return view('productos.index', compact('productos'));
     }
 
-    public function createGeneral() { return view('productos.create.general'); }
+    public function create() { return view('productos.create'); }
 
-    public function storeGeneral(Request $request) {
-        
+    public function store(Request $request) {
+
         $validated = $request->validate([
             'nombre' => ['required'],
             'descripcion' => ['required'],

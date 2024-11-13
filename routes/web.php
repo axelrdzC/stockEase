@@ -16,28 +16,32 @@ Route::middleware('auth')->group(function () {
     /* vistas users  */
     Route::get('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('users.show');
 
-    /* vistas productos  */
+
+    # vistas productos
+    
     Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
 
-    Route::get('/productos/create/general', [App\Http\Controllers\ProductoController::class, 'createGeneral'])->name('productos.create.general');
-    Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'storeGeneral'])->name('productos.store.general');
+    Route::get('/productos/create', [App\Http\Controllers\ProductoController::class, 'create'])->name('productos.create');
+    Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'store'])->name('productos.store');
     
     Route::get('/productos/{producto}/edit', [App\Http\Controllers\ProductoController::class, 'edit'])->name('productos.edit');
     Route::patch('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'update'])->name('productos.update');
     Route::delete('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'destroy'])->name('productos.destroy');
 
+    
     # vistas categorias
+
     Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categorias.index');
     Route::get('/categorias/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('categorias.create');
     Route::post('/categorias', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categorias.store');
 
-    /* vistas clientes  */
+    
+    # vistas clientes
+
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
     
-    Route::get('/clientes/create/general', [App\Http\Controllers\ClienteController::class, 'create'])->name('clientes.create.general');
-    Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store.general');
-    Route::get('/clientes/create/{cliente}/ubicacion', [App\Http\Controllers\ClienteController::class, 'createUbi'])->name('clientes.create.ubicacion');
-    Route::post('/clientes/create/{cliente}/ubicacion', [App\Http\Controllers\ClienteController::class, 'storeFinal'])->name('clientes.store.final');
+    Route::get('/clientes/create', [App\Http\Controllers\ClienteController::class, 'create'])->name('clientes.create');
+    Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store');
 
     Route::get('/clientes/{cliente}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
     Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');

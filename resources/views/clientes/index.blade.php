@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Clientes') 
+@section('title', 'clientes') 
 
 @section('content')
  <div class="col px-5">
     <!-- header de la seccion -->
     <div class="row align-items-center mb-4">
         <div class="col">
-            <div class="fs-2 fw-semibold">{{ __('Clientes') }}</div>
+            <div class="fs-2 fw-semibold">{{ __('clientes') }}</div>
         </div>
         <!-- buscador -->
         <div class="col-md-4 p-0">
@@ -27,16 +27,16 @@
         <!-- add cliente -->
         <div class="col-2">
             <div class="d-flex align-items-center">
-                <button type="button" onclick="window.location.href='{{ route('clientes.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                <button type="button" onclick="window.location.href='{{ route('clientes.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
                     Agregar cliente +
                 </button>
             </div>
         </div>
     </div>
-    <!-- contenedor Clientes -->
-    <div class="row d-flex gap-4">
+    <!-- contenedor clientes -->
+    <div class="d-flex gap-4">
         <!-- filtros -->
-        <div class="d-flex" style="width: 18rem;">
+        <div class="d-flex h-100" style="width: 18rem;">
             <div class="card border-0 bg-white shadow-sm w-100">
                 <div class="card-body">
                     <h5 class="card-title">Filtros</h5>
@@ -73,17 +73,17 @@
                 </div>
             </div>
         </div>
-        <!-- tabla d Clientes -->
-        <div class="d-flex flex-grow-1 w-50">
-            <div class="row w-100 gap-2">
+        <!-- tabla d clientes -->
+        <div class="container p-0 flex-grow-1">
+            <div class="col">
                 @foreach ($clientes as $cliente)
-                    <div class="card shadow-sm bg-white border-0 m-0">
+                    <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                         <div class="card-body d-flex align-items-center">
                             <div class="d-flex flex-column w-50">
-                                <div class="d-flex flex-column w-50">
+                                <div class="d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $cliente->nombre }}</h1>
                                     <div class="d-flex gap-2">
-                                        <small class="fw-medium text-white rounded bg-primary p-1 px-2">categoria</small>
+                                        <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $cliente->categoria->nombre }}</small>
                                         <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
                                             Cantidad en stock: <span class="fw-medium">0</span>
                                         </small>
@@ -101,7 +101,11 @@
                                 </div>
                                 <div class="col-4">
                                     <small class="row">Direccion</small>
-                                    <small class="row fs-6 fw-bold">{{ $cliente->direccion }}</small>
+                                    <small class="row fs-6 fw-bold">
+                                        <span class="d-inline-block text-truncate p-0" style="max-width: 150px;">
+                                            {{ $cliente->direccion }}
+                                        </span>
+                                    </small>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -116,7 +120,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Ver</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('Clientes.edit', $cliente) }}">Editar</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('clientes.edit', $cliente) }}">Editar</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $cliente->id }}">Eliminar</a></li>
                                     </ul>
                                     <!-- el modal aka mensajito de confirmacion -->
@@ -133,7 +137,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('Clientes.destroy', $cliente) }}" method="POST">
+                                                    <form action="{{ route('clientes.destroy', $cliente) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-primary">Eliminar cliente</button>

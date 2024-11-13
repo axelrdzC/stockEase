@@ -13,41 +13,19 @@ class ClienteController extends Controller
         return view('clientes.index', compact('clientes'));
     }
 
-    public function create() { return view('clientes.create.general'); }
+    public function create() { return view('clientes.create'); }
 
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'nombre' => 'required',
-            'telefono' => 'required',
-        ]);
-    
-        $dataGeneral = Cliente::create([
-            'nombre' => $validated['nombre'],
-            'telefono' => $validated['telefono'],
-            'direccion' => '',
-            'email' => '',
-        ]);
-
-        return redirect()->route('clientes.create.ubicacion', ['Cliente' => $dataGeneral->id]);
-    }
-
-    public function createUbi($clienteId) { 
-        $cliente = Cliente::findOrFail($clienteId);
-        return view('clientes.create.ubicacion', compact('Cliente'));
-    }
-
-    public function storeFinal(Request $request, $clienteId)
-    {
-        $cliente = Cliente::findOrFail($clienteId);
-
-        $validated = $request->validate([
-            'direccion' => 'required',
             'email' => 'required',
+            'telefono' => 'required',
+            'direccion' => 'required',
+            'id_categoria' => 'required',
         ]);
 
-        $cliente->update($validated);
+        Cliente::create($validated);
     
         return redirect()->route('clientes.index')->with('success', 'Cliente agregado exitosamente');
     }
