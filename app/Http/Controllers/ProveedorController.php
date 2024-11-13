@@ -53,6 +53,39 @@ class ProveedorController extends Controller
         return redirect()->route('proveedores.index')->with('success', 'Proveedor agregado exitosamente');
     }
 
+    public function edit(Proveedor $proveedor) {
+        return view('proveedores.edit', ['proveedor' => $proveedor]);
+    }
+
+    public function update(Request $request, Proveedor $proveedor) {
+    
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'telefono' => 'required',
+            'id_categoria' => 'required',
+        ]);
+    
+        $proveedor->update($validated);
+    
+        return redirect()->route('proveedores.editDos')->with('status', 'Producto modificado exitosamente');
+    }
+
+    public function editDos(Proveedor $proveedor) {
+        return view('proveedores.editDos', ['proveedor' => $proveedor]);
+    }
+
+    public function updateDos(Request $request, Proveedor $proveedor) {
+    
+        $validated = $request->validate([
+            'direccion' => 'required',
+            'email' => 'required',
+        ]);
+    
+        $proveedor->update($validated);
+    
+        return redirect()->route('proveedores.index')->with('status', 'Producto modificado exitosamente');
+    }
+
     public function destroy(Proveedor $proveedor) {
 
         $proveedor->delete();

@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/proveedores/create/{proveedor}/ubicacion', [App\Http\Controllers\ProveedorController::class, 'storeFinal'])->name('proveedores.store.final');
 
     Route::get('/proveedores/{proveedor}/edit', [App\Http\Controllers\ProveedorController::class, 'edit'])->name('proveedores.edit');
+    Route::patch('/proveedores/{proveedor}', [App\Http\Controllers\ProveedorController::class, 'update'])->name('proveedores.update');
+    Route::get('/proveedores/{proveedor}/editDos', [App\Http\Controllers\ProveedorController::class, 'editDos'])->name('proveedores.editDos');
+    Route::patch('/proveedores/{proveedor}/2', [App\Http\Controllers\ProveedorController::class, 'updateDos'])->name('proveedores.updateDos');
     Route::delete('/proveedores/{proveedor}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 
     /* vistas informes  */
