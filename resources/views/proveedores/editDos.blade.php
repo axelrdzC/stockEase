@@ -65,17 +65,17 @@
                     <div class="mb-3">
                         <div class="col-md-6">
                             <label for="direccion" class="form-label">Direccion</label>
-                            <input type="text" class="form-control bg-white" id="direccion" name="direccion" required>
+                            <input type="text" class="form-control bg-white" id="direccion" name="direccion" value="{{ $proveedor->direccion }}" required>
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Correo</label>
-                            <input type="text" class="form-control bg-white" id="email" name="email" required>
+                            <input type="text" class="form-control bg-white" id="email" name="email" value="{{ $proveedor->email }}" required>
                         </div>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
                         <button type="button" class="btn btn-light flex-fill border" 
-                            onclick="window.location.href='{{ route('proveedores.create.general') }}'">Regresar</button>
+                            onclick="window.location.href='{{ route('proveedores.edit', $proveedor) }}'">Regresar</button>
                         <button type="submit" class="btn btn-primary flex-fill">Siguiente</button>
                     </div>
                 </form>

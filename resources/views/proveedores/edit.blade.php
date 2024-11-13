@@ -29,7 +29,7 @@
                     <!-- nombre producto -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del proveedor</label>
-                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" value="{{ $proveedor->nombre }}" required>
                     </div>
                     <!-- correo y tel 
                     <div class="mb-4">
@@ -40,7 +40,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control bg-white" id="telefono" name="telefono" required>
+                            <input type="text" class="form-control bg-white" id="telefono" name="telefono" value="{{ $proveedor->telefono }}" required>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex">                            

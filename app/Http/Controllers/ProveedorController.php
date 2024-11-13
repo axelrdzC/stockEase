@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProveedorController extends Controller
 {
@@ -64,10 +65,10 @@ class ProveedorController extends Controller
             'telefono' => 'required',
             'id_categoria' => 'required',
         ]);
+
+        Session::put('form_data', $validated);
     
-        $proveedor->update($validated);
-    
-        return redirect()->route('proveedores.editDos')->with('status', 'Producto modificado exitosamente');
+        return redirect()->route('proveedores.editDos', ['proveedor' => $proveedor])->with('status', 'Producto modificado exitosamente');
     }
 
     public function editDos(Proveedor $proveedor) {
@@ -81,7 +82,17 @@ class ProveedorController extends Controller
             'email' => 'required',
         ]);
     
-        $proveedor->update($validated);
+        $editForm_uno = Session::get('form_data');
+
+        if (!$editForm_uno) {
+            return redirect()->route('proveedor.edit')->withErrors(['error' => 'Por favor, para continuar complete el formulario.']);
+        }
+
+        $proveedorData = array_merge($editForm_uno, $validated);
+
+        $proveedor->update($proveedorData);
+        # Proveedor::create($proveedorData);
+        Session::forget('form_data');
     
         return redirect()->route('proveedores.index')->with('status', 'Producto modificado exitosamente');
     }
