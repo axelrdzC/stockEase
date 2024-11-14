@@ -23,7 +23,7 @@ class CategoriaController extends Controller
 
         $nwCategoria->save();
 
-        return redirect()->route('productos.create.general')->with('success', 'categoria agregada exitosamente');
+        return redirect()->route('productos.create')->with('success', 'categoria agregada exitosamente');
     }
 
     public function edit(Categoria $categoria) {

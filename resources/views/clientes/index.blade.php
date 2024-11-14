@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'clientes') 
+@section('title', 'Clientes') 
 
 @section('content')
  <div class="col px-5">
     <!-- header de la seccion -->
     <div class="row align-items-center mb-4">
         <div class="col">
-            <div class="fs-2 fw-semibold">{{ __('clientes') }}</div>
+            <div class="fs-2 fw-semibold">{{ __('Clientes') }}</div>
         </div>
         <!-- buscador -->
         <div class="col-md-4 p-0">

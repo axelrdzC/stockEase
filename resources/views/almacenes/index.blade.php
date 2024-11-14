@@ -84,7 +84,7 @@
                 <div class="col">
                     <div class="card shadow-sm bg-white border-0 h-100">
                         <div class="card-body d-flex flex-column p-0">
-                            <img src="img/almacen.png" alt="" class="rounded-top-3">
+                            <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-top-3">
                         </div> 
                         <div class="card-body d-flex flex-column">
                             <h1 class="fs-5 fw-bold">{{ $almacen->nombre }}</h1>
@@ -121,7 +121,7 @@
                                                 <div class="modal-body">
                                                     <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
                                                     <div class="card-body d-flex flex-column p-0">
-                                                        <img src="img/almacen.png" alt="" class="rounded-3">
+                                                        <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
                                                     </div> 
                                                     <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
                                                     <p class="m-0"> Ubicación: <strong> {{ $almacen->ubicacion }} </strong></p>    
