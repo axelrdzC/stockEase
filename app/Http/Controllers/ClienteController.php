@@ -30,6 +30,12 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente agregado exitosamente');
     }
 
+    public function edit(Cliente $cliente) {
+        return view('clientes.edit', ['cliente' => $cliente]);
+    }
+
+    
+
     public function destroy(Cliente $cliente) {
 
         $cliente->delete();
