@@ -27,7 +27,7 @@
         <!-- add producto -->
         <div class="col-2">
             <div class="d-flex align-items-center">
-                <button type="button" onclick="window.location.href='{{ route('productos.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                <button type="button" onclick="window.location.href='{{ route('productos.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
                     Agregar producto +
                 </button>
             </div>

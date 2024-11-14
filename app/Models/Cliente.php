@@ -11,7 +11,15 @@ class Cliente extends Model
 
     protected $fillable = [
         'nombre',
-        'tipo'
+        'email',
+        'telefono',
+        'direccion',
+        'id_categoria'
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria');
+    }
     
 }
