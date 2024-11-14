@@ -14,7 +14,7 @@ class ProveedorController extends Controller
         return view('proveedores.index', compact('proveedores'));
     }
 
-    public function create() { return view('proveedores.create.general'); }
+    public function create() { return view('proveedores.create'); }
 
     public function store(Request $request)
     {
@@ -22,36 +22,13 @@ class ProveedorController extends Controller
             'nombre' => 'required',
             'telefono' => 'required',
             'id_categoria' => 'required',
-        ]);
-    
-        $dataGeneral = Proveedor::create([
-            'nombre' => $validated['nombre'],
-            'telefono' => $validated['telefono'],
-            'id_categoria' => $validated['id_categoria'],
-            'direccion' => '',
-            'email' => '',
-        ]);
-
-        return redirect()->route('proveedores.create.ubicacion', ['proveedor' => $dataGeneral->id]);
-    }
-
-    public function createUbi($proveedorId) { 
-        $proveedor = Proveedor::findOrFail($proveedorId);
-        return view('proveedores.create.ubicacion', compact('proveedor'));
-    }
-
-    public function storeFinal(Request $request, $proveedorId)
-    {
-        $proveedor = Proveedor::findOrFail($proveedorId);
-
-        $validated = $request->validate([
             'direccion' => 'required',
             'email' => 'required',
         ]);
-
-        $proveedor->update($validated);
     
-        return redirect()->route('proveedores.index')->with('success', 'Proveedor agregado exitosamente');
+        Proveedor::create($validated);
+
+        return redirect()->route('proveedores.index')->with('success', 'proveedor agregado exitosamente');
     }
 
     public function edit(Proveedor $proveedor) {

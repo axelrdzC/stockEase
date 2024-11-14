@@ -6,7 +6,7 @@
 <div class="col px-5">
     <div class="text-center">
         <small class="text-muted fs-6">Editar Producto</small>
-        <h2 class="fw-bold">INFROMACION GENERAL</h2>
+        <h2 class="fw-bold">INFORMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center align-items-center">
         <div class="row p-4"> <!-- 

@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['namespace' => 'App\Http\Controllers'], function() {
         /* vistas productos  */
-        Route::group(['prefix' => 'modulo/productos'], function() {
+        Route::group(['prefix' => '/productos'], function() {
             Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
             Route::get('/create', [ProductoController::class, 'create'])->name('productos.create');
             Route::post('/produtos', [ProductoController::class, 'store'])->name('productos.store');
@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         });
 
         /* vistas almacenes  */
-        Route::group(['prefix' => 'modulo/almacenes'], function() {
+        Route::group(['prefix' => '/almacenes'], function() {
             Route::get('/', [AlmacenController::class, 'index'])->name('almacenes.index');
             Route::get('/create', [AlmacenController::class, 'create'])->name('almacenes.create.general');
             Route::post('/almacenes', [AlmacenController::class, 'store'])->name('almacenes.store.general');
@@ -45,25 +45,23 @@ Route::middleware('auth')->group(function () {
         });
 
         # vistas categorias
-        Route::group(['prefix' => 'modulo/categoria'], function() {
+        Route::group(['prefix' => '/categoria'], function() {
             Route::get('/', [CategoriaController::class, 'index'])->name('categorias.index');
             Route::get('/create', [CategoriaController::class, 'create'])->name('categorias.create');
             Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
         });
         
          /* vistas clientes  */
-        Route::group(['prefix' => 'modulo/clientes'], function() {
+        Route::group(['prefix' => '/clientes'], function() {
             Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
-            Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create.general');
-            Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store.general');
-            Route::get('/create/{cliente}/ubicacion', [ClienteController::class, 'createUbi'])->name('clientes.create.ubicacion');
-            Route::post('/create/{cliente}/ubicacion', [ClienteController::class, 'storeFinal'])->name('clientes.store.final');
+            Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
+            Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
             Route::get('/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
             Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
         });
 
         /* vistas proveedores  */
-        Route::group(['prefix' => 'modulo/proveedores'], function() {
+        Route::group(['prefix' => '/proveedores'], function() {
             Route::get('/', [ProveedorController::class, 'index'])->name('proveedores.index');
             Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create.general');
             Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store.general');
@@ -77,12 +75,12 @@ Route::middleware('auth')->group(function () {
         });
 
         /* vistas ordenes  */
-        Route::group(['prefix' => 'modulo/ordenes'], function() {
+        Route::group(['prefix' => '/ordenes'], function() {
             Route::get('/', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');
         });
 
         /* vistas informes  */
-        Route::group(['prefix' => 'modulo/informes'], function() {
+        Route::group(['prefix' => '/informes'], function() {
             Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
         });
     });   
