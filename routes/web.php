@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlmacenController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\InformeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,59 +23,67 @@ Route::middleware('auth')->group(function () {
     /* vistas users  */
     Route::get('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('users.show');
 
-    /* vistas productos  */
-    Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos.index');
+    Route::group(['namespace' => 'App\Http\Controllers'], function() {
+        /* vistas productos  */
+        Route::group(['prefix' => 'modulo/productos'], function() {
+            Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
+            Route::get('/create', [ProductoController::class, 'createGeneral'])->name('productos.create.general');
+            Route::post('/produtos', [ProductoController::class, 'storeGeneral'])->name('productos.store.general');
+            Route::get('/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+            Route::patch('/{producto}', [ProductoController::class, 'update'])->name('productos.update');
+            Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+        });
 
-    Route::get('/productos/create/general', [App\Http\Controllers\ProductoController::class, 'createGeneral'])->name('productos.create.general');
-    Route::post('/productos', [App\Http\Controllers\ProductoController::class, 'storeGeneral'])->name('productos.store.general');
-    
-    Route::get('/productos/{producto}/edit', [App\Http\Controllers\ProductoController::class, 'edit'])->name('productos.edit');
-    Route::patch('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'update'])->name('productos.update');
-    Route::delete('/productos/{producto}', [App\Http\Controllers\ProductoController::class, 'destroy'])->name('productos.destroy');
+        /* vistas almacenes  */
+        Route::group(['prefix' => 'modulo/almacenes'], function() {
+            Route::get('/', [AlmacenController::class, 'index'])->name('almacenes.index');
+            Route::get('/create', [AlmacenController::class, 'create'])->name('almacenes.create.general');
+            Route::post('/almacenes', [AlmacenController::class, 'store'])->name('almacenes.store.general');
+            Route::get('/{almacen}/edit', [AlmacenController::class, 'edit'])->name('almacenes.edit');
+            Route::patch('/{almacen}', [AlmacenController::class, 'update'])->name('almacenes.update');
+            Route::delete('/{almacen}', [AlmacenController::class, 'destroy'])->name('almacenes.destroy');
+        });
 
-    # vistas categorias
-    Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categorias.index');
-    Route::get('/categorias/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('categorias.create');
-    Route::post('/categorias', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categorias.store');
+        # vistas categorias
+        Route::group(['prefix' => 'modulo/categoria'], function() {
+            Route::get('/', [CategoriaController::class, 'index'])->name('categorias.index');
+            Route::get('/create', [CategoriaController::class, 'create'])->name('categorias.create');
+            Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+        });
+        
+         /* vistas clientes  */
+        Route::group(['prefix' => 'modulo/clientes'], function() {
+            Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
+            Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create.general');
+            Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store.general');
+            Route::get('/create/{cliente}/ubicacion', [ClienteController::class, 'createUbi'])->name('clientes.create.ubicacion');
+            Route::post('/create/{cliente}/ubicacion', [ClienteController::class, 'storeFinal'])->name('clientes.store.final');
+            Route::get('/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+            Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+        });
 
-    /* vistas clientes  */
-    Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes.index');
-    
-    Route::get('/clientes/create/general', [App\Http\Controllers\ClienteController::class, 'create'])->name('clientes.create.general');
-    Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store'])->name('clientes.store.general');
-    Route::get('/clientes/create/{cliente}/ubicacion', [App\Http\Controllers\ClienteController::class, 'createUbi'])->name('clientes.create.ubicacion');
-    Route::post('/clientes/create/{cliente}/ubicacion', [App\Http\Controllers\ClienteController::class, 'storeFinal'])->name('clientes.store.final');
+        /* vistas proveedores  */
+        Route::group(['prefix' => 'modulo/proveedores'], function() {
+            Route::get('/', [ProveedorController::class, 'index'])->name('proveedores.index');
+            Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create.general');
+            Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store.general');
+            Route::get('/create/{proveedor}/ubicacion', [ProveedorController::class, 'createUbi'])->name('proveedores.create.ubicacion');
+            Route::post('/create/{proveedor}/ubicacion', [ProveedorController::class, 'storeFinal'])->name('proveedores.store.final');
+            Route::get('/{proveedor}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
+            Route::patch('/{proveedor}', [ProveedorController::class, 'update'])->name('proveedores.update');
+            Route::get('/{proveedor}/editDos', [ProveedorController::class, 'editDos'])->name('proveedores.editDos');
+            Route::patch('/{proveedor}/dos', [ProveedorController::class, 'updateDos'])->name('proveedores.updateDos');
+            Route::delete('/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
+        });
 
-    Route::get('/clientes/{cliente}/edit', [App\Http\Controllers\ClienteController::class, 'edit'])->name('clientes.edit');
-    Route::delete('/clientes/{cliente}', [App\Http\Controllers\ClienteController::class, 'destroy'])->name('clientes.destroy');
-    
-    /* vistas almacenes  */
-    Route::get('/almacenes', [App\Http\Controllers\AlmacenController::class, 'index'])->name('almacenes.index');
-    Route::get('/almacenes/create/general', [App\Http\Controllers\AlmacenController::class, 'create'])->name('almacenes.create.general');
-    Route::post('/almacenes', [App\Http\Controllers\AlmacenController::class, 'store'])->name('almacenes.store.general');
-    
-    Route::get('/almacenes/{almacen}/edit', [App\Http\Controllers\AlmacenController::class, 'edit'])->name('almacenes.edit');
-    Route::patch('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'update'])->name('almacenes.update');
-    Route::delete('/almacenes/{almacen}', [App\Http\Controllers\AlmacenController::class, 'destroy'])->name('almacenes.destroy');
+        /* vistas ordenes  */
+        Route::group(['prefix' => 'modulo/ordenes'], function() {
+            Route::get('/', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');
+        });
 
-    /* vistas ordenes  */
-    Route::get('/ordenes', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');
-    
-    /* vistas proveedores  */
-    Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedores.index');
-    
-    Route::get('/proveedores/create/general', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedores.create.general');
-    Route::post('/proveedores', [App\Http\Controllers\ProveedorController::class, 'store'])->name('proveedores.store.general');
-    Route::get('/proveedores/create/{proveedor}/ubicacion', [App\Http\Controllers\ProveedorController::class, 'createUbi'])->name('proveedores.create.ubicacion');
-    Route::post('/proveedores/create/{proveedor}/ubicacion', [App\Http\Controllers\ProveedorController::class, 'storeFinal'])->name('proveedores.store.final');
-
-    Route::get('/proveedores/{proveedor}/edit', [App\Http\Controllers\ProveedorController::class, 'edit'])->name('proveedores.edit');
-    Route::patch('/proveedores/{proveedor}', [App\Http\Controllers\ProveedorController::class, 'update'])->name('proveedores.update');
-    Route::get('/proveedores/{proveedor}/editDos', [App\Http\Controllers\ProveedorController::class, 'editDos'])->name('proveedores.editDos');
-    Route::patch('/proveedores/{proveedor}/dos', [App\Http\Controllers\ProveedorController::class, 'updateDos'])->name('proveedores.updateDos');
-    Route::delete('/proveedores/{proveedor}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedores.destroy');
-
-    /* vistas informes  */
-    Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
-
+        /* vistas informes  */
+        Route::group(['prefix' => 'modulo/informes'], function() {
+            Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
+        });
+    });   
 });

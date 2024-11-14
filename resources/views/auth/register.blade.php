@@ -58,6 +58,18 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+                        <div class="mb-4">
+                            <div class="row">
+                                <label for="role" class="form-label">{{ __('Rol') }}</label>
+                            </div>
+                            <select id="role" name="role" class="form-select selects">
+                            <option selected>Seleccionar</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Cliente">Cliente</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
                             <div class="row text-nowrap mt-3">
                                 <div class="row w-50">
                                     <div class="col">
