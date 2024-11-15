@@ -25,7 +25,7 @@
             <div class="mt-4 text-center">
                 <p>Por favor, acceda a alguna de las siguientes opciones para obtener acceso al almacén</p>
                 @if (Route::has('login'))
-                    <div class="d-flex gap-2 justify-content-center">
+                    <difv class="d-flex gap-2 justify-content-center">
                     @auth
                     <a href="{{ route('home') }}" class="btn btn-primary col-4 z-2"> Dashboard </a>
                         @else
@@ -35,7 +35,7 @@
                                 <a href="{{ route('register') }}" class="btn btn-outline-primary col-4 z-2"> Registrarse </a>
                             @endif
                     @endauth
-                    </div>
+                    </difv>
                 @endif
             </div>
         </div>
