@@ -33,6 +33,7 @@
 
 .svgs:hover path {
     stroke: #ffffff;
+    fill: #ffffff;
 }
 
 .selects {
@@ -41,4 +42,17 @@
 
 .table tbody tr {
     background-color: white !important;
+}
+
+.punteado {
+    border: 1px dashed #53545C;
+}
+
+.thisPaso {
+    background-color: white;
+}
+
+.thisPaso .titulo {
+    color: #8067B2 !important;
+    font-weight: bold;
 }

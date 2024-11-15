@@ -27,16 +27,16 @@
         <!-- add producto -->
         <div class="col-2">
             <div class="d-flex align-items-center">
-                <button type="button" onclick="window.location.href='{{ route('productos.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                <button type="button" onclick="window.location.href='{{ route('productos.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
                     Agregar producto +
                 </button>
             </div>
         </div>
     </div>
     <!-- contenedor productos -->
-    <div class="row d-flex gap-4">
+    <div class="d-flex gap-4">
         <!-- filtros -->
-        <div class="d-flex" style="width: 18rem;">
+        <div class="d-flex h-100" style="width: 18rem;">
         <div class="card border-0 bg-white shadow-sm w-100">
             <div class="card-body">
                 <h5 class="card-title">Filtros</h5>
@@ -95,13 +95,16 @@
         </div>
         </div>
         <!-- tabla d productos -->
-        <div class="d-flex flex-grow-1 w-50">
-            <div class="row w-100 gap-2">
+        <div class="container p-0 flex-grow-1">
+            <div class="col">
                 @foreach ($productos as $producto)
-                    <div class="card shadow-sm bg-white border-0 m-0">
-                        <div class="card-body d-flex align-items-center">
-                            <div class="d-flex flex-column w-50">
-                                <h1 class="fs-5 fw-bold">{{ $producto->id }}. {{ $producto->nombre }}</h1>
+                    <div class="card shadow-sm bg-white border-0 m-0 mb-3">
+                        <div class="card-body d-flex align-items-center gap-4 px-4">
+                            <div class="col-1 p-0">
+                                <img src="img/producto.png" alt="" class="w-100">
+                            </div>
+                            <div class="d-flex flex-column" style="width: 27rem;">
+                                <h1 class="fs-5 fw-bold">{{ $producto->nombre }}</h1>
                                 <div class="d-flex gap-2">
                                     <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria->nombre }}</small>
                                     <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
@@ -138,8 +141,8 @@
                                         <li><a class="dropdown-item" href="{{ route('productos.edit', $producto) }}">Editar</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $producto->id }}">Eliminar</a></li>
                                     </ul>
-                                    <!-- el modal aka mensajito de confirmacion -->
-                                    <div class="modal fade" id="eliminar-{{ $producto->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <!-- el modal aka mensajito de confirmacion -->
+                                        <div class="modal fade" id="eliminar-{{ $producto->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
@@ -148,7 +151,6 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p class="">Esta seguro de querer borrar el siguiente producto: </p>
-                                                    <p class="m-0"> ID: {{ $producto->id }} </p>
                                                     <p class="m-0"> Nombre: {{ $producto->nombre }} </p>
                                                     <p class="m-0"> SKU: {{ $producto->SKU }} </p>
                                                 </div>

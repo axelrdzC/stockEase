@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('SKU')->unique();
-            $table->decimal('unidad_medida', 8, 2);
             $table->decimal('precio', 8, 2);
             $table->integer('cantidad_producto');
+            $table->double('unidad_medida');
             $table->timestamps();
             $table->unsignedBigInteger('almacen_id');
             $table->foreign('almacen_id')->references('id')->on('almacenes');
