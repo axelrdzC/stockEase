@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
 {
@@ -41,43 +42,28 @@ class ProveedorController extends Controller
             'nombre' => 'required',
             'telefono' => 'required',
             'id_categoria' => 'required',
-        ]);
-
-        Session::put('form_data', $validated);
-    
-        return redirect()->route('proveedores.editDos', ['proveedor' => $proveedor])->with('status', 'Producto modificado exitosamente');
-    }
-
-    public function editDos(Proveedor $proveedor) {
-        return view('proveedores.editDos', ['proveedor' => $proveedor]);
-    }
-
-    public function updateDos(Request $request, Proveedor $proveedor) {
-    
-        $validated = $request->validate([
             'direccion' => 'required',
             'email' => 'required',
         ]);
-    
-        $editForm_uno = Session::get('form_data');
-
-        if (!$editForm_uno) {
-            return redirect()->route('proveedor.edit')->withErrors(['error' => 'Por favor, para continuar complete el formulario.']);
-        }
-
-        $proveedorData = array_merge($editForm_uno, $validated);
 
         $proveedor->update($proveedorData);
-        # Proveedor::create($proveedorData);
-        Session::forget('form_data');
     
         return redirect()->route('proveedores.index')->with('status', 'Producto modificado exitosamente');
     }
 
     public function destroy(Proveedor $proveedor) {
 
-        $proveedor->delete();
+        DB::transaction(function () use ($proveedor) {
+            $productos = $proveedor->productos;
+            foreach ($productos as $producto) {
+                $producto->delete();
+            }
+
+            $proveedor->delete();
+        });
+
         return redirect()->route('proveedores.index')->with('status', 'el proveedor ha sido eliminado');
         
     }
+    
 }

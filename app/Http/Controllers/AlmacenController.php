@@ -13,7 +13,7 @@ class AlmacenController extends Controller
         return view('almacenes.index', compact('almacenes'));
     }
 
-    public function create(){ return view('almacenes.create.general'); }
+    public function create(){ return view('almacenes.create'); }
 
     public function store(Request $request) {
         $dataGeneral = new Almacen;

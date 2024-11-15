@@ -27,7 +27,7 @@
         <!-- add proveedor -->
         <div class="col-2">
             <div class="d-flex align-items-center">
-                <button type="button" onclick="window.location.href='{{ route('proveedores.create.general') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                <button type="button" onclick="window.location.href='{{ route('proveedores.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
                     Agregar proveedor +
                 </button>
             </div>
@@ -137,7 +137,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('proveedores.destroy', $proveedor) }}" method="POST">
+                                                    <form action="{{ route('proveedores.destroy', $proveedor) }}" method="POST" onsubmit="return alertCuidado(event)">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-primary">Eliminar proveedor</button>
@@ -155,4 +155,15 @@
         </div>
     </div>
 </div>    
+
+<script>
+    function alertCuidado(event) {
+        event.preventDefault();
+        const confirmed = confirm("¿Está seguro de que desea eliminar este proveedor? Esto también eliminará los productos asociados.");
+        if (confirmed) {
+            event.target.submit();
+        }
+    }
+</script>
+
 @endsection

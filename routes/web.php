@@ -37,8 +37,8 @@ Route::middleware('auth')->group(function () {
         /* vistas almacenes  */
         Route::group(['prefix' => '/almacenes'], function() {
             Route::get('/', [AlmacenController::class, 'index'])->name('almacenes.index');
-            Route::get('/create', [AlmacenController::class, 'create'])->name('almacenes.create.general');
-            Route::post('/almacenes', [AlmacenController::class, 'store'])->name('almacenes.store.general');
+            Route::get('/create', [AlmacenController::class, 'create'])->name('almacenes.create');
+            Route::post('/almacenes', [AlmacenController::class, 'store'])->name('almacenes.store');
             Route::get('/{almacen}/edit', [AlmacenController::class, 'edit'])->name('almacenes.edit');
             Route::patch('/{almacen}', [AlmacenController::class, 'update'])->name('almacenes.update');
             Route::delete('/{almacen}', [AlmacenController::class, 'destroy'])->name('almacenes.destroy');
@@ -63,14 +63,10 @@ Route::middleware('auth')->group(function () {
         /* vistas proveedores  */
         Route::group(['prefix' => '/proveedores'], function() {
             Route::get('/', [ProveedorController::class, 'index'])->name('proveedores.index');
-            Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create.general');
-            Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store.general');
-            Route::get('/create/{proveedor}/ubicacion', [ProveedorController::class, 'createUbi'])->name('proveedores.create.ubicacion');
-            Route::post('/create/{proveedor}/ubicacion', [ProveedorController::class, 'storeFinal'])->name('proveedores.store.final');
+            Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create');
+            Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store');
             Route::get('/{proveedor}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
             Route::patch('/{proveedor}', [ProveedorController::class, 'update'])->name('proveedores.update');
-            Route::get('/{proveedor}/editDos', [ProveedorController::class, 'editDos'])->name('proveedores.editDos');
-            Route::patch('/{proveedor}/dos', [ProveedorController::class, 'updateDos'])->name('proveedores.updateDos');
             Route::delete('/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
         });
 

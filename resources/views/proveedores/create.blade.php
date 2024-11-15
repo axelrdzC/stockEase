@@ -25,7 +25,7 @@
             </div>
             <div class="col">
                 <!-- formulario -->
-                <form method="POST" action="{{ route('proveedores.store.general') }}" class="shadow-sm bg-white p-4 rounded w-100">
+                <form method="POST" action="{{ route('proveedores.store') }}" class="shadow-sm bg-white p-4 rounded w-100">
                     @csrf
                     <!-- paso no. 1 -->
                     <div id="paso_1" class="col">
@@ -118,19 +118,6 @@
 
     function prevStep(pasoPrev, pasoActual) {
         switchIt(pasoPrev, pasoActual);
-    }
-
-    function addUbi() {
-
-        const container = document.getElementById('ubisContainer');
-        // clonanding
-        const nwUbi = document.querySelector('.ubi-field').cloneNode(true);
-        
-        nwUbi.querySelector('select').selectedIndex = 0; // dropdown reiniciade
-        nwUbi.querySelector('input').value = '';          // campo cantidad vacio
-        
-        container.appendChild(nwUbi);
-    
     }
 
 </script>

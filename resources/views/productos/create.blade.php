@@ -41,7 +41,7 @@
                     <div class="mb-4">
                         <div class="row">                            
                             <label for="proveedor_id" class="form-label col-8">Nombre del proveedor</label>
-                            <a href="{{ route('proveedores.create.general') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end">
+                            <a href="{{ route('proveedores.create') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end">
                                 Agregar un proveedor +
                             </a>
                         </div>

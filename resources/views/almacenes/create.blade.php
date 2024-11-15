@@ -6,13 +6,13 @@
 <div class="col px-5">
     <div class="text-center">
         <small class="text-muted fs-6">Agregar Almacen</small>
-        <h2 class="fw-bold">INFROMACION GENERAL</h2>
+        <h2 class="fw-bold">INFORMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center">
         <div class="row w-75 p-4">
             <div class="col-md-8 mx-auto">
                 <!-- formulario -->
-                <form method="POST" action="{{ route('almacenes.store.general') }}" class="shadow-sm bg-white p-4 rounded">
+                <form method="POST" action="{{ route('almacenes.store') }}" class="shadow-sm bg-white p-4 rounded">
                     @csrf
                     <!-- nombre almacen -->
                     <div class="mb-3">
