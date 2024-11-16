@@ -78,8 +78,11 @@
             <div class="col">
                 @foreach ($clientes as $cliente)
                     <div class="card shadow-sm bg-white border-0 m-0 mb-3">
-                        <div class="card-body d-flex align-items-center">
-                            <div class="d-flex flex-column w-50">
+                        <div class="card-body d-flex align-items-center gap-4 px-4">
+                            <div class="col-1 p-0">
+                                <img src="img/cliente.png" alt="" class="w-100 rounded-circle">
+                            </div>
+                            <div class="d-flex flex-column" style="width: 27rem;">
                                 <div class="d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $cliente->nombre }}</h1>
                                     <div class="d-flex gap-2">

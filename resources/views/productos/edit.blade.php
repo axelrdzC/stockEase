@@ -9,24 +9,7 @@
         <h2 class="fw-bold">INFORMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-        <div class="row p-4"> <!-- 
-            <div class="col-md-4 bg-transparent">
-                vista de la lista de pasos
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-white fw-bold rounded shadow-sm">
-                        <div class="small fw-normal">PASO 1</div>
-                        <div class="text-primary">INFORMACION GENERAL</div>
-                    </li>
-                    <li class="list-group-item bg-transparent text-muted">
-                    <div class="small fw-normal">PASO 2</div>
-                        <div>INFORMACION MONETARIA</div>
-                    </li>
-                    <li class="list-group-item bg-transparent text-muted">
-                    <div class="small fw-normal">PASO 3</div>
-                        <div>UBICACION Y CANTIDAD</div>
-                    </li>
-                </ul> 
-            </div>-->
+        <div class="row p-4">
             <div class="col">
                 <!-- formulario -->
                 <form method="POST" action="{{ route('productos.update', $producto) }}" class="shadow-sm bg-white p-4 rounded" style="width: 50rem;">
@@ -40,7 +23,7 @@
                     <div class="mb-4">
                         <div class="d-flex">                            
                             <label for="proveedor_id" class="form-label">Nombre del proveedor</label>
-                            <a href="{{ route('proveedores.create.general') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end">
+                            <a href="{{ route('proveedores.create') }}" class="text-primary fw-medium col link-underline link-underline-opacity-0 d-flex flex-grow-1 justify-content-end">
                                 Agregar un proveedor +
                             </a>
                         </div>

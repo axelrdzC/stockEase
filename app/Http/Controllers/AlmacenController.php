@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class AlmacenController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $almacenes = Almacen::latest()->paginate(10);
         return view('almacenes.index', compact('almacenes'));
     }
@@ -64,5 +63,11 @@ class AlmacenController extends Controller
         $almacen->delete();
         return redirect()->route('almacenes.index')->with('status', 'el almacen ha sido eliminado');
         
+    }
+
+    public function show(Almacen $almacen) {
+        return view('almacenes.show', [
+            'almacen' => $almacen
+        ]);
     }
 }
