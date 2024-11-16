@@ -61,7 +61,7 @@
                     <div class="d-flex justify-content-between gap-3">
                         <button type="button" class="btn btn-light flex-fill border" 
                             onclick="window.location.href='{{ route('clientes.index') }}'">Regresar</button>
-                        <button type="button" class="btn btn-primary flex-fill" onclick="nextStep()">Siguiente</button>
+                        <button type="button" class="btn btn-primary flex-fill" onclick="nextStep(1,2)">Siguiente</button>
                     </div>
                 </div>
                 <div id="paso_2" class="col" style="display:none;">
@@ -76,7 +76,7 @@
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
-                        <button type="button" class="btn btn-light flex-fill border" onclick="prevStep()">Regresar</button>
+                        <button type="button" class="btn btn-light flex-fill border" onclick="prevStep(2,1)">Regresar</button>
                         <button type="submit" class="btn btn-primary flex-fill">Agregar</button>
                     </div>
                 </div>
