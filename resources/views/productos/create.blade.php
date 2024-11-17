@@ -55,8 +55,8 @@
                     <!-- sku y categoria -->
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="sku" class="form-label">Codigo SKU</label>
-                            <input type="text" class="form-control bg-white" id="sku" name="sku" required>
+                            <label for="SKU" class="form-label">Codigo SKU</label>
+                            <input type="text" class="form-control bg-white" id="SKU" name="SKU" required>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex">                            

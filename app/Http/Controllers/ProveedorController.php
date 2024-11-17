@@ -46,24 +46,16 @@ class ProveedorController extends Controller
             'email' => 'required',
         ]);
 
-        $proveedor->update($proveedorData);
+        $proveedor->update($validated);
     
-        return redirect()->route('proveedores.index')->with('status', 'Producto modificado exitosamente');
+        return redirect()->route('proveedores.index')->with('status', 'proveedor modificado exitosamente');
     }
 
     public function destroy(Proveedor $proveedor) {
 
-        DB::transaction(function () use ($proveedor) {
-            $productos = $proveedor->productos;
-            foreach ($productos as $producto) {
-                $producto->delete();
-            }
+        $proveedor->delete();
 
-            $proveedor->delete();
-        });
-
-        return redirect()->route('proveedores.index')->with('status', 'el proveedor ha sido eliminado');
-        
+        return redirect()->route('proveedores.index')->with('success', 'Proveedor y sus productos asociados han sido eliminados exitosamente.');
     }
     
 }
