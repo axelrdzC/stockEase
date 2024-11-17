@@ -21,11 +21,11 @@ return new class extends Migration
             $table->double('unidad_medida');
             $table->timestamps();
             $table->unsignedBigInteger('almacen_id');
-            $table->foreign('almacen_id')->references('id')->on('almacenes');
+            $table->foreign('almacen_id')->references('id')->on('almacenes')->onDelete('cascade');
             $table->unsignedBigInteger('proveedor_id');
-            $table->foreign('proveedor_id')->references('id')->on('proveedores');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('cascade');
             $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 

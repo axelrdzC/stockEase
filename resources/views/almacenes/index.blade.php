@@ -186,13 +186,13 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label for="codigo_p" class="form-label">Código Postal</label>
-                                                                <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" required>
+                                                                <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" value="{{ $almacen->codigo_p }}" required>
                                                             </div>
                                                         </div>
                                                         <!-- colonia / calles -->
                                                         <div class="mb-3">
                                                             <label for="colonia" class="form-label">Colonia y calle</label>
-                                                            <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
+                                                            <input type="text" class="form-control bg-white" id="colonia" name="colonia" value="{{ $almacen->colonia }}"required>
                                                         </div>
                                                         <!-- subir img -->
                                                         <div class="mb-3">
