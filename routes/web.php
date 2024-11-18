@@ -72,9 +72,16 @@ Route::middleware('auth')->group(function () {
         });
 
         /* vistas ordenes  */
-        Route::group(['prefix' => '/ordenes'], function() {
-            Route::get('/', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index');
-        });
+      /* vistas ordenes */
+Route::group(['prefix' => '/ordenes'], function() {
+    Route::get('/', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index'); // Listar órdenes
+    Route::get('/create', [App\Http\Controllers\OrdenController::class, 'create'])->name('ordenes.create'); // Formulario de creación
+    Route::post('/', [App\Http\Controllers\OrdenController::class, 'store'])->name('ordenes.store'); // Guardar una nueva orden
+    Route::get('/{orden}/edit', [App\Http\Controllers\OrdenController::class, 'edit'])->name('ordenes.edit'); // Formulario de edición
+    Route::patch('/{orden}', [App\Http\Controllers\OrdenController::class, 'update'])->name('ordenes.update'); // Actualizar una orden
+    Route::delete('/{orden}', [App\Http\Controllers\OrdenController::class, 'destroy'])->name('ordenes.destroy'); // Eliminar una orden
+});
+
 
         /* vistas informes  */
         Route::group(['prefix' => '/informes'], function() {
