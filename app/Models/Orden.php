@@ -9,9 +9,18 @@ class Orden extends Model
 {
     use HasFactory;
 
+    protected $table = 'ordenes';
+
     protected $fillable = [
-        'titulo',
-        'fecha'
+        'numero_orden',
+        'proveedor_id',
+        'estado',
+        'fecha',
+        'total',
     ];
-    
+
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class, 'proveedor_id');
+    }
 }

@@ -57,7 +57,7 @@
                             <option value="1">TODOS</option>
                             <option value="2">VINILOS</option>
                             <option value="2">GALLETAS</option>
-                            <option value="2">ROPA</option>
+                            <option value="2">ROPA</option> 
                         </select>
                     </div>
                     <!-- boton reset filtros -->
