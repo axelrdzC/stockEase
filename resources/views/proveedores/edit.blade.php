@@ -27,6 +27,7 @@
                 <!-- formulario -->
                 <form method="POST" action="{{ route('proveedores.update', $proveedor) }}" class="shadow-sm bg-white p-4 rounded w-100">
                     @csrf
+                    @method('PATCH')
                     <!-- paso no. 1 -->
                     <div id="paso_1" class="col">
                         <!-- nombre proveedor -->
