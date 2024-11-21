@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orden;
+use App\Models\Proveedor; // Para obtener la lista de proveedores
 use Illuminate\Http\Request;
 
 class OrdenController extends Controller

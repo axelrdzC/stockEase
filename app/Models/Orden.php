@@ -10,7 +10,7 @@ class Orden extends Model
     use HasFactory;
 
     protected $table = 'ordenes';
-    
+
     protected $fillable = [
         'numero_orden',
         'proveedor_id',
