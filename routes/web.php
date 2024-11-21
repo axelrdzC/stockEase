@@ -37,12 +37,12 @@ Route::middleware('auth')->group(function () {
         /* vistas almacenes  */
         Route::group(['prefix' => '/almacenes'], function() {
             Route::get('/', [AlmacenController::class, 'index'])->name('almacenes.index');
-            Route::get('/{almacen}', [AlmacenController::class, 'show'])->name('almacenes.show');
             Route::get('/create', [AlmacenController::class, 'create'])->name('almacenes.create');
             Route::post('/almacenes', [AlmacenController::class, 'store'])->name('almacenes.store');
             Route::get('/{almacen}/edit', [AlmacenController::class, 'edit'])->name('almacenes.edit');
             Route::patch('/{almacen}', [AlmacenController::class, 'update'])->name('almacenes.update');
             Route::delete('/{almacen}', [AlmacenController::class, 'destroy'])->name('almacenes.destroy');
+            Route::get('/{almacen}', [AlmacenController::class, 'show'])->name('almacenes.show');
         });
 
         # vistas categorias

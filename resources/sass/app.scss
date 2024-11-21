@@ -56,3 +56,9 @@
     color: #8067B2 !important;
     font-weight: bold;
 }
+
+.btn-check:checked + .btn {
+    background-color: white;
+    color: #8067B2;
+    border-color: #8067B2;
+}

@@ -46,7 +46,7 @@ class ProveedorController extends Controller
             'email' => 'required',
         ]);
 
-        $proveedor->update($proveedorData);
+        $proveedor->update($validated);
     
         return redirect()->route('proveedores.index')->with('status', 'Producto modificado exitosamente');
     }
