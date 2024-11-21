@@ -104,7 +104,7 @@
                                 <img src="img/producto.png" alt="" class="w-100">
                             </div>
                             <div class="d-flex flex-column" style="width: 27rem;">
-                                <h1 class="fs-5 fw-bold">{{ $producto->nombre }}</h1>
+                                <h1 class="fs-5 fw-bold d-inline-block text-truncate pe-5">{{ $producto->nombre }}</h1>
                                 <div class="d-flex gap-2">
                                     <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria->nombre }}</small>
                                     <small class="rounded bg-white border border-secondary-subtle p-1 px-2">

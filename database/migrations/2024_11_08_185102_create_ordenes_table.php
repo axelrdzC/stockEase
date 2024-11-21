@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ordenes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); 
+            $table->string('numero_orden')->unique(); 
+            $table->enum('estado', ['pendiente', 'completada', 'cancelada']); 
+            $table->date('fecha'); 
+            $table->decimal('total', 10, 2); 
+            
+            
+            $table->unsignedBigInteger('proveedor_id');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('cascade');
+            
+            $table->timestamps(); 
         });
     }
 

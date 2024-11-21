@@ -27,7 +27,7 @@
     <!-- grafica principal -->
     <div class="d-flex justify-content-center mb-3">
         <div class="col-md-8 w-100 p-0">
-            <div class="card bg-white p-4">
+            <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Gráfico de ventas</div>
@@ -59,7 +59,7 @@
     <!-- almacenes & productos -->
     <div class="d-flex justify-content-center gap-3 w-100">
         <div class=" p-0">
-            <div class="card bg-white p-4">
+            <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Mis almacenes</div>
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="flex-grow-1 p-0">
-            <div class="card bg-white p-4">
+            <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Productos</div>

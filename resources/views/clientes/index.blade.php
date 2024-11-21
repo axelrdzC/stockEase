@@ -82,7 +82,7 @@
                             <div class="col-1 p-0">
                                 <img src="img/cliente.png" alt="" class="w-100 rounded-circle">
                             </div>
-                            <div class="d-flex flex-column" style="width: 27rem;">
+                            <div class="d-flex flex-column" style="width: 18rem;">
                                 <div class="d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $cliente->nombre }}</h1>
                                     <div class="d-flex gap-2">
@@ -99,16 +99,16 @@
                                     <small class="row fs-6 fw-bold">{{ $cliente->email }}</small>
                                 </div>
                                 <div class="col-4">
-                                    <small class="row">Teléfono</small>
-                                    <small class="row fs-6 fw-bold">{{ $cliente->telefono }}</small>
-                                </div>
-                                <div class="col-4">
                                     <small class="row">Direccion</small>
                                     <small class="row fs-6 fw-bold">
                                         <span class="d-inline-block text-truncate p-0" style="max-width: 150px;">
                                             {{ $cliente->direccion }}
                                         </span>
                                     </small>
+                                </div>
+                                <div class="col-4">
+                                    <small class="row">Teléfono</small>
+                                    <small class="row fs-6 fw-bold">{{ $cliente->telefono }}</small>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">

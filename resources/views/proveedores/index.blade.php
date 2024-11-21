@@ -57,7 +57,7 @@
                             <option value="1">TODOS</option>
                             <option value="2">VINILOS</option>
                             <option value="2">GALLETAS</option>
-                            <option value="2">ROPA</option>
+                            <option value="2">ROPA</option> 
                         </select>
                     </div>
                     <!-- boton reset filtros -->
@@ -78,14 +78,17 @@
             <div class="col">
                 @foreach ($proveedores as $proveedor)
                     <div class="card shadow-sm bg-white border-0 m-0 mb-3">
-                        <div class="card-body d-flex align-items-center">
-                            <div class="d-flex flex-column w-50">
-                                <div class="d-flex flex-column w-50">
+                        <div class="card-body d-flex align-items-center gap-4 px-4">
+                            <div class="col-1 p-0">
+                                <img src="img/cliente.png" alt="" class="w-100 rounded-circle">
+                            </div>
+                            <div class="d-flex flex-column" style="width: 18rem;">
+                                <div class="d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $proveedor->nombre }}</h1>
                                     <div class="d-flex gap-2">
                                         <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $proveedor->categoria->nombre }}</small>
                                         <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                            Cantidad en stock: <span class="fw-medium">0</span>
+                                            Cantidad en stock: <span class="fw-medium">{{ $proveedor->productos->sum('cantidad_producto') }}</span>
                                         </small>
                                     </div>
                                 </div>
@@ -96,16 +99,16 @@
                                     <small class="row fs-6 fw-bold">{{ $proveedor->email }}</small>
                                 </div>
                                 <div class="col-4">
-                                    <small class="row">Teléfono</small>
-                                    <small class="row fs-6 fw-bold">{{ $proveedor->telefono }}</small>
-                                </div>
-                                <div class="col-4">
                                     <small class="row">Direccion</small>
                                     <small class="row fs-6 fw-bold">
                                         <span class="d-inline-block text-truncate p-0" style="max-width: 150px;">
                                             {{ $proveedor->direccion }}
                                         </span>
                                     </small>
+                                </div>
+                                <div class="col-4">
+                                    <small class="row">Teléfono</small>
+                                    <small class="row fs-6 fw-bold">{{ $proveedor->telefono }}</small>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -123,30 +126,31 @@
                                         <li><a class="dropdown-item" href="{{ route('proveedores.edit', $proveedor) }}">Editar</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $proveedor->id }}">Eliminar</a></li>
                                     </ul>
-                                    <!-- el modal aka mensajito de confirmacion -->
-                                    <div class="modal fade" id="eliminar-{{ $proveedor->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="eliminar-{{ $proveedor->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <form action="{{ route('proveedores.destroy', $proveedor) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
                                                 <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirme su accion</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel">Eliminar Proveedor</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>¿Está seguro de que desea eliminar el proveedor <strong>{{ $proveedor->nombre }}</strong>?</p>
+                                                        <p>Esto también eliminará <strong>{{ $proveedor->productos->count() }}</strong> productos asociados.</p>
+                                                        <p>&emsp;Con una cantidad de <strong>{{ $proveedor->productos->sum('cantidad_producto') }}</strong> unidades.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <p class="">Esta seguro de querer borrar el siguiente proveedor: </p>
-                                                    <p class="m-0"> Nombre: {{ $proveedor->nombre }} </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ route('proveedores.destroy', $proveedor) }}" method="POST" onsubmit="return alertCuidado(event)">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-primary">Eliminar proveedor</button>
-                                                    </form>
-                                                </div>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,15 +159,5 @@
         </div>
     </div>
 </div>    
-
-<script>
-    function alertCuidado(event) {
-        event.preventDefault();
-        const confirmed = confirm("¿Está seguro de que desea eliminar este proveedor? Esto también eliminará los productos asociados.");
-        if (confirmed) {
-            event.target.submit();
-        }
-    }
-</script>
 
 @endsection
