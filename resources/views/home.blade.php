@@ -27,14 +27,19 @@
     <!-- grafica principal -->
     <div class="d-flex justify-content-center mb-3">
         <div class="col-md-8 w-100 p-0">
-            <div class="card bg-white p-4">
+            <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Gráfico de ventas</div>
-                    <div class="col" id="botones">
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">ESTE MES</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">ESTE AÑO</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">DESDE EL PRINCIPIO</button>            
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="graphics" id="esteMes" autocomplete="off" checked>
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="esteMes">ESTE MES</label>
+
+                            <input type="radio" class="btn-check" name="graphics" id="esteAno" autocomplete="off">
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="esteAno">ESTE AÑO</label>
+
+                            <input type="radio" class="btn-check" name="graphics" id="always" autocomplete="off">
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="always">DESDE EL PRINCIPIO</label>
                     </div>
                 </div>
                 <div class="card-body">
@@ -54,7 +59,7 @@
     <!-- almacenes & productos -->
     <div class="d-flex justify-content-center gap-3 w-100">
         <div class=" p-0">
-            <div class="card bg-white p-4">
+            <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Mis almacenes</div>
@@ -63,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex mt-2">
+                <div class="d-flex mt-2 flex-column">
                     @foreach ($almacenes as $almacen)
                         <button class="d-flex flex-grow-1 border rounded bg-transparent p-2 align-items-center justify-content-between">
                             <div class="d-flex flex-column">
@@ -87,19 +92,27 @@
             </div>
         </div>
         <div class="flex-grow-1 p-0">
-            <div class="card bg-white p-4">
+            <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Productos</div>
-                    <div class="col" id="botones">
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">MAS VENDIDOS</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">MENOS VENDIDOS</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">NIVEL BAJO DE STOCK</button>
-                        <button type="button" data-bs-toggle="button" class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" onclick="bloquearSeleccion(this)">NIVEL ALTO DE STOCK</button>             
-                    </div>
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="productos" id="masVendidos" autocomplete="off" checked>
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="masVendidos">MAS VENDIDOS</label>
+
+                            <input type="radio" class="btn-check" name="productos" id="menosVendidos" autocomplete="off">
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="menosVendidos">MENOS VENDIDOS</label>
+
+                            <input type="radio" class="btn-check" name="productos" id="nivelBajoStock" autocomplete="off">
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="nivelBajoStock">NIVEL BAJO DE STOCK</label>
+
+                            <input type="radio" class="btn-check" name="productos" id="nivelAltoStock" autocomplete="off">
+                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="nivelAltoStock">NIVEL ALTO DE STOCK</label>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

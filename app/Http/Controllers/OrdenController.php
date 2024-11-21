@@ -8,24 +8,18 @@ use Illuminate\Http\Request;
 
 class OrdenController extends Controller
 {
-    // Muestra la lista de órdenes
-    public function index()
-    {
-        $ordenes = Orden::latest()->paginate(10);
-        return view('ordenes.index', compact('ordenes'));
-    }
 
-    // Muestra el formulario para crear una nueva orden
-    public function create()
-    {
-        $proveedores = Proveedor::all(); // Obtiene los proveedores para el formulario
-        return view('ordenes.create', compact('proveedores'));
-    }
+    # metodos de acceso a las vista de COMPRA
 
-    // Guarda una nueva orden en la base de datos
-    public function store(Request $request)
-    {
-        // Valida los datos de entrada
+    public function indexCompra() {
+        $ordenes = Orden::latest()->paginate(10); 
+        return view('ordenes.compra.index', compact('ordenes'));
+    }
+    
+    public function createCompra() { return view('ordenes.compra.create'); }
+
+    public function storeCompra(Request $request) {
+
         $validated = $request->validate([
             'numero_orden' => 'required|unique:ordenes,numero_orden',
             'proveedor_id' => 'required|exists:proveedores,id',
@@ -34,23 +28,15 @@ class OrdenController extends Controller
             'total' => 'required|numeric',
         ]);
 
-        // Crea la orden
         Orden::create($validated);
+        return redirect()->route('ordenes.compra.index')->with('success', 'Orden agregada exitosamente');
 
-        return redirect()->route('ordenes.index')->with('success', 'Orden agregada exitosamente');
     }
 
-    // Muestra el formulario para editar una orden existente
-    public function edit(Orden $orden)
-    {
-        $proveedores = Proveedor::all(); // Obtiene los proveedores para el formulario
-        return view('ordenes.edit', compact('orden', 'proveedores'));
-    }
+    public function editCompra(Orden $orden) { return view('ordenes.compra.edit', ['orden' => $orden]); }
 
-    // Actualiza una orden existente en la base de datos
-    public function update(Request $request, Orden $orden)
-    {
-        // Valida los datos de entrada
+    public function updateCompra(Request $request, Orden $orden) {
+        
         $validated = $request->validate([
             'numero_orden' => 'required|unique:ordenes,numero_orden,' . $orden->id,
             'proveedor_id' => 'required|exists:proveedores,id',
@@ -59,17 +45,22 @@ class OrdenController extends Controller
             'total' => 'required|numeric',
         ]);
 
-        // Actualiza la orden
         $orden->update($validated);
-
-        return redirect()->route('ordenes.index')->with('status', 'Orden actualizada exitosamente');
+        return redirect()->route('ordenes.compra.index')->with('status', 'Orden actualizada exitosamente');
+    
     }
 
-    // Elimina una orden existente de la base de datos
-    public function destroy(Orden $orden)
-    {
+    public function destroyCompra(Orden $orden) {
         $orden->delete();
-
-        return redirect()->route('ordenes.index')->with('success', 'Orden eliminada exitosamente.');
+        return redirect()->route('ordenes.compra.index')->with('success', 'Orden eliminada exitosamente.');
     }
+
+
+    # metodos de acceso a las vista de VENTA
+
+    public function indexVenta() {
+        $ordenes = Orden::latest()->paginate(10); 
+        return view('ordenes.venta.index', compact('ordenes'));
+    }
+
 }

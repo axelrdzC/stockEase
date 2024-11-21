@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{almacen}/edit', [AlmacenController::class, 'edit'])->name('almacenes.edit');
             Route::patch('/{almacen}', [AlmacenController::class, 'update'])->name('almacenes.update');
             Route::delete('/{almacen}', [AlmacenController::class, 'destroy'])->name('almacenes.destroy');
+            Route::get('/{almacen}', [AlmacenController::class, 'show'])->name('almacenes.show');
         });
 
         # vistas categorias
@@ -71,19 +72,27 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
         });
 
-        /* vistas ordenes  */
-      /* vistas ordenes */
-Route::group(['prefix' => '/ordenes'], function() {
-    Route::get('/', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index'); // Listar órdenes
-    Route::get('/create', [App\Http\Controllers\OrdenController::class, 'create'])->name('ordenes.create'); // Formulario de creación
-    Route::post('/', [App\Http\Controllers\OrdenController::class, 'store'])->name('ordenes.store'); // Guardar una nueva orden
-    Route::get('/{orden}/edit', [App\Http\Controllers\OrdenController::class, 'edit'])->name('ordenes.edit'); // Formulario de edición
-    Route::patch('/{orden}', [App\Http\Controllers\OrdenController::class, 'update'])->name('ordenes.update'); // Actualizar una orden
-    Route::delete('/{orden}', [App\Http\Controllers\OrdenController::class, 'destroy'])->name('ordenes.destroy'); // Eliminar una orden
-});
+        # rutas de ordenes de COMPRA
+        Route::group(['prefix' => '/ordenes/compra'], function() {
+
+            Route::get('/', [App\Http\Controllers\OrdenController::class, 'indexCompra'])->name('ordenes.compra.index');
+            Route::get('/create', [App\Http\Controllers\OrdenController::class, 'createCompra'])->name('ordenes.compra.create');
+            Route::post('/', [App\Http\Controllers\OrdenController::class, 'storeCompra'])->name('ordenes.compra.store');
+            Route::get('/{orden}/edit', [App\Http\Controllers\OrdenController::class, 'editCompra'])->name('ordenes.compra.edit');
+            Route::patch('/{orden}', [App\Http\Controllers\OrdenController::class, 'updateCompra'])->name('ordenes.compra.update');
+            Route::delete('/{orden}', [App\Http\Controllers\OrdenController::class, 'destroyCompra'])->name('ordenes.compra.destroy');
+
+        });
+
+        # rutas de ordenes de VENTA
+        Route::group(['prefix' => '/ordenes/venta'], function() {
+
+            Route::get('/', [App\Http\Controllers\OrdenController::class, 'indexVenta'])->name('ordenes.venta.index');
+
+        });
 
 
-        /* vistas informes  */
+        # rutas de informes
         Route::group(['prefix' => '/informes'], function() {
             Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
         });
