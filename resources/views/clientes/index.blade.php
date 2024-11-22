@@ -86,8 +86,7 @@
                                 <div class="d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $cliente->nombre }}</h1>
                                     <div class="d-flex gap-2">
-                                        <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $cliente->categoria->nombre }}</small>
-                                        <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
+                                    <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $cliente->categoria ? $cliente->categoria->nombre : 'Sin categoría' }}</small>                                        <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
                                             Cantidad en stock: <span class="fw-medium">0</span>
                                         </small>
                                     </div>

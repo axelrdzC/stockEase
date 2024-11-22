@@ -15,13 +15,21 @@ class AlmacenSeeder extends Seeder
         DB::table('almacenes')->insert([
             [
                 'nombre' => 'Almacén Central',
-                'ubicacion' => 'Av. Principal 123, Ciudad',
+                'pais' => 'México',
+                'estado' => 'Tamaulipas',
+                'ciudad' => 'Ciudad Victoria',
+                'colonia' => 'La Moderna, Calle Venezuela',
+                'codigo_p' => '12345',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'nombre' => 'Almacén Secundario',
-                'ubicacion' => 'Calle Secundaria 456, Ciudad',
+                'pais' => 'México',
+                'estado' => 'Nuevo León',
+                'ciudad' => 'Tampico',
+                'colonia' => 'Zona Centro, Calle Hidalgo',
+                'codigo_p' => '09876',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
