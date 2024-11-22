@@ -14,4 +14,10 @@ class InformeController extends Controller
 
     public function create() { return view('informes.create'); }
 
+    public function show(Informe $informe) {
+        return view('informes.show', [
+            'informe' => $informe
+        ]);
+    }
+
 }

@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     /* vistas users  */
     Route::get('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('users.show');
 
+    Route::get('/configuracion', [App\Http\Controllers\ConfigController::class, 'show'])->name('configuracion');
+
     Route::group(['namespace' => 'App\Http\Controllers'], function() {
         /* vistas productos  */
         Route::group(['prefix' => '/productos'], function() {
@@ -94,7 +96,8 @@ Route::middleware('auth')->group(function () {
 
         # rutas de informes
         Route::group(['prefix' => '/informes'], function() {
-            Route::get('/informes', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
+            Route::get('/', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
+            Route::get('/show', [App\Http\Controllers\InformeController::class, 'show'])->name('informes.show');
         });
     });   
 });
