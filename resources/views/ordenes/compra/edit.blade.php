@@ -5,7 +5,7 @@
 @section('content')
 <div class="col px-5">
     <h2 class="fw-bold mb-4">Editar Orden de Compra</h2>
-    <form action="{{ route('ordenes.update', $orden) }}" method="POST">
+    <form action="{{ route('ordenes.compra.update', $orden) }}" method="POST">
         @csrf
         @method('PATCH')
         <div class="mb-3">

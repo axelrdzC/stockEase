@@ -98,9 +98,9 @@
                                         </svg>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('ordenes.edit', $orden) }}">Editar</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('ordenes.compra.edit', $orden) }}">Editar</a></li>
                                         <li>
-                                            <form action="{{ route('ordenes.destroy', $orden) }}" method="POST">
+                                            <form action="{{ route('ordenes.compra.destroy', $orden) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">Eliminar</button>

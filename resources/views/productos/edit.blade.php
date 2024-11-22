@@ -30,7 +30,9 @@
                             <select class="form-select bg-white" id="proveedor_id" name="proveedor_id" required>
                                 <option selected disabled>Selecciona un proveedor</option>
                                 @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+                                    <option value="{{ $proveedor->id }}"{{ $proveedor->id == $producto->proveedor_id ? 'selected' : '' }}>
+                                        {{ $proveedor->nombre }}
+                                    </option>
                                 @endforeach
                             </select>
                     </div>
@@ -50,7 +52,9 @@
                             <select class="form-select bg-white" id="categoria_id" name="categoria_id" required>
                                 <option selected disabled>Selecciona una categoria</option>
                                 @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                    <option value="{{ $categoria->id }}"{{ $categoria->id == $producto->categoria_id ? 'selected' : '' }}>
+                                    {{ $categoria->nombre }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -83,7 +87,9 @@
                             <select class="form-select bg-white" id="almacen_id" name="almacen_id" required>
                                 <option selected disabled>Selecciona un almacen</option>
                                 @foreach ($almacenes as $almacen)
-                                    <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
+                                    <option value="{{ $almacen->id }}" {{ $almacen->id == $producto->almacen_id ? 'selected' : '' }}>
+                                        {{ $almacen->nombre }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
