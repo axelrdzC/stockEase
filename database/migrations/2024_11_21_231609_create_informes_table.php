@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('informes', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_informe')->unique();
-            $table->string('tipo');
-            $table->text('contenido');
+            $table->string('nombre');
+            $table->string('descripcion')->nullable();
+            $table->string('tipo_informe');
             $table->timestamps();
         });
     }

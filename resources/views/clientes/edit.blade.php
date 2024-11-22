@@ -24,30 +24,33 @@
                 </ul> 
             </div>
             <!-- formulario -->
-            <form id="form_x_pasos" method="POST" action="{{ route('clientes.store') }}" class="col w-100 shadow-sm bg-white p-4 rounded">
+            <form id="form_x_pasos" method="POST" action="{{ route('clientes.update', $cliente) }}" class="col w-100 shadow-sm bg-white p-4 rounded">
             @csrf
+            @method('PATCH')
                 <div id="paso_1" class="col">
                     <!-- nombre producto -->
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre del clientes</label>
-                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
+                        <label for="nombre" class="form-label">Nombre del cliente</label>
+                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" value="{{ $cliente->nombre }}" required>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control bg-white" id="telefono" name="telefono" required>
+                            <input type="text" class="form-control bg-white" id="telefono" name="telefono" value="{{ $cliente->telefono }}" required>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex">                            
-                                <label for="id_categoria" class="form-label">Categoria</label>
+                                <label for="categoria_id" class="form-label">Categoria</label>
                                 <a href="#" class="text-primary fw-medium d-flex flex-grow-1 link-underline link-underline-opacity-0 justify-content-end" data-bs-toggle="modal" data-bs-target="#addCategoria">
                                     Agregar una categoría +
                                 </a>
                             </div>
-                            <select class="form-select bg-white" id="id_categoria" name="id_categoria" required>
+                            <select class="form-select bg-white" id="categoria_id" name="categoria_id" required>
                                 <option selected disabled>Selecciona una categoria</option>
                                 @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                    <option value="{{ $categoria->id }}"{{ $categoria->id == $cliente->categoria_id ? 'selected' : '' }}>
+                                    {{ $categoria->nombre }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -68,16 +71,16 @@
                     <!-- direccion e email -->
                     <div class="mb-3">
                         <label for="direccion" class="form-label">Ubicacion</label>
-                        <input type="text" class="form-control bg-white" id="direccion" name="direccion" required>
+                        <input type="text" class="form-control bg-white" id="direccion" name="direccion" value="{{ $cliente->direccion }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo</label>
-                        <input type="text" class="form-control bg-white" id="email" name="email" required>
+                        <input type="text" class="form-control bg-white" id="email" name="email" value="{{ $cliente->email }}" required>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
                         <button type="button" class="btn btn-light flex-fill border" onclick="prevStep(2,1)">Regresar</button>
-                        <button type="submit" class="btn btn-primary flex-fill">Agregar</button>
+                        <button type="submit" class="btn btn-primary flex-fill">Actualizar</button>
                     </div>
                 </div>
             </form>

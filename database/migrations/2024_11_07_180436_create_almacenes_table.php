@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('almacenes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('ubicacion');
+            $table->string('pais');
+            $table->string('estado');
+            $table->string('ciudad');
+            $table->string('colonia');
+            $table->string('codigo_p');
+            $table->string('seccion');
             $table->timestamps();
         });
     }

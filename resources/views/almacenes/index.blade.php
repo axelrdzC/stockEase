@@ -93,7 +93,7 @@
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 10.5005C14.5 9.11924 13.3808 8 12.0005 8C10.6192 8 9.5 9.11924 9.5 10.5005C9.5 11.8808 10.6192 13 12.0005 13C13.3808 13 14.5 11.8808 14.5 10.5005Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9995 21C10.801 21 4.5 15.8984 4.5 10.5633C4.5 6.38664 7.8571 3 11.9995 3C16.1419 3 19.5 6.38664 19.5 10.5633C19.5 15.8984 13.198 21 11.9995 21Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                {{ $almacen->ubicacion }}
+                                {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }}
                             </small>
                             <div class="d-flex justify-content-end mt-2">
                                 <a class="p-2" href="#" data-bs-toggle="modal" data-bs-target="#editar-{{ $almacen->id }}">
@@ -124,7 +124,7 @@
                                                         <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
                                                     </div> 
                                                     <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
-                                                    <p class="m-0"> Ubicación: <strong> {{ $almacen->ubicacion }} </strong></p>    
+                                                    <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -160,17 +160,16 @@
                                                                 <label for="pais" class="form-label">País</label>
                                                                 <select class="form-select bg-white" id="pais" name="pais" required>
                                                                     <option selected disabled>Selecciona un país</option>
-                                                                    <option value="México">México</option>
-                                                                    <option value="Estados Unidos">Estados Unidos</option>
+                                                                    <option value="México" {{ $almacen->pais == 'México' ? 'selected' : '' }}>México</option>
+                                                                    <option value="Estados Unidos" {{ $almacen->pais == 'Estados Unidos' ? 'selected' : '' }}>Estados Unidos</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label for="estado" class="form-label">Estado</label>
                                                                 <select class="form-select bg-white" id="estado" name="estado" required>
                                                                     <option selected disabled>Selecciona un estado</option>
-                                                                    <option value="Tamaulipas">Tamaulipas</option>
-                                                                    <option value="Nuevo León">Nuevo León</option>
-                                                                    <option value="Nuevo Leon">Nuevo León</option>
+                                                                    <option value="Tamaulipas" {{ $almacen->estado == 'Tamaulipas' ? 'selected' : '' }}>Tamaulipas</option>
+                                                                    <option value="Nuevo León" {{ $almacen->estado == 'Nuevo León' ? 'selected' : '' }}>Nuevo León</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -180,8 +179,8 @@
                                                                 <label for="ciudad" class="form-label">Ciudad</label>
                                                                 <select class="form-select bg-white" id="ciudad" name="ciudad" required>
                                                                     <option selected disabled>Selecciona una ciudad</option>
-                                                                    <option value="Ciudad Victoria">Ciudad Victoria</option>
-                                                                    <option value="Tampico">Tampico</option>
+                                                                    <option value="Ciudad Victoria" {{ $almacen->ciudad == 'Ciudad Victoria' ? 'selected' : '' }}>Ciudad Victoria</option>
+                                                                    <option value="Tampico" {{ $almacen->ciudad == 'Tampico' ? 'selected' : '' }}>Tampico</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6">
