@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="mt-4 text-center">
-                <p>Por favor, acceda a alguna de las siguientes opciones para obtener acceso al almacén</p>
+                <p>Por favor, seleccione alguna de las siguientes opciones para obtener acceso al almacén</p>
                 @if (Route::has('login'))
                     <difv class="d-flex gap-2 justify-content-center">
                     @auth

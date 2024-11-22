@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Órdenes de Compra')
+@section('title', 'Órdenes de Venta')
 
 @section('content')
 <div class="col px-5">
