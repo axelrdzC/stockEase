@@ -15,7 +15,7 @@
     </div>    
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center position-relative">
             <div class="text-center">
-                <img src="img/welcome-guy.png" alt="just the welcome guy" class="position-relative img-fluid mx-auto d-block z-1" style="max-width: 32%;">
+                <img src="{{ asset('img/welcome-guy.png') }}" alt="just the welcome guy" class="position-relative img-fluid mx-auto d-block z-1" style="max-width: 32%;">
                 <div class="welcome-txt text-nowrap position-absolute top-50 start-50 translate-middle mt-4 z-0">    
                     <h1 class="welcome-txt m-0">SU <span class="text-primary">ALMACEN</span></h1>
                     <H1 class="welcome-txt m-0">EN SU <span class="text-primary">MEJOR VERSION</span></H1>

@@ -16,6 +16,7 @@ class Proveedor extends Model
         'id_categoria',
         'direccion',
         'email',
+        'img',
     ];
 
     public function categoria()

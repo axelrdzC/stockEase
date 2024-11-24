@@ -6,6 +6,7 @@ use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProveedorController extends Controller
 {
@@ -17,17 +18,24 @@ class ProveedorController extends Controller
 
     public function create() { return view('proveedores.create'); }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
+    public function store(Request $request) {
+        $request->validate([
             'nombre' => 'required',
             'telefono' => 'required',
             'id_categoria' => 'required',
             'direccion' => 'required',
             'email' => 'required',
+            'img' => 'nullable|image', 
         ]);
     
-        Proveedor::create($validated);
+        $proveedor = Proveedor::create($request->all());
+
+        if ($request->hasFile('img')) {
+            $nombre = $proveedor->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img', $nombre, 'public');
+            $proveedor->img = '/storage/img/'.$nombre;
+            $proveedor->save();
+        }
 
         return redirect()->route('proveedores.index')->with('success', 'proveedor agregado exitosamente');
     }

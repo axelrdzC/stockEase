@@ -25,7 +25,7 @@
             </div>
             <div class="col">
                 <!-- formulario -->
-                <form method="POST" action="{{ route('proveedores.store') }}" class="shadow-sm bg-white p-4 rounded w-100">
+                <form method="POST" action="{{ route('proveedores.store') }}" class="shadow-sm bg-white p-4 rounded w-100" enctype="multipart/form-data">
                     @csrf
                     <!-- paso no. 1 -->
                     <div id="paso_1" class="col">
@@ -51,8 +51,8 @@
                         </div>
                         <!-- subir img -->
                         <div class="mb-4">
-                            <label for="imagen" class="form-label">Subir imagen</label>
-                            <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
+                            <label for="img" class="form-label">Subir imagen</label>
+                            <input type="file" class="form-control bg-white" id="img" name="img" accept="image/*">
                         </div>
                         <!-- botones -->
                         <div class="d-flex justify-content-between gap-3">
