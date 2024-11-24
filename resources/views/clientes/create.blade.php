@@ -39,12 +39,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex">                            
-                                <label for="id_categoria" class="form-label">Categoria</label>
+                                <label for="categoria_id" class="form-label">Categoria</label>
                                 <a href="#" class="text-primary fw-medium d-flex flex-grow-1 link-underline link-underline-opacity-0 justify-content-end" data-bs-toggle="modal" data-bs-target="#addCategoria">
                                     Agregar una categoría +
                                 </a>
                             </div>
-                            <select class="form-select bg-white" id="id_categoria" name="id_categoria" required>
+                            <select class="form-select bg-white" id="categoria_id" name="categoria_id" required>
                                 <option selected disabled>Selecciona una categoria</option>
                                 @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>

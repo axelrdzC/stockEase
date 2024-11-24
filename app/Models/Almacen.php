@@ -13,7 +13,12 @@ class Almacen extends Model
 
     protected $fillable = [
         'nombre',
-        'ubicacion'
+        'pais',
+        'estado',
+        'ciudad',
+        'colonia',
+        'codigo_p',
+        'seccion',
     ];
     
 }

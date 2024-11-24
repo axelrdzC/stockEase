@@ -16,7 +16,7 @@
                     <li id="paso-item-1" class="list-group-item border-0 thisPaso rounded shadow-sm" data-name="INFORMACION GENERAL">
                         <small class="fw-normal">PASO 1</small>
                         <div class="titulo">INFORMACION GENERAL</div>
-                    </li>
+                    </li> 
                     <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="INFORMACION MONETARIA">
                         <small class="fw-normal">PASO 2</small>
                         <div class="titulo">INFORMACION MONETARIA</div>

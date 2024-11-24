@@ -30,6 +30,7 @@ class AlmacenController extends Controller
             'ciudad' => $dataGeneral['ciudad'],
             'colonia' => $dataGeneral['colonia'],
             'codigo_p' => $dataGeneral['codigo_p'],
+            'seccion' => 'olap',
         ]);
 
         return redirect()->route('almacenes.index')->with('success', 'almacen agregado exitosamente');

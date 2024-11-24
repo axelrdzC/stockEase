@@ -169,7 +169,7 @@
                                                                 <select class="form-select bg-white" id="estado" name="estado" required>
                                                                     <option selected disabled>Selecciona un estado</option>
                                                                     <option value="Tamaulipas" {{ $almacen->estado == 'Tamaulipas' ? 'selected' : '' }}>Tamaulipas</option>
-                                                                    <option value="Nuevo León" {{ $almacen->estado == 'Nuevo León' ? 'selected' : '' }}>Nuevo León</option>
+                                                                    <option value="Nuevo Leon" {{ $almacen->estado == 'Nuevo Leon' ? 'selected' : '' }}>Nuevo Leon</option>
                                                                 </select>
                                                             </div>
                                                         </div>

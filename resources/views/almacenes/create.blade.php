@@ -6,14 +6,29 @@
 <div class="col px-5">
     <div class="text-center">
         <small class="text-muted fs-6">Agregar Almacen</small>
-        <h2 class="fw-bold">INFORMACION GENERAL</h2>
+        <h2 class="fw-bold namePaso">INFORMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center">
-        <div class="row w-75 p-4">
-            <div class="col-md-8 mx-auto">
-                <!-- formulario -->
-                <form method="POST" action="{{ route('almacenes.store') }}" class="shadow-sm bg-white p-4 rounded">
-                    @csrf
+        <div class="d-flex row w-75 p-4">
+            <!-- columna / pasos -->
+            <div class="col-3 bg-transparent">
+                <ul class="list-group list-group-flush">
+                    <li id="paso-item-1" class="list-group-item border-0 thisPaso rounded shadow-sm" data-name="INFORMACION GENERAL">
+                        <small class="fw-normal">PASO 1</small>
+                        <div class="titulo">INFORMACION GENERAL</div>
+                    </li> 
+                    <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="SECCIONES">
+                        <small class="fw-normal">PASO 2</small>
+                        <div class="titulo">SECCIONES</div>
+                    </li>
+                </ul> 
+            </div>
+            
+            <!-- formulario -->
+            <form id="form_x_pasos" method="POST" action="{{ route('almacenes.store') }}" class="col w-100 shadow-sm bg-white p-4 rounded">
+            @csrf
+                <!-- paso no. 1 -->
+                <div id="paso_1" class="col">
                     <!-- nombre almacen -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre del almacen</label>
@@ -62,23 +77,34 @@
                     <!-- subir img -->
                     <div class="mb-4">
                         <label for="imagen" class="form-label">Subir imagen</label>
-                        <div class="rounded d-flex flex-column align-items-center justify-content-center border" style="height: 12rem;">
-                            <img src="{{ asset('img/rocket.png') }}" style="width: 6rem;">
-                            <span class="file-text mt-3">
-                                Ningún archivo seleccionado. 
-                                <a class="text-primary fw-bold link-underline link-underline-opacity-0" href="#" onclick="document.getElementById('imagen').click(); return false;">Subir imagen</a>
-                            </span>
-                            <input type="file" hidden id="imagen" name="imagen" accept="image/*" onchange="updateFileName(this)">
-                        </div>
+                        <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
                         <button type="button" class="btn btn-light flex-fill border" 
                             onclick="window.location.href='{{ route('almacenes.index') }}'">Regresar</button>
-                        <button type="submit" class="btn btn-primary flex-fill">Guardar</button>
+                        <button type="button" class="btn btn-primary flex-fill" onclick="nextStep(1,2)">Siguiente</button>
                     </div>
-                </form>
-            </div>
+                </div>
+                <!-- paso no. 2 -->
+                <div id="paso_2" class="col" style="display:none;">
+                    <!-- unidad de medida -->
+                    <div class="mb-3">
+                        <label for="unidad_medida" class="form-label">Unidad de medida</label>
+                        <input type="number" class="form-control bg-white" id="unidad_medida" name="unidad_medida" required>
+                    </div>
+                    <!-- precio -->
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio unitario del producto</label>
+                        <input type="number" class="form-control bg-white" id="precio" name="precio" required>
+                    </div>
+                    <!-- botones -->
+                    <div class="d-flex justify-content-between gap-3">
+                        <button type="button" class="btn btn-light flex-fill border" onclick="prevStep(2,1)">Regresar</button>
+                        <button type="submit" class="btn btn-primary flex-fill">Agregar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
