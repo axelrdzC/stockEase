@@ -20,4 +20,11 @@ class InformeController extends Controller
         ]);
     }
 
+    public function export($id)
+{
+    $informe = Informe::findOrFail($id);
+
+    $pdf = PDF::loadView('informes.pdf', compact('informe'));
+    return $pdf->download('informe.pdf');
+}
 }

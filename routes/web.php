@@ -78,27 +78,28 @@ Route::middleware('auth')->group(function () {
         # rutas de ordenes de COMPRA
         Route::group(['prefix' => '/ordenes/compra'], function() {
 
-            Route::get('/', [App\Http\Controllers\OrdenController::class, 'indexCompra'])->name('ordenes.compra.index');
-            Route::get('/create', [App\Http\Controllers\OrdenController::class, 'createCompra'])->name('ordenes.compra.create');
-            Route::post('/', [App\Http\Controllers\OrdenController::class, 'storeCompra'])->name('ordenes.compra.store');
-            Route::get('/{orden}/edit', [App\Http\Controllers\OrdenController::class, 'editCompra'])->name('ordenes.compra.edit');
-            Route::patch('/{orden}', [App\Http\Controllers\OrdenController::class, 'updateCompra'])->name('ordenes.compra.update');
-            Route::delete('/{orden}', [App\Http\Controllers\OrdenController::class, 'destroyCompra'])->name('ordenes.compra.destroy');
+            Route::get('/', [OrdenController::class, 'indexCompra'])->name('ordenes.compra.index');
+            Route::get('/create', [OrdenController::class, 'createCompra'])->name('ordenes.compra.create');
+            Route::post('/', [OrdenController::class, 'storeCompra'])->name('ordenes.compra.store');
+            Route::get('/{orden}/edit', [OrdenController::class, 'editCompra'])->name('ordenes.compra.edit');
+            Route::patch('/{orden}', [OrdenController::class, 'updateCompra'])->name('ordenes.compra.update');
+            Route::delete('/{orden}', [OrdenController::class, 'destroyCompra'])->name('ordenes.compra.destroy');
 
         });
 
         # rutas de ordenes de VENTA
         Route::group(['prefix' => '/ordenes/venta'], function() {
 
-            Route::get('/', [App\Http\Controllers\OrdenController::class, 'indexVenta'])->name('ordenes.venta.index');
+            Route::get('/', [OrdenController::class, 'indexVenta'])->name('ordenes.venta.index');
 
         });
 
 
         # rutas de informes
         Route::group(['prefix' => '/informes'], function() {
-            Route::get('/', [App\Http\Controllers\InformeController::class, 'index'])->name('informes.index');
-            Route::get('/show', [App\Http\Controllers\InformeController::class, 'show'])->name('informes.show');
+            Route::get('/', [InformeController::class, 'index'])->name('informes.index');
+            Route::get('/show', [InformeController::class, 'show'])->name('informes.show');
+            Route::get('/{id}/export', [InformeController::class, 'export'])->name('informes.export');
         });
     });   
 });
