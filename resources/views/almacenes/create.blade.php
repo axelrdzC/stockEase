@@ -17,9 +17,9 @@
                         <small class="fw-normal">PASO 1</small>
                         <div class="titulo">INFORMACION GENERAL</div>
                     </li> 
-                    <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="SECCIONES">
+                    <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="ESTRUCTURA">
                         <small class="fw-normal">PASO 2</small>
-                        <div class="titulo">SECCIONES</div>
+                        <div class="titulo">ESTRUCTURA</div>
                     </li>
                 </ul> 
             </div>
@@ -88,15 +88,30 @@
                 </div>
                 <!-- paso no. 2 -->
                 <div id="paso_2" class="col" style="display:none;">
-                    <!-- unidad de medida -->
+                    <!-- capacidad total -->
                     <div class="mb-3">
-                        <label for="unidad_medida" class="form-label">Unidad de medida</label>
-                        <input type="number" class="form-control bg-white" id="unidad_medida" name="unidad_medida" required>
+                        <label for="capacidad_total" class="form-label">Capacidad total del almacen</label>
+                        <input type="number" class="form-control bg-white" id="capacidad_total" name="capacidad_total" required>
                     </div>
-                    <!-- precio -->
+                    <!-- secciones (opc) -->
+                    <div id="secciones-container">
+                        <!-- seccion -->
+                        <div class="row mb-2 seccion-field">
+                            <div class="col-md-6">
+                                <label for="seccion_name" class="form-label">Nombre de la seccion</label>
+                                <input type="text" class="form-control bg-white" id="seccion_name" name="seccion_name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="seccion_capacidad" class="form-label">Capacidad</label>
+                                <input type="text" class="form-control bg-white" id="seccion_capacidad" name="seccion_capacidad">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add more secciones -->
                     <div class="mb-3">
-                        <label for="precio" class="form-label">Precio unitario del producto</label>
-                        <input type="number" class="form-control bg-white" id="precio" name="precio" required>
+                        <button type="button" class="text-primary fw-medium border-0 bg-transparent" onclick="addSeccion()">
+                            Agregar otra seccion +
+                        </button>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
