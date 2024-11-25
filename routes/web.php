@@ -98,8 +98,9 @@ Route::middleware('auth')->group(function () {
         # rutas de informes
         Route::group(['prefix' => '/informes'], function() {
             Route::get('/', [InformeController::class, 'index'])->name('informes.index');
-            Route::get('/show', [InformeController::class, 'show'])->name('informes.show');
-            Route::get('/{id}/export', [InformeController::class, 'export'])->name('informes.export');
+            Route::get('/{informe}/show', [InformeController::class, 'show'])->name('informes.show');
+            Route::post('/', [InformeController::class, 'store'])->name('informes.store');
+            Route::get('/{id}/export-pdf', [InformeController::class, 'exportPDF'])->name('informes.exportPDF');
         });
     });   
 });

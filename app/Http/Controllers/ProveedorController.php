@@ -19,6 +19,7 @@ class ProveedorController extends Controller
     public function create() { return view('proveedores.create'); }
 
     public function store(Request $request) {
+        
         $request->validate([
             'nombre' => 'required',
             'telefono' => 'required',

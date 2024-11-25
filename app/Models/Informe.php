@@ -10,8 +10,9 @@ class Informe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titulo',
-        'csv'
+        'nombre',
+        'descripcion',
+        'tipo_informe'
     ];
     
 }
