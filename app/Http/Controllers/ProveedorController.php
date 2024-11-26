@@ -33,8 +33,8 @@ class ProveedorController extends Controller
 
         if ($request->hasFile('img')) {
             $nombre = $proveedor->id.'.'.$request->file('img')->getClientOriginalExtension();
-            $img = $request->file('img')->storeAs('img', $nombre, 'public');
-            $proveedor->img = '/storage/img/'.$nombre;
+            $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
+            $proveedor->img = '/storage/img/proveedores/'.$nombre;
             $proveedor->save();
         }
 
@@ -47,15 +47,24 @@ class ProveedorController extends Controller
 
     public function update(Request $request, Proveedor $proveedor) {
     
-        $validated = $request->validate([
+        $request->validate([
             'nombre' => 'required',
             'telefono' => 'required',
             'id_categoria' => 'required',
             'direccion' => 'required',
             'email' => 'required',
+            'img' => 'nullable|image', 
         ]);
 
-        $proveedor->update($validated);
+        if ($request->hasFile('img')) {
+            Storage::disk('public')->delete($proveedor->img);
+            $nombre = $proveedor->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
+            $proveedor->img = '/storage/img/proveedores/'.$nombre;
+            $proveedor->save();
+        }
+
+        $proveedor->update($request->input());
     
         return redirect()->route('proveedores.index')->with('status', 'proveedor modificado exitosamente');
     }
