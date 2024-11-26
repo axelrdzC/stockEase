@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
         });
         
-         /* vistas clientes  */
+        # vistas clientes 
         Route::group(['prefix' => '/clientes'], function() {
             Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
             Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
         });
 
-        /* vistas proveedores  */
+        # vistas proveedores
         Route::group(['prefix' => '/proveedores'], function() {
             Route::get('/', [ProveedorController::class, 'index'])->name('proveedores.index');
             Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create');
