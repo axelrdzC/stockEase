@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categorias', Categoria::all());
         });
 
-        View::composer(['productos.create', 'productos.index', 'productos.edit', 'home'], function ($view) {
+        View::composer(['productos.create', 'productos.index', 'productos.edit', 'home', 'informes.index'], function ($view) {
             $view->with('almacenes', Almacen::all());
         });
     }

@@ -18,7 +18,7 @@ class ProductoController extends Controller
     public function create() { return view('productos.create'); }
 
     public function store(Request $request) {
-
+        
         $validated = $request->validate([
             'nombre' => ['required'],
             'descripcion' => ['required'],

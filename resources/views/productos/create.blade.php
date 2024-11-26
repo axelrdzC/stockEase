@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Agregar clientes')
+@section('title', 'Agregar producto')
 
 @section('content')
 <div class="col px-5">
@@ -55,8 +55,8 @@
                     <!-- sku y categoria -->
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="SKU" class="form-label">Codigo SKU</label>
-                            <input type="text" class="form-control bg-white" id="SKU" name="SKU" required>
+                            <label for="sku" class="form-label">Codigo SKU</label>
+                            <input type="text" class="form-control bg-white" id="sku" name="sku" required>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex">                            
@@ -131,8 +131,8 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="sku" class="form-label">Cantidad almacenada</label>
-                                <input type="text" class="form-control bg-white" id="sku" name="sku" required>
+                                <label for="cantidad_producto" class="form-label">Cantidad almacenada</label>
+                                <input type="text" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required>
                             </div>
                         </div>
                     </div>
