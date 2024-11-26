@@ -101,7 +101,7 @@
                     <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                         <div class="card-body d-flex align-items-center gap-4 px-4">
                             <div class="col-1 p-0">
-                                <img src="img/producto.png" alt="" class="w-100">
+                                <img src="{{ asset($producto->img) }}" alt=""  class="w-100">
                             </div>
                             <div class="d-flex flex-column" style="width: 27rem;">
                                 <h1 class="fs-5 fw-bold d-inline-block text-truncate pe-5">{{ $producto->nombre }}</h1>
