@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Informe;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InformeController extends Controller
 {
@@ -20,11 +21,8 @@ class InformeController extends Controller
         ]);
     }
 
-    public function export($id)
-{
-    $informe = Informe::findOrFail($id);
-
-    $pdf = PDF::loadView('informes.pdf', compact('informe'));
-    return $pdf->download('informe.pdf');
-}
+    public function export(Informe $informe){
+        $pdf = PDF::loadView('informes.pdf', compact('informe'));
+        return $pdf->download('informe.pdf');
+    }
 }

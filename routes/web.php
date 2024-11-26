@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => '/informes'], function() {
             Route::get('/', [InformeController::class, 'index'])->name('informes.index');
             Route::get('/show', [InformeController::class, 'show'])->name('informes.show');
-            Route::get('/{id}/export', [InformeController::class, 'export'])->name('informes.export');
+            Route::get('/export', [InformeController::class, 'export'])->name('informes.export');
         });
     });   
 });

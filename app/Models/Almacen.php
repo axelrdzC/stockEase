@@ -19,6 +19,7 @@ class Almacen extends Model
         'colonia',
         'codigo_p',
         'seccion',
+        'capacidad',
     ];
     
 }

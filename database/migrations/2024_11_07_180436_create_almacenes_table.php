@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('colonia');
             $table->string('codigo_p');
             $table->string('seccion');
+            $table->integer('capacidad');
             $table->timestamps();
         });
     }

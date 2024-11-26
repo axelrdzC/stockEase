@@ -22,6 +22,7 @@ class AlmacenController extends Controller
         $dataGeneral-> ciudad = $request->input('ciudad');
         $dataGeneral-> colonia = $request->input('colonia');
         $dataGeneral-> codigo_p = $request->input('codigo_p');
+        $dataGeneral-> seccion = $request->input('seccion');
 
         Almacen::create([
             'nombre' => $dataGeneral['nombre'],
@@ -30,7 +31,8 @@ class AlmacenController extends Controller
             'ciudad' => $dataGeneral['ciudad'],
             'colonia' => $dataGeneral['colonia'],
             'codigo_p' => $dataGeneral['codigo_p'],
-            'seccion' => 'olap',
+            'seccion' => $dataGeneral['seccion'],
+            'capacidad' => $request->input('capacidad'),
         ]);
 
         return redirect()->route('almacenes.index')->with('success', 'almacen agregado exitosamente');
@@ -49,6 +51,8 @@ class AlmacenController extends Controller
             'ciudad' => ['required'],
             'colonia' => ['required'],
             'codigo_p' => ['required'],
+            'seccion' => ['required'],
+            'capacidad' => ['required'],
         ]);
 
         $almacen->update([
@@ -58,6 +62,8 @@ class AlmacenController extends Controller
             'ciudad' => $validated['ciudad'],
             'colonia' => $validated['colonia'],
             'codigo_p' => $validated['codigo_p'],
+            'seccion' => $validated['seccion'],
+            'capacidad' => $validated['capacidad'],
         ]);
     
         return redirect()->route('almacenes.index')->with('status', 'almacen modificado exitosamente');
