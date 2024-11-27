@@ -20,6 +20,7 @@ class Almacen extends Model
         'codigo_p',
         'seccion',
         'capacidad',
+        'img'
     ];
     
 }

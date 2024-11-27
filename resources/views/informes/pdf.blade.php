@@ -49,7 +49,7 @@
                     <td>{{ $item->nombre ?? 'N/A' }}</td>
                     <td>{{ $item->categoria->nombre ?? 'N/A' }}</td>
                     <td>{{ $item->descripcion ?? 'N/A' }}</td>
-                    <td>{{ $item->sku ?? 'N/A' }}</td>
+                    <td>{{ $item->SKU ?? 'N/A' }}</td>
                     <td>{{ $item->precio ?? 'N/A' }}</td>
                     <td>{{ $item->cantidad_producto ?? 'N/A' }}</td>
                     <td>{{ $item->almacen->nombre ?? 'N/A' }}</td>

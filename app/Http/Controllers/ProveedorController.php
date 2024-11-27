@@ -8,8 +8,27 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class ProveedorController extends Controller
-{
+class ProveedorController extends Controller {
+    
+    # bloquear edicion / creacion / eliminacion para empleados normales
+    public function __construct() {
+        $this->middleware('can:crear proveedores', [
+            'only' => [
+                'create', 'store'
+            ],
+        ]);
+        $this->middleware('can:editar proveedores', [
+            'only' => [
+                'edit', 'update'
+            ],
+        ]);
+        $this->middleware('can:eliminar proveedores', [
+            'only' => [
+                'destroy'
+            ],
+        ]);
+    }
+
     public function index()
     {
         $proveedores = Proveedor::latest()->paginate(10);
@@ -35,8 +54,11 @@ class ProveedorController extends Controller
             $nombre = $proveedor->id.'.'.$request->file('img')->getClientOriginalExtension();
             $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
             $proveedor->img = '/storage/img/proveedores/'.$nombre;
-            $proveedor->save();
+        } else {
+            $proveedor->img = '/storage/img/persona-default.jpg';
         }
+        
+        $proveedor->save();
 
         return redirect()->route('proveedores.index')->with('success', 'proveedor agregado exitosamente');
     }
@@ -57,13 +79,20 @@ class ProveedorController extends Controller
         ]);
 
         if ($request->hasFile('img')) {
-            Storage::disk('public')->delete($proveedor->img);
+
+            if ($proveedor->img && $proveedor->img !== '/storage/img/persona-default.jpg') {
+                Storage::disk('public')->delete($proveedor->img);
+            }
+
             $nombre = $proveedor->id.'.'.$request->file('img')->getClientOriginalExtension();
             $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
             $proveedor->img = '/storage/img/proveedores/'.$nombre;
-            $proveedor->save();
-        }
 
+        } elseif (!$request->hasFile('img') && $proveedor->img !== '/storage/img/persona-default.jpg') {
+            $proveedor->img = '/storage/img/persona-default.jpg';
+        }
+        
+        $proveedor->save();
         $proveedor->update($request->input());
     
         return redirect()->route('proveedores.index')->with('status', 'proveedor modificado exitosamente');

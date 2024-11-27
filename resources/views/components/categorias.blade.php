@@ -1,5 +1,5 @@
 <ul class="nav nav-pills gap-3 d-flex justify-content-center align-items-center">
-    <!-- Dashboard -->
+    <!-- dashboard -->
     <li class="nav-item">
         <a class="nav-link p-2 px-3 {{ request()->is('home') ? 'active' : '' }}" href="{{ route('home') }}">
             <svg width="24" height="24" class="nav-icon" fill="none">
@@ -19,6 +19,7 @@
         </a>
     </li>
 
+    <!-- productos -->
     <li class="nav-item">
         <a class="nav-link p-2 px-3 align-items-center {{ request()->is('productos*') ? 'active' : ''}}" href="{{ route('productos.index') }}">
             <svg width="24" height="24" class="nav-icon">
@@ -28,6 +29,7 @@
         </a>
     </li>
 
+    <!-- clientes -->
     <li class="nav-item">
         <a class="nav-link p-2 px-3 {{ request()->is('clientes*') ? 'active' : ''}}" href="{{ route('clientes.index') }}">
             <svg width="24" height="24" class="nav-icon">
@@ -37,6 +39,7 @@
         </a>
     </li>
 
+    <!-- almacenes (only admins & super-admins) -->
     <li class="nav-item">
         <a class="nav-link p-2 px-3 {{ request()->is('almacenes*') ? 'active' : ''}}" href="{{ route('almacenes.index') }}">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-icon">

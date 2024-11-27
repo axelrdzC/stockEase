@@ -6,8 +6,27 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ClienteController extends Controller
-{
+class ClienteController extends Controller {
+
+    # bloquear edicion / creacion / eliminacion para empleados normales
+    public function __construct() {
+        $this->middleware('can:crear clientes', [
+            'only' => [
+                'create', 'store'
+            ],
+        ]);
+        $this->middleware('can:editar clientes', [
+            'only' => [
+                'edit', 'update'
+            ],
+        ]);
+        $this->middleware('can:eliminar clientes', [
+            'only' => [
+                'destroy'
+            ],
+        ]);
+    }
+    
     public function index()
     {
         $clientes = Cliente::latest()->paginate(10);
@@ -33,8 +52,11 @@ class ClienteController extends Controller
             $nombre = $cliente->id.'.'.$request->file('img')->getClientOriginalExtension();
             $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
             $cliente->img = '/storage/img/clientes/'.$nombre;
-            $cliente->save();
+        } else {
+            $cliente->img = '/storage/img/persona-default.jpg';
         }
+        
+        $cliente->save();
     
         return redirect()->route('clientes.index')->with('success', 'Cliente agregado exitosamente');
     }
@@ -55,13 +77,20 @@ class ClienteController extends Controller
         ]);
 
         if ($request->hasFile('img')) {
-            Storage::disk('public')->delete($cliente->img);
+
+            if ($cliente->img && $cliente->img !== '/storage/img/persona-default.jpg') {
+                Storage::disk('public')->delete($cliente->img);
+            }
+
             $nombre = $cliente->id.'.'.$request->file('img')->getClientOriginalExtension();
             $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
             $cliente->img = '/storage/img/clientes/'.$nombre;
-            $cliente->save();
-        }
 
+        } elseif (!$request->hasFile('img') && $cliente->img !== '/storage/img/persona-default.jpg') {
+            $cliente->img = '/storage/img/persona-default.jpg';
+        }
+        
+        $cliente->save();
         $cliente->update($request->input());
     
         return redirect()->route('clientes.index')->with('status', 'cliente modificado exitosamente');
