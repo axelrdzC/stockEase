@@ -117,7 +117,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" 
-                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Ventas</button>
+                type="button" role="tab" aria-controls="pills-profile" aria-selected="false" disabled>Ventas</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" 
@@ -125,7 +125,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-ordenes-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" 
-                type="button" role="tab" aria-controls="pills-ordenes" aria-selected="false">Ordenes</button>
+                type="button" role="tab" aria-controls="pills-ordenes" aria-selected="false" disabled>Ordenes</button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -137,19 +137,20 @@
                         <div class="card bg-white rounded shadow-sm border-0">
                             <div class="card-body d-flex flex-column p-4">
                                 <h5 class="pb-3">Generar informe</h5>
-                                <form action="" class="">     
+                                <form method="POST" action="{{ route('informes.store') }}"> 
+                                    @csrf    
                                     <!-- metrica -->
                                     <div class="mb-3">
                                         <div class="d-flex">                            
-                                            <label for="metrica" class="form-label">Metrica</label>
+                                            <label for="tipo_informe" class="form-label">Metrica</label>
                                         </div>
-                                        <select class="form-select bg-white" id="metrica" name="pmetricaroveedor_id" required>
+                                        <select class="form-select bg-white" id="tipo_informe" name="tipo_informe" required>
                                             <option selected disabled>Selecciona una metrica</option>
                                             <option value="stock">Cantidad en stock</option>
-                                            <option value="baja_rotacion">Productos menos vendidos</option>
-                                            <option value="baja_rotacion">Productos mas vendidos</option>
-                                            <option value="baja_rotacion">Productos sin movimiento</option>
-                                            <option value="baja_rotacion">Productos con caducidad proxima</option>
+                                            <option value="baja_rotacion" disabled>Productos menos vendidos (no sirve)</option>
+                                            <option value="baja_rotacion" disabled>Productos mas vendidos (no sirve)</option>
+                                            <option value="baja_rotacion" disabled>Productos sin movimiento (no sirve)</option>
+                                            <option value="baja_rotacion" disabled>Productos con caducidad proxima (no sirve)</option>
                                         </select>
                                     </div>     
                                     <!-- Rango de Fechas -->
@@ -158,9 +159,9 @@
                                         <select id="fecha_predefinida" class="form-select bg-white" onchange="ifPersonalizada(this.value)">
                                             <option selected disabled>Selecciona un rango</option>
                                             <option value="hoy">Hoy</option>
-                                            <option value="semana_actual">Esta Semana</option>
-                                            <option value="mes_actual">Este Mes</option>
-                                            <option value="personalizado">Personalizado</option>
+                                            <option value="semana_actual" disabled>Esta Semana</option>
+                                            <option value="mes_actual" disabled>Este Mes</option>
+                                            <option value="personalizado" disabled>Personalizado</option>
                                         </select>
                                     </div>
                                     <!-- fechas definidas -->
@@ -176,40 +177,101 @@
                                     </div>
                                     <!-- nombre -->
                                     <div class="mb-3">
-                                        <label for="descripcion" class="form-label">Nombre del informe (opcional)</label>
+                                        <label for="nombre" class="form-label">Nombre del informe (opcional)</label>
                                         <input type="text" class="form-control bg-white" id="nombre" name="nombre" placeholder="Escribe un nombre para el informe">
                                     </div>
-                                    <button type="submit" class="mt-2 btn btn-primary flex-fill">Generar</button>
+                                    <!-- desc -->
+                                    <div class="mb-3">
+                                        <label for="descripcion" class="form-label">Descripcion (opcional)</label>
+                                        <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="mt-2 btn btn-primary flex-fill">Generar reporte</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                <!-- tarjeta con el form -->
+                <div class="row pb-5">                
+                    <!-- tarjeta de informacion sobre el user -->
+                    <div class="col">
+                        <div class="card bg-white rounded shadow-sm border-0">
+                            <div class="card-body d-flex flex-column p-4">
+                                <h5 class="pb-3">Generar informe</h5>
+                                <form method="POST" action="{{ route('informes.store') }}"> 
+                                    @csrf    
+                                    <!-- metrica -->
+                                    <div class="mb-3">
+                                        <div class="d-flex">                            
+                                            <label for="tipo_informe" class="form-label">Metrica</label>
+                                        </div>
+                                        <select class="form-select bg-white" id="tipo_informe" name="tipo_informe" onchange="ifIndex(this.value)" required>
+                                            <option selected disabled>Selecciona una metrica</option>
+                                            <option value="index">Index de productos en un almacen</option>
+                                        </select>
+                                    </div>   
+                                    <!-- elegir almacen -->
+                                    <div class="mb-3 d-none" id="index_almacen">         
+                                        <select class="form-select bg-white" id="almacen" name="almacen" required>
+                                            <option selected disabled>Seleccione un almacen</option>
+                                            @foreach ($almacenes as $almacen)
+                                                <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <!-- nombre -->
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Nombre del informe (opcional)</label>
+                                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" placeholder="Escribe un nombre para el informe">
+                                    </div>
+                                    <!-- desc -->
+                                    <div class="mb-3">
+                                        <label for="descripcion" class="form-label">Descripcion (opcional)</label>
+                                        <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="mt-2 btn btn-primary flex-fill">Generar reporte</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane fade" id="pills-ordenes" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
         </div>
 
 </div>    
 
 <script>
-    function ifPersonalizada(valor) {
-    const fechasPersonalizadas = document.getElementById('fechas_personalizadas');
-    const inicio = document.getElementById('fecha_inicio');
-    const fin = document.getElementById('fecha_fin');
 
-    if (valor === "personalizado") {
-        fechasPersonalizadas.classList.remove('d-none');
-        inicio.required = true;
-        fin.required = true;
-    } else {
-        fechasPersonalizadas.classList.add('d-none');
-        inicio.required = false;
-        fin.required = false;
-        setFechas(valor);
+    function ifIndex(valor) {
+        const almacenes = document.getElementById('index_almacen');
+
+        if (valor === "index") {
+            almacenes.classList.remove('d-none');
+        } else {
+            almacenes.classList.add('d-none');
+        }
     }
-}
+
+    function ifPersonalizada(valor) {
+        const almacenes = document.getElementById('fechas_personalizadas');
+        const inicio = document.getElementById('fecha_inicio');
+        const fin = document.getElementById('fecha_fin');
+
+        if (valor === "personalizado") {
+            fechasPersonalizadas.classList.remove('d-none');
+            inicio.required = true;
+            fin.required = true;
+        } else {
+            fechasPersonalizadas.classList.add('d-none');
+            inicio.required = false;
+            fin.required = false;
+            setFechas(valor);
+        }
+    }
 
 </script>
 
