@@ -4,9 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Almacen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class AlmacenController extends Controller
-{
+class AlmacenController extends Controller {
+
+    # bloquear edicion / creacion / eliminacion para empleados normales
+    public function __construct() {
+        $this->middleware('can:crear almacenes', [
+            'only' => [
+                'create', 'store'
+            ],
+        ]);
+        $this->middleware('can:editar almacenes', [
+            'only' => [
+                'edit', 'update'
+            ],
+        ]);
+        $this->middleware('can:eliminar almacenes', [
+            'only' => [
+                'destroy'
+            ],
+        ]);
+    }
+    
     public function index() {
         $almacenes = Almacen::latest()->paginate(10);
         return view('almacenes.index', compact('almacenes'));
@@ -15,23 +35,30 @@ class AlmacenController extends Controller
     public function create(){ return view('almacenes.create'); }
 
     public function store(Request $request) {
-        $dataGeneral = new Almacen;
-        $dataGeneral-> nombre = $request->input('nombre');
-        $dataGeneral-> pais = $request->input('pais');
-        $dataGeneral-> estado = $request->input('estado');
-        $dataGeneral-> ciudad = $request->input('ciudad');
-        $dataGeneral-> colonia = $request->input('colonia');
-        $dataGeneral-> codigo_p = $request->input('codigo_p');
-
-        Almacen::create([
-            'nombre' => $dataGeneral['nombre'],
-            'pais' => $dataGeneral['pais'],
-            'estado' => $dataGeneral['estado'],
-            'ciudad' => $dataGeneral['ciudad'],
-            'colonia' => $dataGeneral['colonia'],
-            'codigo_p' => $dataGeneral['codigo_p'],
-            'seccion' => 'olap',
+        
+        $request->validate([
+            'nombre' => 'required',
+            'pais' => 'required',
+            'estado' => 'required',
+            'ciudad' => 'required',
+            'colonia' => 'required',
+            'codigo_p' => 'required',
+            'seccion' => 'nullable',
+            'capacidad' => 'nullable',
+            'img'=>'nullable|image'
         ]);
+
+        $almacen = Almacen::create($request->all());
+
+        if ($request->hasFile('img')) {
+            $nombre = $almacen->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/almacenes', $nombre, 'public');
+            $almacen->img = '/storage/img/almacenes/'.$nombre;
+        } else {
+            $almacen->img = '/storage/img/persona-default.jpg';
+        }
+        
+        $almacen->save();
 
         return redirect()->route('almacenes.index')->with('success', 'almacen agregado exitosamente');
     }
@@ -49,6 +76,8 @@ class AlmacenController extends Controller
             'ciudad' => ['required'],
             'colonia' => ['required'],
             'codigo_p' => ['required'],
+            'seccion' => ['required'],
+            'capacidad' => ['required'],
         ]);
 
         $almacen->update([
@@ -58,6 +87,8 @@ class AlmacenController extends Controller
             'ciudad' => $validated['ciudad'],
             'colonia' => $validated['colonia'],
             'codigo_p' => $validated['codigo_p'],
+            'seccion' => $validated['seccion'],
+            'capacidad' => $validated['capacidad'],
         ]);
     
         return redirect()->route('almacenes.index')->with('status', 'almacen modificado exitosamente');

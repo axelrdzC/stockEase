@@ -35,7 +35,7 @@ Show User
                     <!-- left side: foto y nombres -->
                     <div class="d-flex align-items-center pe-4" style="border-right: 1px solid #dee2e6; width: 45rem;">
                         <div class="text-center me-4">
-                            <img src="{{ asset('img/default-avatar.jpg') }}" alt="User Photo" class="rounded-circle" style="width: 120px; height: 120px;">
+                            <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" class="rounded-circle" style="width: 120px; height: 120px;">
                         </div>
                         <div class="row ms-0">
                             <h2 class="fs-1 fw-bold m-0 p-0">{{ $user->name }}</h2>
