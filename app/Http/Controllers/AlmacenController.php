@@ -28,8 +28,7 @@ class AlmacenController extends Controller {
     }
     
     public function index() {
-        $almacenes = Almacen::latest()->paginate(10);
-        return view('almacenes.index', compact('almacenes'));
+        return view('almacenes.index');
     }
 
     public function create(){ return view('almacenes.create'); }

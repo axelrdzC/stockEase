@@ -20,17 +20,17 @@ class ProductoController extends Controller
 
     public function store(Request $request) {
         
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'sku' => 'required',
-            'unidad_medida' => 'required',
-            'precio' => 'required',
-            'cantidad_producto' => 'required',
-            'almacen_id' => 'required',
-            'proveedor_id' => 'required',
-            'categoria_id' => 'required',
-            'img' => 'nullable|image', 
+        $validated = $request->validate([
+            'nombre' => ['required'],
+            'descripcion' => ['required'],
+            'sku' => ['required'],
+            'unidad_medida' => ['required'],
+            'precio' => ['required'],
+            'cantidad_producto' => ['required'],
+            'img' => ['sometimes','nullable','mimes:png.jpg,jpge','max:2048'],
+            'almacen_id' => ['required'],
+            'proveedor_id' => ['required'],
+            'categoria_id' => ['required'],
         ]);
 
         $producto = Producto::create($request->all());
@@ -53,17 +53,18 @@ class ProductoController extends Controller
 
     public function update(Request $request, Producto $producto) {
     
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'unidad_medida' => 'required',
-            'precio' => 'required',
-            'cantidad_producto' => 'required',
-            'almacen_id' => 'required',
-            'proveedor_id' => 'required',
-            'categoria_id' => 'required',
-            'sku' => 'required',
-            'img' => 'nullable|image', 
+        # pasar igual el codigo sku pues no se modifica
+        $validated['sku'] = $producto->sku;
+        $validated = $request->validate([
+            'nombre' => ['required'],
+            'descripcion' => ['required'],
+            'unidad_medida' => ['required'],
+            'precio' => ['required'],
+            'cantidad_producto' => ['required'],
+            'img' => ['sometimes','nullable','mimes:png.jpg,jpge','max:2048'],
+            'almacen_id' => ['required'],
+            'proveedor_id' => ['required'],
+            'categoria_id' => ['required'],
         ]);
     
         if ($request->hasFile('img')) {
