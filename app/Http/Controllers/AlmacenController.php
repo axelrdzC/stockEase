@@ -35,7 +35,7 @@ class AlmacenController extends Controller {
     public function create(){ return view('almacenes.create'); }
 
     public function store(Request $request) {
-        
+
         $request->validate([
             'nombre' => 'required',
             'pais' => 'required',
@@ -69,27 +69,32 @@ class AlmacenController extends Controller {
 
     public function update(Request $request, Almacen $almacen) {
     
-        $validated = $request->validate([
-            'nombre' => ['required'],
-            'pais' => ['required'],
-            'estado' => ['required'],
-            'ciudad' => ['required'],
-            'colonia' => ['required'],
-            'codigo_p' => ['required'],
-            'seccion' => ['required'],
-            'capacidad' => ['required'],
+        $request->validate([
+            'nombre' => 'required',
+            'pais' => 'required',
+            'estado' => 'required',
+            'ciudad' => 'required',
+            'colonia' => 'required',
+            'codigo_p' => 'required',
+            'img'=>'nullable|image'
         ]);
 
-        $almacen->update([
-            'nombre' => $validated['nombre'],
-            'pais' => $validated['pais'],
-            'estado' => $validated['estado'],
-            'ciudad' => $validated['ciudad'],
-            'colonia' => $validated['colonia'],
-            'codigo_p' => $validated['codigo_p'],
-            'seccion' => $validated['seccion'],
-            'capacidad' => $validated['capacidad'],
-        ]);
+        if ($request->hasFile('img')) {
+
+            if ($almacen->img && $almacen->img !== '/storage/img/almacen.png') {
+                Storage::disk('public')->delete($almacen->img);
+            }
+
+            $nombre = $almacen->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
+            $almacen->img = '/storage/img/proveedores/'.$nombre;
+
+        } elseif (!$request->hasFile('img') && $almacen->img !== '/storage/img/almacen.png') {
+            $almacen->img = '/storage/img/almacen.png';
+        }
+
+        $almacen->save();
+        $almacen->update($request->input());
     
         return redirect()->route('almacenes.index')->with('status', 'almacen modificado exitosamente');
     }
