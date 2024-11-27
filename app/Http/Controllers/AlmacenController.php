@@ -59,6 +59,30 @@ class AlmacenController extends Controller {
         }
         
         $almacen->save();
+        
+        $request->validate([
+            'nombre' => 'required',
+            'pais' => 'required',
+            'estado' => 'required',
+            'ciudad' => 'required',
+            'colonia' => 'required',
+            'codigo_p' => 'required',
+            'seccion' => 'nullable',
+            'capacidad' => 'nullable',
+            'img'=>'nullable|image'
+        ]);
+
+        $almacen = Almacen::create($request->all());
+
+        if ($request->hasFile('img')) {
+            $nombre = $almacen->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/almacenes', $nombre, 'public');
+            $almacen->img = '/storage/img/almacenes/'.$nombre;
+        } else {
+            $almacen->img = '/storage/img/persona-default.jpg';
+        }
+        
+        $almacen->save();
 
         return redirect()->route('almacenes.index')->with('success', 'almacen agregado exitosamente');
     }
