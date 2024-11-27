@@ -8,16 +8,13 @@
             <!-- buscador -->
             <div class="col-md-4 p-0">
                 <div class="d-flex p-0 gap-2">
-                    <form class="d-flex position-relative w-100" role="search">
-                        <input class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" 
-                            wire:model="search" placeholder="Busca algun almacen" aria-label="Search">
-                        <button class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-2" type="button">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="11.7666" cy="11.7666" r="8.98856" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.0183 18.4851L21.5423 22" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </form>
+                    <input type="text" wire:model="search" class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" placeholder="Busca algún almacen">
+                    <button class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-2" type="button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11.7666" cy="11.7666" r="8.98856" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.0183 18.4851L21.5423 22" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
             <!-- add almacen -->
@@ -37,7 +34,7 @@
                         <div class="mb-3">
                             <small class="form-label">ORDENAR POR</small>
                             <select wire:model="order" class="form-select selects">
-                                <option selected>Seleccionar</option>
+                                <option value="">Seleccionar</option>
                                 <option value="1">Alfabético: A-Z</option>
                                 <option value="2">Alfabético: Z-A</option>
                             </select>
@@ -45,7 +42,7 @@
                         <div class="mb-3">
                             <small class="form-label">NIVEL DE OCUPACIÓN</small>
                             <select wire:model="capacidad" class="form-select selects">
-                                <option selected>Seleccionar</option>
+                                <option value="">Seleccionar</option>
                                 <option value="vinilos">Vinilos</option>
                                 <option value="galletas">Galletas</option>
                                 <option value="ropa">Ropa</option>
@@ -54,7 +51,7 @@
                         <div class="mb-3">
                             <small class="form-label">UBICACIÓN</small>
                             <select wire:model="pais" class="form-select selects">
-                                <option selected>Seleccionar</option>
+                                <option value="">Seleccionar</option>
                                 <option value="México">México</option>
                                 <option value="Estados Unidos">Estados Unidos</option>
                             </select>
@@ -62,6 +59,11 @@
                         <button type="button" wire:click="resetFilters" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm mt-2">
                             Restablecer filtros
                         </button>
+                        @if ($queritoString)
+                            {{$queritoString}}
+                        @else
+                            No hay filtros
+                        @endif
                     </div>
                 </div>
             </div> 
@@ -102,26 +104,26 @@
                                         <div class="modal fade" id="eliminar-{{ $almacen->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirme su accion</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
-                                                            <div class="card-body d-flex flex-column p-0">
-                                                                <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
-                                                            </div> 
-                                                            <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
-                                                            <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>    
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                            <form action="{{ route('almacenes.destroy', $almacen) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                    <button type="submit" class="btn btn-primary">Eliminar almacen</button>
-                                                            </form>
-                                                        </div>
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirme su accion</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
+                                                        <div class="card-body d-flex flex-column p-0">
+                                                            <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
+                                                        </div> 
+                                                        <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
+                                                        <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>    
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <form action="{{ route('almacenes.destroy', $almacen) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-primary">Eliminar almacen</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +159,7 @@
                                                                         <select class="form-select bg-white" id="estado" name="estado" required>
                                                                             <option selected disabled>Selecciona un estado</option>
                                                                             <option value="Tamaulipas" {{ $almacen->estado == 'Tamaulipas' ? 'selected' : '' }}>Tamaulipas</option>
-                                                                            <option value="Nuevo Leon" {{ $almacen->estado == 'Nuevo Leon' ? 'selected' : '' }}>Nuevo Leon</option>
+                                                                            <option value="Nuevo León" {{ $almacen->estado == 'Nuevo León' ? 'selected' : '' }}>Nuevo León</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>

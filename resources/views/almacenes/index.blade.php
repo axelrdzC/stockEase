@@ -3,10 +3,7 @@
 @section('title', 'Almacenes') 
 
 @section('content')
- <div>
-    <div>
-        <livewire:almacenito/>
-    </div>                                                    
-</div> 
-
+<div>
+    @livewire('almacenes-component')
+</div>
 @endsection
