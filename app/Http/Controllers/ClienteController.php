@@ -43,6 +43,7 @@ class ClienteController extends Controller {
             'telefono' => 'required',
             'direccion' => 'required',
             'categoria_id' => 'required',
+            'tipo' => 'required',
             'img' => 'nullable|image', 
         ]);
 
@@ -73,6 +74,7 @@ class ClienteController extends Controller {
             'telefono' => 'required',
             'direccion' => 'required',
             'categoria_id' => 'required',
+            'tipo' => 'required',
             'img' => 'nullable|image', 
         ]);
 

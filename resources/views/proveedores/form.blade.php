@@ -20,9 +20,9 @@
                             <small class="fw-normal">PASO 1</small>
                             <div class="titulo">INFORMACION GENERAL</div>
                         </li>
-                        <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="INFORMACION MONETARIA">
+                        <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="CONTACTO">
                             <small class="fw-normal">PASO 2</small>
-                            <div class="titulo">UBICACION</div>
+                            <div class="titulo">CONTACTO</div>
                         </li>
                     </ul> 
                 </div>

@@ -54,12 +54,12 @@
 
                 <div class="d-flex mt-2 flex-column">
                     @foreach ($almacenes->take(3) as $almacen)
-                        <button class="d-flex border-0 rounded bg-transparent px-0 py-2 align-items-center justify-content-between">
+                        <button class="d-flex border-0 rounded bg-transparent px-0 py-2 gap-3 align-items-center justify-content-between">
                             <div class="d-flex">
                                 <img src="{{ asset($almacen->img ?? 'storage/img/almacen.png') }}" alt="almacen"
                                 class="rounded-2" style="width: 50px; height: 50px; object-fit: cover;">
                             </div>
-                            <div class="d-flex flex-column align-items-start">
+                            <div class="d-flex flex-column flex-grow-1 align-items-start">
                                 <div class="fw-bold">{{ $almacen->nombre }}</div>
                                 <div class="d-flex aling-items-center">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

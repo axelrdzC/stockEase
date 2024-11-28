@@ -69,14 +69,15 @@
                     <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                         <div class="card-body d-flex align-items-center gap-4 px-4">
                             <div class="col-1 p-0">
-                                <img src="{{ asset($cliente->img ?? 'storage/img/persona-default.jpg') }}" alt="" class="w-100 rounded-circle">
+                                <img src="{{ asset($cliente->img ?? 'storage/img/persona-default.jpg') }}" alt=""class="rounded-circle"
+                                style="width: 80px; height: 80px; object-fit: cover;">
                             </div>
                             <div class="d-flex flex-column" style="width: 18rem;">
                                 <div class="d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $cliente->nombre }}</h1>
                                     <div class="d-flex gap-2">
-                                    <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $cliente->categoria ? $cliente->categoria->nombre : 'Sin categoría' }}</small>                                        <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                            Cantidad en stock: <span class="fw-medium">0</span>
+                                        <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $cliente->categoria ? $cliente->categoria->nombre : 'Sin categoría' }}</small>                                        <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
+                                            <span class="fw-medium">{{ $cliente->tipo ? $cliente->tipo : 'Sin tipo' }}</span>
                                         </small>
                                     </div>
                                 </div>

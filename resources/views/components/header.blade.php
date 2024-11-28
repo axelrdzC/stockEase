@@ -1,8 +1,8 @@
-<header class="header header-sticky mb-4 py-3 px-5 bg-white">
+<header class="header header-sticky sticky-top mb-4 py-3 px-5 bg-white shadow-sm">
     <nav class="navbar navbar-expand-lg bg-transparent p-0">
         <div class="container-fluid bg-transparent p-0">
             <!-- logo -->
-        <h1><a class="navbar-brand fw-bold fs-4" href="#">Stock<span class="text-primary">Ease</span></a></h1>
+            <h1><a class="navbar-brand fw-bold fs-4" href="{{ route('home') }}">Stock<span class="text-primary">Ease</span></a></h1>
             <!-- boton menu responsivo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,6 +16,7 @@
                 <!-- notis y config -->
                 <ul class="header-nav d-flex justify-content-center m-0 pe-5">
                     <ul class="nav nav-pills gap-3 d-flex justify-content-center align-items-center">
+                        
                         <li class="nav-item">
                             <a class="nav-link p-0" href="{{ route('configuracion') }}">
                                 <svg width="24" height="24" class="nav-icon" fill="none">
@@ -55,6 +56,7 @@
                         </li>
                     </ul>
                 </li>
+
             </div>
         </div>
     </nav>

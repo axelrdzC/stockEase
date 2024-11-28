@@ -20,9 +20,9 @@
                             <small class="fw-normal">PASO 1</small>
                             <div class="titulo">INFORMACION GENERAL</div>
                         </li>
-                        <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="UBICACION">
+                        <li id="paso-item-2" class="list-group-item border-0 bg-transparent text-muted" data-name="CONTACTO">
                             <small class="fw-normal">PASO 2</small>
-                            <div class="titulo">UBICACION</div>
+                            <div class="titulo">CONTACTO</div>
                         </li>
                     </ul> 
                 </div>
@@ -40,9 +40,24 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control bg-white" id="telefono" name="telefono"
-                            @isset($cliente) value="{{ $cliente->telefono }}" @endisset required>
+                                <div class="d-flex">                            
+                                    <label for="tipo" class="form-label">Tipo</label>
+                                    <a href="#" class="text-primary fw-medium d-flex flex-grow-1 link-underline link-underline-opacity-0 justify-content-end" data-bs-toggle="modal" data-bs-target="#addCategoria">
+                                        Agregar un tipo +
+                                    </a>
+                                </div>
+                                <select class="form-select bg-white" id="tipo" name="tipo" required>
+                                    <option selected disabled>Selecciona un tipo de cliente</option>
+                                    @foreach ($categorias as $categoria)
+                                        <option 
+                                            value="{{ $categoria->id }}" 
+                                            @isset($cliente) 
+                                                {{ $categoria->id == $cliente->categoria_id ? 'selected' : '' }} 
+                                            @endisset>
+                                            {{ $categoria->nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <div class="d-flex">                            
@@ -95,10 +110,17 @@
                             <input type="text" class="form-control bg-white" id="direccion" name="direccion"
                             @isset($cliente) value="{{ $cliente->direccion }}" @endisset required>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo</label>
-                            <input type="text" class="form-control bg-white" id="email" name="email"
-                            @isset($cliente) value="{{ $cliente->email }}" @endisset required>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control bg-white" id="telefono" name="telefono"
+                                @isset($cliente) value="{{ $cliente->telefono }}" @endisset required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Correo</label>
+                                <input type="text" class="form-control bg-white" id="email" name="email"
+                                @isset($cliente) value="{{ $cliente->email }}" @endisset required>
+                            </div>
                         </div>
                         <!-- botones -->
                         <div class="d-flex justify-content-between gap-3">

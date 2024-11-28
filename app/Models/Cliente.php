@@ -15,6 +15,7 @@ class Cliente extends Model
         'telefono',
         'direccion',
         'categoria_id',
+        'tipo',
         'img',
     ];
 
