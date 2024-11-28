@@ -3,6 +3,9 @@
 @section('title', 'Almacenes') 
 
 @section('content')
+<div>
+    @livewire('almacenes-component')
+</div>
 
 <div class="col px-5">
     
