@@ -4,9 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class ClienteController extends Controller
-{
+class ClienteController extends Controller {
+
+    # bloquear edicion / creacion / eliminacion para empleados normales
+    public function __construct() {
+        $this->middleware('can:crear clientes', [
+            'only' => [
+                'create', 'store'
+            ],
+        ]);
+        $this->middleware('can:editar clientes', [
+            'only' => [
+                'edit', 'update'
+            ],
+        ]);
+        $this->middleware('can:eliminar clientes', [
+            'only' => [
+                'destroy'
+            ],
+        ]);
+    }
+    
     public function index()
     {
         $clientes = Cliente::latest()->paginate(10);
@@ -16,16 +36,28 @@ class ClienteController extends Controller
     public function create() { return view('clientes.create'); }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
+    {   
+        $request->validate([
             'nombre' => 'required',
             'email' => 'required',
             'telefono' => 'required',
             'direccion' => 'required',
             'categoria_id' => 'required',
+            'tipo' => 'required',
+            'img' => 'nullable|image', 
         ]);
 
-        Cliente::create($validated);
+        $cliente = Cliente::create($request->all());
+
+        if ($request->hasFile('img')) {
+            $nombre = $cliente->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
+            $cliente->img = '/storage/img/clientes/'.$nombre;
+        } else {
+            $cliente->img = '/storage/img/persona-default.jpg';
+        }
+        
+        $cliente->save();
     
         return redirect()->route('clientes.index')->with('success', 'Cliente agregado exitosamente');
     }
@@ -36,21 +68,32 @@ class ClienteController extends Controller
 
     public function update(Request $request, Cliente $cliente) {
     
-        $validated = $request->validate([
-            'nombre' => ['required'],
-            'email' => ['required'],
-            'telefono' => ['required'],
-            'direccion' => ['required'],
-            'categoria_id' => ['required'],
+        $request->validate([
+            'nombre' => 'required',
+            'email' => 'required',
+            'telefono' => 'required',
+            'direccion' => 'required',
+            'categoria_id' => 'required',
+            'tipo' => 'required',
+            'img' => 'nullable|image', 
         ]);
 
-        $cliente->update([
-            'nombre' => $validated['nombre'],
-            'email' => $validated['email'],
-            'telefono' => $validated['telefono'],
-            'direccion' => $validated['direccion'],
-            'categoria_id' => $validated['categoria_id'],
-        ]);
+        if ($request->hasFile('img')) {
+
+            if ($cliente->img && $cliente->img !== '/storage/img/persona-default.jpg') {
+                Storage::disk('public')->delete($cliente->img);
+            }
+
+            $nombre = $cliente->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
+            $cliente->img = '/storage/img/clientes/'.$nombre;
+
+        } elseif (!$request->hasFile('img') && $cliente->img !== '/storage/img/persona-default.jpg') {
+            $cliente->img = '/storage/img/persona-default.jpg';
+        }
+        
+        $cliente->save();
+        $cliente->update($request->input());
     
         return redirect()->route('clientes.index')->with('status', 'cliente modificado exitosamente');
     }

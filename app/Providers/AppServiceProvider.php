@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Producto;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Proveedor;
@@ -27,8 +28,12 @@ class AppServiceProvider extends ServiceProvider
             $view->with('proveedores', Proveedor::all());
         });
 
-        View::composer(['productos.create', 'productos.index', 'productos.edit', 'proveedores.edit', 'proveedores.create', 'proveedores.index', 'clientes.create', 'clientes.index', 'clientes.edit'], function ($view) {
+        View::composer(['productos.create', 'productos.index', 'productos.edit', 'proveedores.form', 'proveedores.index', 'clientes.create', 'clientes.index', 'clientes.edit'], function ($view) {
             $view->with('categorias', Categoria::all());
+        });
+
+        View::composer(['home'], function ($view) {
+            $view->with('productos', Producto::all());
         });
 
         View::composer(['productos.create', 'productos.index', 'productos.edit', 'home', 'informes.index'], function ($view) {

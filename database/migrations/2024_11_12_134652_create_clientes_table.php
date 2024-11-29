@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('direccion');
             $table->unsignedBigInteger('categoria_id');
+            $table->string('tipo');
+            $table->string('img')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });

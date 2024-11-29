@@ -25,7 +25,7 @@
             </div>
             
             <!-- formulario -->
-            <form id="form_x_pasos" method="POST" action="{{ route('almacenes.store') }}" class="col w-100 shadow-sm bg-white p-4 rounded">
+            <form id="form_x_pasos" method="POST" action="{{ route('almacenes.store') }}" enctype="multipart/form-data" class="col w-100 shadow-sm bg-white p-4 rounded">
             @csrf
                 <!-- paso no. 1 -->
                 <div id="paso_1" class="col">
@@ -76,8 +76,8 @@
                     </div>
                     <!-- subir img -->
                     <div class="mb-4">
-                        <label for="imagen" class="form-label">Subir imagen</label>
-                        <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
+                        <label for="img" class="form-label">Subir imagen</label>
+                        <input type="file" class="form-control bg-white" id="img" name="img" accept="image/*">
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
@@ -90,16 +90,16 @@
                 <div id="paso_2" class="col" style="display:none;">
                     <!-- capacidad total -->
                     <div class="mb-3">
-                        <label for="capacidad_total" class="form-label">Capacidad total del almacen</label>
-                        <input type="number" class="form-control bg-white" id="capacidad_total" name="capacidad_total" required>
+                        <label for="capacidad" class="form-label">Capacidad total del almacen</label>
+                        <input type="number" class="form-control bg-white" id="capacidad" name="capacidad" required>
                     </div>
                     <!-- secciones (opc) -->
                     <div id="secciones-container">
                         <!-- seccion -->
                         <div class="row mb-2 seccion-field">
                             <div class="col-md-6">
-                                <label for="seccion_name" class="form-label">Nombre de la seccion</label>
-                                <input type="text" class="form-control bg-white" id="seccion_name" name="seccion_name">
+                                <label for="seccion" class="form-label">Nombre de la seccion</label>
+                                <input type="text" class="form-control bg-white" id="seccion" name="seccion">
                             </div>
                             <div class="col-md-6">
                                 <label for="seccion_capacidad" class="form-label">Capacidad</label>

@@ -1,31 +1,24 @@
 <div>
     <div class="col px-5">
+
         <!-- header de la seccion -->
-        <div class="row align-items-center mb-4">
-            <div class="col">
-                <div class="fs-2 fw-semibold">{{ __('Almacenes') }}</div>
-            </div>
-            <!-- buscador -->
-            <div class="col-md-4 p-0">
-                <div class="d-flex p-0 gap-2">
-                    <input type="text" wire:model.live="search" class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" placeholder="Busca algún almacen">
-                    <button class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-2" type="button">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="11.7666" cy="11.7666" r="8.98856" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M18.0183 18.4851L21.5423 22" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+        @section('titulo-seccion', 'Almacenes')
+        @section('buscador', 'Escriba el nombre de un almacen aqui')
+        @section('add-boton')
             <!-- add almacen -->
-            <div class="col-2">
-                <div class="d-flex align-items-center">
-                    <button type="button" onclick="window.location.href='{{ route('almacenes.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
-                        <strong>Agregar almacen +</strong>
-                    </button>
+            @can('crear almacenes')
+                <div class="col-2">
+                    <div class="d-flex align-items-center">
+                        <button type="button" onclick="window.location.href='{{ route('almacenes.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                            Agregar almacen +
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            @endcan
+        @endsection
+        @include('components.tituloSeccion')
+        
+        <!-- contenedor (filtros / tabla) -->
         <div class="d-flex gap-4">
             <!-- Filtros -->
             <div class="d-flex h-100" style="width: 18rem;">
@@ -72,7 +65,7 @@
                             <div class="card shadow-sm bg-white border-0 h-100">
                                 <div class="card-body d-flex flex-column p-0">
                                     <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-top-3">
-                                </div>
+                                </div> 
                                 <div class="card-body d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $almacen->nombre }}</h1>
                                     <small class="fs-6 fw-medium text-truncate">
@@ -109,9 +102,9 @@
                                                         <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
                                                         <div class="card-body d-flex flex-column p-0">
                                                             <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
-                                                        </div>
+                                                        </div> 
                                                         <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
-                                                        <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>
+                                                        <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>    
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -185,16 +178,16 @@
                                                                     <label for="imagen" class="form-label">Subir imagen</label>
                                                                     <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
                                                                 </div>
-
+                                                            
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                             <button type="submit" class="btn btn-primary">Aceptar</button>
                                                         </div>
-                                                    </form>
+                                                    </form>    
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>       
                                     </div>
                                 </div>
                             </div>
@@ -203,5 +196,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>        
 </div>

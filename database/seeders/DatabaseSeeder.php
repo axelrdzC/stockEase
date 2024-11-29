@@ -11,14 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Manda llamar a los seeders individualmente
+        $this->call([
+            RolesYPermisosSeeder::class,
+            UserSeeder::class,
+        ]);
         $this->call([
             CategoriaSeeder::class,
             AlmacenSeeder::class,
             ProveedorSeeder::class,
             ProductoSeeder::class,
             InventarioSeeder::class,
-            UserSeeder::class,
             ClienteSeeder::class,
         ]);
     }

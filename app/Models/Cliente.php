@@ -14,7 +14,9 @@ class Cliente extends Model
         'email',
         'telefono',
         'direccion',
-        'categoria_id'
+        'categoria_id',
+        'tipo',
+        'img',
     ];
 
     public function categoria()

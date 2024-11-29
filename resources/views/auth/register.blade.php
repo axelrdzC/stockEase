@@ -5,14 +5,13 @@
     <div class="row w-100 gap-5" style="max-width: 1000px;">
 
                 <div class="col-lg-4 col-md-6 d-flex flex-column justify-content-center me-5">
-                    <h1 class="fw-bold mb-3">Bienvenido 👋</h1>
-                    <p class="mb-4">Today is a new day. It's your day. You shape it. Sign in to start managing your inventory.</p>
+                    <h1 class="fw-bold mb-3">Registrate 👋</h1>
 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">{{ __('Nombre') }}</label>
+                            <label for="name" class="form-label">{{ __('Username') }}</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror focus-ring input-blur" name="name" 
                                     value="{{ old('name') }}" required autocomplete="name" autofocus>
                             @error('name')
@@ -60,16 +59,6 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <div class="row">
-                                <label for="role" class="form-label">{{ __('Rol') }}</label>
-                            </div>
-                            <select id="role" name="role" class="form-select selects">
-                            <option selected>Seleccionar</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Cliente">Cliente</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
                             <div class="row text-nowrap mt-3">
                                 <div class="row w-50">
                                     <div class="col">
@@ -96,7 +85,7 @@
                 </div>
 
                 <div class="d-flex flex-grow-1 w-50 justify-content-center align-items-center">
-                    <img src="{{ asset('img/login-guy.png') }}" alt="Login illustration" class="img-fluid ml-10" style="max-width: 100%; height: auto;">
+                    <img src="{{ asset('img/ya-casi.png') }}" alt="Login illustration" class="img-fluid ml-10" style="max-width: 100%; height: auto;">
                 </div>
         </div>
     </div>

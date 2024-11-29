@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductoController extends Controller
@@ -32,7 +33,14 @@ class ProductoController extends Controller
             'categoria_id' => ['required'],
         ]);
 
-        Producto::create($validated);
+        $producto = Producto::create($request->all());
+
+        if ($request->hasFile('img')) {
+            $nombre = $producto->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/productos', $nombre, 'public');
+            $producto->img = '/storage/img/productos/'.$nombre;
+            $producto->save();
+        }
     
         return redirect()->route('productos.index')->with('success', 'Producto agregado exitosamente');
     }
@@ -59,7 +67,15 @@ class ProductoController extends Controller
             'categoria_id' => ['required'],
         ]);
     
-        $producto->update($validated);
+        if ($request->hasFile('img')) {
+            Storage::disk('public')->delete($producto->img);
+            $nombre = $producto->id.'.'.$request->file('img')->getClientOriginalExtension();
+            $img = $request->file('img')->storeAs('img/productos', $nombre, 'public');
+            $producto->img = '/storage/img/productos/'.$nombre;
+            $producto->save();
+        }
+
+        $producto->update($request->input());
     
         return redirect()->route('productos.index')->with('status', 'Producto modificado exitosamente');
     }
