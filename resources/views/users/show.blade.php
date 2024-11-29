@@ -14,7 +14,7 @@
         <div class="col-2">
             <div class="d-flex align-items-center">
                 <a class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 link-underline link-underline-opacity-0 shadow-sm"
-                data-bs-toggle="modal" data-bs-target="#editUser">
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <svg width="24" height="24" class="nav-icon me-2" fill="none">
                         <path d="M11.9561 17.0358H17.9999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.15 3.16233C11.7964 2.38982 12.9583 2.27655 13.7469 2.90978C13.7905 2.94413 15.1912 4.03232 15.1912 4.03232C16.0575 4.55599 16.3266 5.66925 15.7912 6.51882C15.7627 6.56432 7.84329 16.4704 7.84329 16.4704C7.57981 16.7991 7.17986 16.9931 6.75242 16.9978L3.71961 17.0358L3.03628 14.1436C2.94055 13.7369 3.03628 13.3098 3.29975 12.9811L11.15 3.16233Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -42,7 +42,7 @@
                         <div class="row ms-0">
                             <h2 class="fs-1 fw-bold m-0 p-0">{{ $user->name }}</h2>
                             <small class="text-muted p-0 pb-2">{{ $user->name_completo }}</small>
-                            <div class="card text-center fw-medium bg-primary-subtle p-1 px-3 w-auto">
+                            <small class="card text-center fw-medium bg-primary-subtle p-1 px-3 w-auto">
                                 @php
                                     $roles = [
                                         'super-admin' => 'SUPER ADMIN',
@@ -55,7 +55,7 @@
                                         {{ $label }}
                                     @endrole
                                 @endforeach
-                            </div>
+                            </small>
                         </div>
                     </div>
                     <!-- right side: info importante -->
