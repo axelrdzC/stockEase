@@ -8,7 +8,7 @@
             <!-- buscador -->
             <div class="col-md-4 p-0">
                 <div class="d-flex p-0 gap-2">
-                    <input type="text" wire:model="search" class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" placeholder="Busca algún almacen">
+                    <input type="text" wire:model.live="search" class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" placeholder="Busca algún almacen">
                     <button class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-2" type="button">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="11.7666" cy="11.7666" r="8.98856" stroke="#1C1D22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -33,40 +33,37 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <small class="form-label">ORDENAR POR</small>
-                            <select wire:model="order" class="form-select selects">
+                            <select wire:model.live="order" class="form-select selects">
                                 <option value="">Seleccionar</option>
-                                <option value="1">Alfabético: A-Z</option>
-                                <option value="2">Alfabético: Z-A</option>
+                                <option value="asc">Alfabético: A-Z</option>
+                                <option value="desc">Alfabético: Z-A</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <small class="form-label">NIVEL DE OCUPACIÓN</small>
-                            <select wire:model="capacidad" class="form-select selects">
+                            <select wire:model.live="capacidad" class="form-select selects">
                                 <option value="">Seleccionar</option>
-                                <option value="vinilos">Vinilos</option>
-                                <option value="galletas">Galletas</option>
-                                <option value="ropa">Ropa</option>
+                                <option value="bajo">0%-25%</option>
+                                <option value="medio">25%-50%</option>
+                                <option value="alto">50%-75%</option>
+                                <option value="lleno">75%-100%</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <small class="form-label">UBICACIÓN</small>
-                            <select wire:model="pais" class="form-select selects">
+                            <select wire:model.live="pais" class="form-select selects">
                                 <option value="">Seleccionar</option>
-                                <option value="México">México</option>
-                                <option value="Estados Unidos">Estados Unidos</option>
+                                @foreach($almacenes->unique('pais') as $almacen)
+                                    <option value="{{ $almacen->pais }}">{{ $almacen->pais }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button type="button" wire:click="resetFilters" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm mt-2">
                             Restablecer filtros
                         </button>
-                        @if ($queritoString)
-                            {{$queritoString}}
-                        @else
-                            No hay filtros
-                        @endif
                     </div>
                 </div>
-            </div> 
+            </div>
             <!-- Contenedor de almacenes -->
             <div class="container p-0 flex-grow-1">
                 <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -75,7 +72,7 @@
                             <div class="card shadow-sm bg-white border-0 h-100">
                                 <div class="card-body d-flex flex-column p-0">
                                     <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-top-3">
-                                </div> 
+                                </div>
                                 <div class="card-body d-flex flex-column">
                                     <h1 class="fs-5 fw-bold">{{ $almacen->nombre }}</h1>
                                     <small class="fs-6 fw-medium text-truncate">
@@ -112,9 +109,9 @@
                                                         <p class="">Esta seguro de querer borrar el siguiente almacen: </p>
                                                         <div class="card-body d-flex flex-column p-0">
                                                             <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
-                                                        </div> 
+                                                        </div>
                                                         <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
-                                                        <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>    
+                                                        <p class="m-0"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -188,23 +185,23 @@
                                                                     <label for="imagen" class="form-label">Subir imagen</label>
                                                                     <input type="file" class="form-control bg-white" id="imagen" name="imagen" accept="image/*">
                                                                 </div>
-                                                            
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                             <button type="submit" class="btn btn-primary">Aceptar</button>
                                                         </div>
-                                                    </form>    
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </div>       
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach        
+                    @endforeach
                 </div>
             </div>
         </div>
-    </div>        
+    </div>
 </div>

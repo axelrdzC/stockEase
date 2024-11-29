@@ -30,7 +30,7 @@
             <div class="card shadow-sm bg-white border-0 p-4">
 
                 <div class="d-flex align-items-center gap-4">
-                    <div class="fs-5 fw-semibold m-0">Gráfico de ventas</div>
+                    <div class="fs-5 fw-semibold m-0">Gráfico de productos almacenados</div>
                         <div class="btn-group" role="group">
                             <input type="radio" class="btn-check" name="graphics" id="esteMes" autocomplete="off" checked>
                             <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="esteMes">ESTE MES</label>
