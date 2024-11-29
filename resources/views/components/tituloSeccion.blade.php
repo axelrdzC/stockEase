@@ -6,10 +6,8 @@
     <!-- buscador -->
     <div class="col-md-4">
         <div class="d-flex gap-2">
-            <form class="d-flex position-relative w-100" role="search">
-                <input class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" 
-                    type="search" placeholder="@yield('buscador')" aria-label="Search">
-            </form>
+            <input class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" 
+                type="search" wire:model.live="search" placeholder="@yield('buscador')" aria-label="Search">
         </div>
     </div>
     <!-- add cliente -->
