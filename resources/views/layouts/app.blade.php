@@ -22,7 +22,7 @@
     @stack('scripts')
 
     <!-- Livewire Styles -->
-    @livewireStyles
+    @livewireStyles 
 </head>
 <body>
     <div id="app">

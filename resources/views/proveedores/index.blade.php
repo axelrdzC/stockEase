@@ -3,6 +3,9 @@
 @section('title', 'Proveedores') 
 
 @section('content')
+<div>
+    @livewire('proveedores-component')
+</div
  <div class="col px-5">
     
     <!-- header de la seccion -->
