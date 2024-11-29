@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
 // Variables
 @import 'variables';
@@ -9,7 +9,7 @@
 
 .welcome-txt {
     font-weight: 900;
-    font-size: 2.6em;
+    font-size: 4.5em;
 }
 
 .input-blur {
@@ -33,7 +33,6 @@
 
 .svgs:hover path {
     stroke: #ffffff;
-    fill: #ffffff;
 }
 
 .selects {
@@ -61,4 +60,33 @@
     background-color: white;
     color: #8067B2;
     border-color: #8067B2;
+}
+
+.hidden {
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+}
+
+@keyframes slideFromTop {
+    0% {
+        transform: translate(-50%, -200%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+}
+
+.slide-right {
+    position: absolute;
+    top: 16%;
+    left: 30%;
+    transform: translate(-50%, -200%);
+    animation: slideFromTop 1.5s ease-in-out forwards; 
+    z-index: 1;
 }

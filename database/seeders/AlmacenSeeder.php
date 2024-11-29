@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Almacen;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class AlmacenSeeder extends Seeder
 {
@@ -12,6 +12,7 @@ class AlmacenSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
         DB::table('almacenes')->insert([
             [
                 'nombre' => 'Almacén Central',
@@ -35,6 +36,63 @@ class AlmacenSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+=======
+        Almacen::create([
+            'nombre' => 'Zona',
+            'pais' => 'Estados Unidos',
+            'estado' => 'Nuevo León',
+            'ciudad' => 'Ciudad Victoria',
+            'colonia' => 'Zona Centro, Calle Hidalgo',
+            'codigo_p' => '09876',
+            'seccion' => 'a',
+            'capacidad' => 2000,
+            'img' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+>>>>>>> main
         ]);
+
+        Almacen::create([
+            'nombre' => 'Zona',
+            'pais' => 'Estados Unidos',
+            'estado' => 'Nuevo León',
+            'ciudad' => 'Ciudad Victoria',
+            'colonia' => 'Zona Centro, Calle Hidalgo',
+            'codigo_p' => '09876',
+            'seccion' => 'a',
+            'capacidad' => 2000,
+            'img' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        Almacen::create([
+            'nombre' => 'Zona',
+            'pais' => 'Estados Unidos',
+            'estado' => 'Nuevo León',
+            'ciudad' => 'Ciudad Victoria',
+            'colonia' => 'Zona Centro, Calle Hidalgo',
+            'codigo_p' => '09876',
+            'seccion' => 'a',
+            'capacidad' => 1500,
+            'img' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        Almacen::create([
+            'nombre' => 'Eusexua',
+            'pais' => 'Estados Unidos',
+            'estado' => 'Nuevo León',
+            'ciudad' => 'Ciudad Victoria',
+            'colonia' => 'Zona Centro, Calle Hidalgo',
+            'codigo_p' => '09876',
+            'seccion' => 'a',
+            'capacidad' => 1500,
+            'img' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
     }
 }

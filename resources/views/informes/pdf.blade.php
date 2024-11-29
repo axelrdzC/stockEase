@@ -1,35 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Informe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $informe->nombre }}</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Rubik', sans-serif;
+            font-size: 10px;
         }
-        table {
+        .table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
+        .table th, .table td {
             padding: 8px;
             text-align: left;
+            border: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #f8f9fa;
         }
     </style>
 </head>
 <body>
-    <h1>Información del Informe</h1>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <td>{{ $informe->nombre }}</td>
-        </tr>
-        <tr>
-            <th>Descripción</th>
-            <td>{{ $informe->descripcion }}</td>
-        </tr>
+    <h1>{{ $informe->nombre }}</h1>
+    <p>{{ $informe->descripcion }}</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>SKU</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Almacén</th>
+                <th>Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($datos as $key => $item)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $item->nombre ?? 'N/A' }}</td>
+                    <td>{{ $item->categoria->nombre ?? 'N/A' }}</td>
+                    <td>{{ $item->descripcion ?? 'N/A' }}</td>
+                    <td>{{ $item->SKU ?? 'N/A' }}</td>
+                    <td>{{ $item->precio ?? 'N/A' }}</td>
+                    <td>{{ $item->cantidad_producto ?? 'N/A' }}</td>
+                    <td>{{ $item->almacen->nombre ?? 'N/A' }}</td>
+                    <td>{{ $item->proveedor->nombre ?? 'N/A' }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 </body>
 </html>

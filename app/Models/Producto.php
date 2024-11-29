@@ -16,6 +16,7 @@ class Producto extends Model
         'unidad_medida', 
         'precio', 
         'cantidad_producto', 
+        'img',
         'almacen_id', 
         'proveedor_id', 
         'categoria_id'

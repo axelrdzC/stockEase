@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     
     /* vistas users  */
     Route::get('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [App\Http\Controllers\UsuarioController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'update'])->name('users.update');
 
     Route::get('/configuracion', [App\Http\Controllers\ConfigController::class, 'show'])->name('configuracion');
 
@@ -55,7 +57,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
         });
         
-         /* vistas clientes  */
+        # vistas clientes 
         Route::group(['prefix' => '/clientes'], function() {
             Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
             Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
@@ -65,7 +67,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
         });
 
-        /* vistas proveedores  */
+        # vistas proveedores
         Route::group(['prefix' => '/proveedores'], function() {
             Route::get('/', [ProveedorController::class, 'index'])->name('proveedores.index');
             Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create');
@@ -98,8 +100,9 @@ Route::middleware('auth')->group(function () {
         # rutas de informes
         Route::group(['prefix' => '/informes'], function() {
             Route::get('/', [InformeController::class, 'index'])->name('informes.index');
-            Route::get('/show', [InformeController::class, 'show'])->name('informes.show');
-            Route::get('/{id}/export', [InformeController::class, 'export'])->name('informes.export');
+            Route::get('/{informe}/show', [InformeController::class, 'show'])->name('informes.show');
+            Route::post('/', [InformeController::class, 'store'])->name('informes.store');
+            Route::get('/{id}/export-pdf', [InformeController::class, 'exportPDF'])->name('informes.exportPDF');
         });
     });   
 });
