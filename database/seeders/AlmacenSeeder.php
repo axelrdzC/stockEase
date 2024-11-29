@@ -12,31 +12,6 @@ class AlmacenSeeder extends Seeder
      */
     public function run(): void
     {
-<<<<<<< HEAD
-        DB::table('almacenes')->insert([
-            [
-                'nombre' => 'Almacén Central',
-                'pais' => 'México',
-                'estado' => 'Tamaulipas',
-                'ciudad' => 'Ciudad Victoria',
-                'colonia' => 'La Moderna, Calle Venezuela',
-                'codigo_p' => '12345',
-                'seccion' => 'A',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Almacén Secundario',
-                'pais' => 'México',
-                'estado' => 'Nuevo León',
-                'ciudad' => 'Tampico',
-                'colonia' => 'Zona Centro, Calle Hidalgo',
-                'codigo_p' => '09876',
-                'seccion' => 'B',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-=======
         Almacen::create([
             'nombre' => 'Zona',
             'pais' => 'Estados Unidos',
@@ -49,7 +24,6 @@ class AlmacenSeeder extends Seeder
             'img' => null,
             'created_at' => now(),
             'updated_at' => now(),
->>>>>>> main
         ]);
 
         Almacen::create([
