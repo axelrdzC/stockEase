@@ -90,7 +90,7 @@
                 <div id="paso_2" class="col" style="display:none;">
                     <!-- capacidad total -->
                     <div class="mb-3">
-                        <label for="capacidad" class="form-label">Capacidad total del almacen</label>
+                        <label for="capacidad" class="form-label">Capacidad total del almacen (unidades)</label>
                         <input type="number" class="form-control bg-white" id="capacidad" name="capacidad" required>
                     </div>
                     <!-- secciones (opc) -->
@@ -103,8 +103,13 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="seccion_capacidad" class="form-label">Capacidad</label>
-                                <input type="text" class="form-control bg-white" id="seccion_capacidad" name="seccion_capacidad">
+                                <input type="number" class="form-control bg-white @error('seccion_capacidad') is-invalid @enderror focus-ring input-blur" id="seccion_capacidad" name="seccion_capacidad">
                             </div>
+                            @error('seccion_capacidad')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <!-- add more secciones -->

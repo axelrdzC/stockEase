@@ -42,6 +42,8 @@
 
     <!-- almacenes & productos -->
     <div class="d-flex justify-content-center gap-3 w-100">
+
+        <!-- almacenes -->
         <div class="col-4 p-0">
             <div class="card shadow-sm bg-white border-0 p-4">
 
@@ -85,6 +87,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- productos -->
         <div class="col p-0">
             <div class="card shadow-sm bg-white border-0 p-4 h-100">
 
@@ -105,47 +109,41 @@
                     </div>
                 </div>
 
-                <div id="productCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="background-color: white">
-
-                    <div class="carousel-indicators">
-                        @foreach ($productos->chunk(5) as $index => $chunk)
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $index }}" 
-                                    class="{{ $index === 0 ? 'active' : '' }}" 
-                                    aria-current="{{ $index === 0 ? 'true' : '' }}" 
-                                    aria-label="Slide {{ $index + 1 }}"></button>
-                        @endforeach
-                    </div>
-                    
+                <div id="productCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
                 
                     <div class="carousel-inner">
-                        @foreach ($productos->chunk(6) as $index => $chunk)
+                        @php
+                            $cont = 1;
+                        @endphp
+                        @foreach ($productos->chunk(5) as $index => $chunk)
                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                 <div class="row g-3">
                                     @foreach ($chunk as $producto)
                                         <div class="col-6 col-md-4 col-lg-2">
-                                            <div class="card bg-transparent">
+                                            <button type="button" class="card bg-transparent w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ $producto->nombre }}">
                                                 <img src="{{ asset($producto->img ?? 'storage/img/producto.jpeg') }}" 
                                                     class="card-img-top" 
                                                     alt="{{ $producto->nombre }}">
-                                                <div class="card-body text-truncate py-0 text-center">
-                                                    <h5 class="fs-6">{{ $producto->nombre }}</h5>
+                                                <div class="card-body w-100 py-0 text-center">
+                                                    <h5 class="fs-6 m-1 text-truncate"> 
+                                                        <span class=" position-absolute posicion start-100 translate-middle badge rounded-pill text-bg-warning"> {{ $cont }} </span> 
+                                                        {{ $producto->nombre }}
+                                                    </h5>
                                                 </div>
-                                            </div>
+                                            </button>
                                         </div>
+                                        @php
+                                            $cont++;
+                                        @endphp
                                     @endforeach
                                 </div>
                             </div>
                         @endforeach
                     </div>
                 
-                    <!-- Controles de navegación -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <!-- nav (>) -->
+                    <button class="carousel-control-next my-5" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
                     </button>
                 </div>
                 

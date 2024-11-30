@@ -20,7 +20,7 @@ class ProductoController extends Controller
 
     public function store(Request $request) {
         
-        $validated = $request->validate([
+        $request->validate([
             'nombre' => ['required'],
             'descripcion' => ['required'],
             'sku' => ['required'],
@@ -52,34 +52,38 @@ class ProductoController extends Controller
     }
 
     public function update(Request $request, Producto $producto) {
-    
-        # pasar igual el codigo sku pues no se modifica
-        $validated['sku'] = $producto->sku;
-        $validated = $request->validate([
-            'nombre' => ['required'],
-            'descripcion' => ['required'],
-            'unidad_medida' => ['required'],
-            'precio' => ['required'],
-            'cantidad_producto' => ['required'],
-            'img' => ['sometimes','nullable','mimes:png.jpg,jpge','max:2048'],
-            'almacen_id' => ['required'],
-            'proveedor_id' => ['required'],
-            'categoria_id' => ['required'],
+        
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'unidad_medida' => 'required',
+            'precio' => 'required',
+            'cantidad_producto' => 'required',
+            'almacen_id' => 'required',
+            'proveedor_id' => 'required',
+            'categoria_id' => 'required',
+            'sku' => 'required',
+            'img' => 'nullable|image', 
         ]);
-    
+
         if ($request->hasFile('img')) {
-            Storage::disk('public')->delete($producto->img);
+
+            if ($producto->img && $producto->img !== '/storage/img/almacen.png') {
+                Storage::disk('public')->delete($producto->img);
+            }
+
             $nombre = $producto->id.'.'.$request->file('img')->getClientOriginalExtension();
-            $img = $request->file('img')->storeAs('img/productos', $nombre, 'public');
-            $producto->img = '/storage/img/productos/'.$nombre;
-            $producto->save();
+            $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
+            $producto->img = '/storage/img/proveedores/'.$nombre;
+
         }
 
+        $producto->save();
         $producto->update($request->input());
     
+        // Redirigir con un mensaje de éxito
         return redirect()->route('productos.index')->with('status', 'Producto modificado exitosamente');
-    }
-    
+    }    
 
     public function destroy(Producto $producto) {
 

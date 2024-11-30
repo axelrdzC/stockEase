@@ -90,3 +90,38 @@
     animation: slideFromTop 1.5s ease-in-out forwards; 
     z-index: 1;
 }
+
+.posicion {
+    top: 10%;
+}
+
+.posicion span {
+    color: white;
+}
+
+/* Estilo de la imagen */
+.profile-img {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Estilo del overlay para cambiar la imagen */
+.change-image-label {
+    background: rgba(0, 0, 0, 0.4);
+    width: 120px;
+    cursor: pointer;
+    opacity: 0;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 14px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Mostrar el overlay al pasar el mouse sobre la imagen */
+.change-image-label:hover {
+    opacity: 1;
+}
+
+/* Reducir opacidad de la imagen al hacer hover */
+.change-image-label:hover .profile-img {
+    opacity: 0.5;
+}

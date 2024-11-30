@@ -8,8 +8,13 @@
         <!-- formulario -->
         <form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
             @csrf @method('PATCH')
-                <div class="text-center mt-3 mb-4">
-                    <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" class="rounded-circle" style="width: 120px; height: 120px;">
+                <div class="text-center position-relative mt-3 mb-4">
+                    <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" 
+                    class="rounded-circle profile-img" style="width: 120px; height: 120px;">
+                    <label for="img" class="change-image-label position-absolute top-50 start-50 translate-middle h-100 d-flex align-items-center justify-content-center text-white fw-medium">
+                        Cambiar
+                        <input type="file" id="img" name="img" class="d-none" accept="image/*">
+                    </label>
                 </div>
                 <!-- username -->
                 <div class="mb-3">
