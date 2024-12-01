@@ -22,10 +22,11 @@
                             </label>
                             <div class="d-flex flex-column align-items-center">
                                 @isset($almacen->img)
-                                    <img src="{{ asset($almacen->img) }}" alt="Imagen del proveedor" class="rounded hover-img w-100 rounded-bottom-0"
+                                    <img src="{{ asset($almacen->img) }}" alt="Imagen del almacen" id="preview-{{ $almacen->id }}" 
+                                    class="rounded img-thumbnail w-100 rounded-bottom-0" 
                                     style="height: 23.25em; object-fit: cover;">
                                 @endisset
-                                <input type="file" class="form-control rounded-top-0 bg-white" id="img" name="img" accept="image/*">
+                                <input type="file" class="form-control rounded-top-0 bg-white" id="img-{{ $almacen->id }}" name="img" accept="image/*">
                             </div>
                         </div>
                     </div>
@@ -82,6 +83,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <a type="button" href="{{ route('almacenes.show' , $almacen ) }}" class="btn btn-outline-primary">Administrar secciones</a>
                     <button type="submit" class="btn btn-primary">Aceptar</button>
                 </div>
             </form>    

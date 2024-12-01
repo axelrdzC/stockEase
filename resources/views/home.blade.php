@@ -120,9 +120,9 @@
                                 <div class="row g-3">
                                     @foreach ($chunk as $producto)
                                         <div class="col-6 col-md-4 col-lg-2">
-                                            <button type="button" class="card bg-transparent w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ $producto->nombre }}">
+                                            <button type="button" class="card bg-transparent pt-1 w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ $producto->nombre }}">
                                                 <img src="{{ asset($producto->img ?? 'storage/img/producto.jpeg') }}" 
-                                                    class="card-img-top" 
+                                                    class="card-img-top w-100" style="height: 9em; object-fit: cover;"
                                                     alt="{{ $producto->nombre }}">
                                                 <div class="card-body w-100 py-0 text-center">
                                                     <h5 class="fs-6 m-1 text-truncate"> 

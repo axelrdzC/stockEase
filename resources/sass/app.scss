@@ -99,12 +99,10 @@
     color: white;
 }
 
-/* Estilo de la imagen */
 .profile-img {
     transition: opacity 0.3s ease-in-out;
 }
 
-/* Estilo del overlay para cambiar la imagen */
 .change-image-label {
     background: rgba(0, 0, 0, 0.4);
     width: 120px;
@@ -116,12 +114,48 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-/* Mostrar el overlay al pasar el mouse sobre la imagen */
 .change-image-label:hover {
     opacity: 1;
 }
 
-/* Reducir opacidad de la imagen al hacer hover */
 .change-image-label:hover .profile-img {
+    opacity: 0.5;
+}
+
+
+// estilos para los floating labels en los inputs de los formularios 
+
+.float-label {
+    position: relative;
+    width: 100%;
+}
+
+.float-label .form-control::placeholder {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.float-label .form-label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #6c757d;
+    transition: all 0.2s ease-in-out;
+    background-color: white;
+    pointer-events: none;
+}
+
+
+.float-label .form-control:focus + .form-label,
+.float-label .form-control:not(:placeholder-shown) + .form-label {
+    top: -0.2em;
+    padding: 0 0.2em;
+    font-size: 0.8rem;
+    color: #8067B2;
+}
+
+.float-label .form-control:focus::placeholder {
     opacity: 0.5;
 }

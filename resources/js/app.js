@@ -3,6 +3,15 @@ import bootstrapBundleMin from 'bootstrap/dist/js/bootstrap.bundle.min';
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    function removeSeccion(button) {
+        const seccion = button.closest('.seccion-field');
+        if (seccion) {
+            seccion.remove();
+        }
+    }
+    
+    window.removeSeccion = removeSeccion;
+
     // cambiar de paso en los forms
     function switchIt(pasoActual, pasoSiguiente) {
         document.querySelector(`#paso_${pasoActual}`).style.display = 'none';
@@ -103,14 +112,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.getElementById('img').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            // Actualiza la imagen mostrada con la nueva
-            document.querySelector('.profile-img').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('img').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.querySelector('.profile-img').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const id = event.target.id.split('-')[1];
+                    document.getElementById(`preview-${id}`).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
 });
