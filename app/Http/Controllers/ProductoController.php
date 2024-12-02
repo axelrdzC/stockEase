@@ -90,4 +90,10 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('status', 'el producto ha sido eliminado');
     }
 
+    public function show(Producto $producto)
+    {
+        return view('productos.show', compact('producto'));
+
+    }
+
 }

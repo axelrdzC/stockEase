@@ -19,9 +19,11 @@ class CategoriaController extends Controller
     public function create() { return view('categorias.create'); }
 
     public function store(Request $request) {
+        
         $nwCategoria = new Categoria;
-        $nwCategoria-> nombre = $request->input('nombre');
-        $nwCategoria-> descripcion = $request->input('descripcion');
+        $nwCategoria->nombre = $request->input('nombre');
+        $nwCategoria->descripcion = $request->input('descripcion');
+        $nwCategoria->tipo = 'producto';
 
         $nwCategoria->save();
 

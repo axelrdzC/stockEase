@@ -125,35 +125,39 @@
                     <div class="col p-4 mb-2 rounded shadow-sm bg-white">
 
                        @php
+
                             $auditableType = strtolower(class_basename($actividad->auditable_type));
+                            $oldValues = $actividad->old_values;
+                            $ruta = $auditableType . 's.show';
+                            $prefijo = 'un';
+
                             if (in_array($auditableType, ['proveedor', 'almacen', 'cliente', 'orden'])) {
                                 $ruta = $auditableType . 'es.show';
-                            } elseif($auditableType == 'categoria') {
-                                $ruta = $auditableType . 's.show';
-                            } else {
-                                $ruta = $auditableType . 's.show';
+                            } elseif ($auditableType == 'categoria') {
+                                $prefijo = 'una';
                             }
+
+                            $nombre = $actividad->auditable && !empty($actividad->auditable->nombre)
+                                      ? $actividad->auditable->nombre
+                                      : ($oldValues['nombre'] ?? 'Nombre no disponible');
+
+                            $mensaje = $user->name . ' ' . $actividad->event . ' ' . $prefijo . ' ' . $auditableType . ': ' . $nombre;
+                                                    
                         @endphp
                     
                         <div class="fw-bold"> 
                             {{ \Carbon\Carbon::parse($actividad->created_at)->translatedFormat('d \d\e F \d\e Y\, h:i a') }}
                         </div>
-                        <div class="d-flex align-items-center gap-3"> 
-                            {{ $user->name . ' ' . $actividad->event . ' un ' . $auditableType . ' llamado ' . 
-                                $actividad->auditable->nombre }}
-                            @php
-                                if ($ruta != 'categorias.show') {
-                            @endphp
-                                    
-                                <a href=" {{ route($ruta, $actividad->auditable_id) }} " class="btn btn-primary p-0 px-3">
+                        <div class="d-flex align-items-center gap-3">
+
+                            {{ $mensaje }}
+        
+                            @if ($ruta != 'categorias.show' && $actividad->auditable)
+                                <a href="{{ route($ruta, $actividad->auditable_id) }}" class="btn btn-primary p-0 px-3">
                                     Ver
                                 </a>
-
-                            @php
-                                }
-                            @endphp
-                        </div>
-                    
+                            @endif
+                        </div>       
                     </div>    
                 @endforeach
             </div>

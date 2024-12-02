@@ -52,7 +52,7 @@
                                         <option 
                                             value="{{ $categoria->id }}" 
                                             @isset($cliente) 
-                                                {{ $categoria->id == $cliente->categoria_id ? 'selected' : '' }} 
+                                                {{ $categoria->id == $cliente->tipo ? 'selected' : '' }} 
                                             @endisset>
                                             {{ $categoria->nombre }}
                                         </option>

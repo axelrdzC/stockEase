@@ -45,8 +45,6 @@ class UsuarioController extends Controller
             $img = $request->file('img')->storeAs('img/usuarios', $nombre, 'public');
             $user->img = '/storage/img/usuarios/'.$nombre;
 
-        } elseif (!$request->hasFile('img') && $user->img !== '/storage/img/persona-default.jpg') {
-            $user->img = '/storage/img/persona-default.jpg';
         }
         
         $user->save();
