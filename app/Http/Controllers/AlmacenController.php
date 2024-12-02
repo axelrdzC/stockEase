@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Almacen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use OwenIt\Auditing\Contracts\Auditable;
 
 class AlmacenController extends Controller {
+    
+    use \OwenIt\Auditing\Auditable;
 
     # bloquear edicion / creacion / eliminacion para empleados normales
     public function __construct() {

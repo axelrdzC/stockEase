@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 class CategoriaController extends Controller
 {
+    use \OwenIt\Auditing\Auditable;
 
     public function index() {
         $categorias = Categoria::latest()->paginate(10);

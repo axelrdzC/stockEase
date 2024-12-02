@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 class ProductoController extends Controller
 {
+    use \OwenIt\Auditing\Auditable;
 
     public function index() {
         $productos = Producto::latest()->paginate(10);
@@ -44,7 +45,6 @@ class ProductoController extends Controller
     
         return redirect()->route('productos.index')->with('success', 'Producto agregado exitosamente');
     }
-    
     
 
     public function edit(Producto $producto) {
@@ -81,7 +81,6 @@ class ProductoController extends Controller
         $producto->save();
         $producto->update($request->input());
     
-        // Redirigir con un mensaje de éxito
         return redirect()->route('productos.index')->with('status', 'Producto modificado exitosamente');
     }    
 

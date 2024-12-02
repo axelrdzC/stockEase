@@ -120,8 +120,42 @@
             <div class="card-body p-0">
                 <h5 class="card-title">Actividad</h5>
                 <hr class="my-3 border-bottom">
-                <div>
-                </div>
+                 @foreach ($actividadReciente as $actividad)
+                
+                    <div class="col p-4 mb-2 rounded shadow-sm bg-white">
+
+                       @php
+                            $auditableType = strtolower(class_basename($actividad->auditable_type));
+                            if (in_array($auditableType, ['proveedor', 'almacen', 'cliente', 'orden'])) {
+                                $ruta = $auditableType . 'es.show';
+                            } elseif($auditableType == 'categoria') {
+                                $ruta = $auditableType . 's.show';
+                            } else {
+                                $ruta = $auditableType . 's.show';
+                            }
+                        @endphp
+                    
+                        <div class="fw-bold"> 
+                            {{ \Carbon\Carbon::parse($actividad->created_at)->translatedFormat('d \d\e F \d\e Y\, h:i a') }}
+                        </div>
+                        <div class="d-flex align-items-center gap-3"> 
+                            {{ $user->name . ' ' . $actividad->event . ' un ' . $auditableType . ' llamado ' . 
+                                $actividad->auditable->nombre }}
+                            @php
+                                if ($ruta != 'categorias.show') {
+                            @endphp
+                                    
+                                <a href=" {{ route($ruta, $actividad->auditable_id) }} " class="btn btn-primary p-0 px-3">
+                                    Ver
+                                </a>
+
+                            @php
+                                }
+                            @endphp
+                        </div>
+                    
+                    </div>    
+                @endforeach
             </div>
         </div>
     </div>

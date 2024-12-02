@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use OwenIt\Auditing\Models\Audit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -57,9 +58,10 @@ class UsuarioController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', [
-            'user' => $user
-        ]);
+
+        $actividadReciente = Audit::where('user_id', $user->id)->latest()->take(5)->get();
+        return view('users.show', compact('user', 'actividadReciente'));
+
     }
 
 }

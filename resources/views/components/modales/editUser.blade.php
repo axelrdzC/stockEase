@@ -1,5 +1,5 @@
 <!-- el modal aka formulario edit user -->
-<div class="offcanvas offcanvas-end p-3" style="width: 30em" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas offcanvas-end bg-white p-3" style="width: 30em" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasRightLabel">Modificar sus datos</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

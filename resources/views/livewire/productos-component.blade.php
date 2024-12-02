@@ -1,5 +1,6 @@
 <div>
     <div class="col px-5">
+        
         <!-- header de la seccion -->
         @section('titulo-seccion', 'Productos')
         @section('buscador', 'Escriba el nombre de un producto aqui')
@@ -16,6 +17,7 @@
             @endcan
         @endsection
         @include('components.tituloSeccion')
+
         <!-- contenedor productos -->
         <div class="d-flex gap-4">
             <!-- filtros -->

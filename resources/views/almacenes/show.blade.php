@@ -14,7 +14,7 @@
     <div class="d-flex gap-4">
         <div class="col-3">
             <img src="{{ $almacen->img }}" alt="imagen almacen"
-            class="w-100" style="height: 18em; object-fit: cover;">
+            class="w-100 rounded" style="height: 18em; object-fit: cover;">
         </div>
         <div class="col bg-white rounded shadow-sm p-4">
             <div class="d-flex align-items-center mb-3">
@@ -35,6 +35,11 @@
                     <div class=""> {{ $almacen->updated_at }} </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="d-flex mt-4 rounded shadow-sm bg-white p-4">
+        <div class="col">
+            <div class="fw-bold fs-4">Administrar secciones</div>
         </div>
     </div>
 </div> 
