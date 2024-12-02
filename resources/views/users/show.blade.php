@@ -131,7 +131,7 @@
                             $ruta = $auditableType . 's.show';
                             $prefijo = 'un';
 
-                            if (in_array($auditableType, ['proveedor', 'almacen', 'cliente', 'orden'])) {
+                            if (in_array($auditableType, ['proveedor', 'almacen', 'orden'])) {
                                 $ruta = $auditableType . 'es.show';
                             } elseif ($auditableType == 'categoria') {
                                 $prefijo = 'una';

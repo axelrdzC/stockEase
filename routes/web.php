@@ -28,7 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/configuracion', [App\Http\Controllers\ConfigController::class, 'show'])->name('configuracion');
 
     Route::group(['namespace' => 'App\Http\Controllers'], function() {
-        /* vistas productos  */
+
+        # vistas productos
         Route::group(['prefix' => '/productos'], function() {
             Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
             Route::get('/create', [ProductoController::class, 'create'])->name('productos.create');
@@ -39,7 +40,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
         });
 
-        /* vistas almacenes  */
+        # vistas almacenes
         Route::group(['prefix' => '/almacenes'], function() {
             Route::get('/', [AlmacenController::class, 'index'])->name('almacenes.index');
             Route::get('/create', [AlmacenController::class, 'create'])->name('almacenes.create');
@@ -62,6 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => '/clientes'], function() {
             Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
             Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
+            Route::get('/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
             Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
             Route::get('/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
             Route::patch('/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
@@ -72,6 +74,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => '/proveedores'], function() {
             Route::get('/', [ProveedorController::class, 'index'])->name('proveedores.index');
             Route::get('/create', [ProveedorController::class, 'create'])->name('proveedores.create');
+            Route::get('/{proveedor}', [ProveedorController::class, 'show'])->name('proveedores.show');
             Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store');
             Route::get('/{proveedor}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
             Route::patch('/{proveedor}', [ProveedorController::class, 'update'])->name('proveedores.update');

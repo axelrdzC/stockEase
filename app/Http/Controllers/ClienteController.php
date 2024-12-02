@@ -107,4 +107,11 @@ class ClienteController extends Controller {
         return redirect()->route('clientes.index')->with('status', 'el Cliente ha sido eliminado');
         
     }
+
+    public function show(Cliente $cliente)
+    {
+        return view('clientes.show', compact('cliente'));
+
+    }
+
 }

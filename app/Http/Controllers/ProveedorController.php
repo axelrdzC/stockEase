@@ -105,5 +105,11 @@ class ProveedorController extends Controller {
 
         return redirect()->route('proveedores.index')->with('success', 'Proveedor y sus productos asociados han sido eliminados exitosamente.');
     }
+
+    public function show(Proveedor $proveedor)
+    {
+        return view('proveedores.show', compact('proveedor'));
+
+    }
     
 }
