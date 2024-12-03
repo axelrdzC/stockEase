@@ -17,10 +17,8 @@
                 <div class="d-flex align-items-center gap-4">
                     <div class="fs-5 fw-semibold m-0">Gráfico de productos almacenados</div>
                         <div class="btn-group" role="group">
-                            <input type="radio" class="btn-check" name="graphics" id="esteMes" autocomplete="off" checked>
-                            <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="esteMes">ESTE MES</label>
 
-                            <input type="radio" class="btn-check" name="graphics" id="esteAno" autocomplete="off">
+                            <input type="radio" class="btn-check" name="graphics" id="esteAno" autocomplete="off" checked>
                             <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="esteAno">ESTE AÑO</label>
 
                             <input type="radio" class="btn-check" name="graphics" id="always" autocomplete="off">
@@ -35,7 +33,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div id="chart" style="width: 100%; height: 400px;"></div>
                 </div>
             </div>
         </div>
@@ -96,3 +94,34 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var chartContainer = document.querySelector("#chart");
+
+        // Limpia cualquier gráfico anterior
+        if (chartContainer.innerHTML) {
+            chartContainer.innerHTML = "";
+        }
+        var options = {
+            chart: {
+                height: '100%',
+                width: '100%', 
+                stroke: {
+                    curve: 'smooth',
+                }
+            },
+            series: [{
+                name: 'stock',
+                data: @json($stockMensual)
+            }],
+            xaxis: {
+                categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+            }
+        };
+        var chart = new ApexCharts(chartContainer, options);
+        chart.render();
+    });
+</script>
+@endpush
