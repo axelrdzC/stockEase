@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use OwenIt\Auditing\Contracts\Auditable;
 
 class ClienteController extends Controller {
+    
+    use \OwenIt\Auditing\Auditable;
 
     # bloquear edicion / creacion / eliminacion para empleados normales
     public function __construct() {
@@ -88,8 +91,6 @@ class ClienteController extends Controller {
             $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
             $cliente->img = '/storage/img/clientes/'.$nombre;
 
-        } elseif (!$request->hasFile('img') && $cliente->img !== '/storage/img/persona-default.jpg') {
-            $cliente->img = '/storage/img/persona-default.jpg';
         }
         
         $cliente->save();
@@ -104,4 +105,11 @@ class ClienteController extends Controller {
         return redirect()->route('clientes.index')->with('status', 'el Cliente ha sido eliminado');
         
     }
+
+    public function show(Cliente $cliente)
+    {
+        return view('clientes.show', compact('cliente'));
+
+    }
+
 }

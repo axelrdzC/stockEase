@@ -32,11 +32,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categorias', Categoria::all());
         });
 
-        View::composer(['home'], function ($view) {
+        View::composer([], function ($view) {
             $view->with('productos', Producto::all());
         });
 
-        View::composer(['productos.create', 'productos.index', 'productos.edit', 'home', 'informes.index'], function ($view) {
+        View::composer(['productos.create', 'productos.index', 'productos.edit', 'home', 'livewire.home-component', 'informes.index'], function ($view) {
             $view->with('almacenes', Almacen::all());
         });
     }

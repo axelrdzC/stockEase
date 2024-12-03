@@ -7,6 +7,10 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
 .welcome-txt {
     font-weight: 900;
     font-size: 4.5em;
@@ -89,4 +93,73 @@
     transform: translate(-50%, -200%);
     animation: slideFromTop 1.5s ease-in-out forwards; 
     z-index: 1;
+}
+
+.posicion {
+    top: 10%;
+}
+
+.posicion span {
+    color: white;
+}
+
+.profile-img {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.change-image-label {
+    background: rgba(0, 0, 0, 0.4);
+    width: 120px;
+    cursor: pointer;
+    opacity: 0;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 14px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.change-image-label:hover {
+    opacity: 1;
+}
+
+.change-image-label:hover .profile-img {
+    opacity: 0.5;
+}
+
+
+// estilos para los floating labels en los inputs de los formularios 
+
+.float-label {
+    position: relative;
+    width: 100%;
+}
+
+.float-label .form-control::placeholder {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.float-label .form-label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #6c757d;
+    transition: all 0.2s ease-in-out;
+    background-color: white;
+    pointer-events: none;
+}
+
+
+.float-label .form-control:focus + .form-label,
+.float-label .form-control:not(:placeholder-shown) + .form-label {
+    top: -0.2em;
+    padding: 0 0.2em;
+    font-size: 0.8rem;
+    color: #8067B2;
+}
+
+.float-label .form-control:focus::placeholder {
+    opacity: 0.5;
 }

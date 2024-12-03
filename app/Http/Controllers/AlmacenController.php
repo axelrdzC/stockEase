@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use OwenIt\Auditing\Models\Audit;
 use App\Models\Almacen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AlmacenController extends Controller {
+    
+    use \OwenIt\Auditing\Auditable;
 
     # bloquear edicion / creacion / eliminacion para empleados normales
     public function __construct() {
@@ -75,6 +80,7 @@ class AlmacenController extends Controller {
             'ciudad' => 'required',
             'colonia' => 'required',
             'codigo_p' => 'required',
+            'capacidad' => 'required',
             'img'=>'nullable|image'
         ]);
 
@@ -85,8 +91,8 @@ class AlmacenController extends Controller {
             }
 
             $nombre = $almacen->id.'.'.$request->file('img')->getClientOriginalExtension();
-            $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
-            $almacen->img = '/storage/img/proveedores/'.$nombre;
+            $img = $request->file('img')->storeAs('img/almacenes', $nombre, 'public');
+            $almacen->img = '/storage/img/almacenes/'.$nombre;
 
         }
 
@@ -104,8 +110,19 @@ class AlmacenController extends Controller {
     }
 
     public function show(Almacen $almacen) {
-        return view('almacenes.show', [
-            'almacen' => $almacen
-        ]);
+
+        
+        $data = [10, 41, 35];
+        $categories = ['Seccion A', 'Congelados', 'Sotano'];
+
+        $log = Audit::where('auditable_id', $almacen->id)
+                    ->where('auditable_type', Almacen::class)
+                    ->where('event', 'created')
+                    ->latest()
+                    ->first();
+        $theCreador = $log ? User::find($log->user_id) : null;
+
+        return view('almacenes.show', compact('almacen', 'theCreador', 'data', 'categories'));
+
     }
 }

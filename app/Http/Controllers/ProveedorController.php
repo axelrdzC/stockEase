@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use OwenIt\Auditing\Contracts\Auditable;
 
 class ProveedorController extends Controller {
+    
+    use \OwenIt\Auditing\Auditable;
     
     # bloquear edicion / creacion / eliminacion para empleados normales
     public function __construct() {
@@ -86,8 +89,6 @@ class ProveedorController extends Controller {
             $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
             $proveedor->img = '/storage/img/proveedores/'.$nombre;
 
-        } elseif (!$request->hasFile('img') && $proveedor->img !== '/storage/img/persona-default.jpg') {
-            $proveedor->img = '/storage/img/persona-default.jpg';
         }
         
         $proveedor->save();
@@ -101,6 +102,12 @@ class ProveedorController extends Controller {
         $proveedor->delete();
 
         return redirect()->route('proveedores.index')->with('success', 'Proveedor y sus productos asociados han sido eliminados exitosamente.');
+    }
+
+    public function show(Proveedor $proveedor)
+    {
+        return view('proveedores.show', compact('proveedor'));
+
     }
     
 }
