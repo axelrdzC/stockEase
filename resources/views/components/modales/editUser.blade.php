@@ -4,14 +4,14 @@
       <h5 class="offcanvas-title" id="offcanvasRightLabel">Modificar sus datos</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body  d-flex align-items-center">
         <!-- formulario -->
         <form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
             @csrf @method('PATCH')
-                <div class="text-center position-relative mt-3 mb-4">
+                <div class="text-center position-relative mb-5">
                     <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" 
-                    class="rounded-circle profile-img" style="width: 120px; height: 120px;">
-                    <label for="img" class="change-image-label position-absolute top-50 start-50 translate-middle h-100 d-flex align-items-center justify-content-center text-white fw-medium">
+                    class="rounded-circle profile-img" style="width: 180px; height: 180px;">
+                    <label for="img" style="width: 180px" class="change-image-label position-absolute top-50 start-50 translate-middle h-100 d-flex align-items-center justify-content-center text-white fw-medium">
                         Cambiar
                         <input type="file" id="img" name="img" class="d-none" value="{{ $user->img }}" accept="image/*">
                     </label>

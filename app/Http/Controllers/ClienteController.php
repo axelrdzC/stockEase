@@ -91,8 +91,6 @@ class ClienteController extends Controller {
             $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
             $cliente->img = '/storage/img/clientes/'.$nombre;
 
-        } elseif (!$request->hasFile('img') && $cliente->img !== '/storage/img/persona-default.jpg') {
-            $cliente->img = '/storage/img/persona-default.jpg';
         }
         
         $cliente->save();

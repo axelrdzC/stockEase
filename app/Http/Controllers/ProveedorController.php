@@ -89,8 +89,6 @@ class ProveedorController extends Controller {
             $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
             $proveedor->img = '/storage/img/proveedores/'.$nombre;
 
-        } elseif (!$request->hasFile('img') && $proveedor->img !== '/storage/img/persona-default.jpg') {
-            $proveedor->img = '/storage/img/persona-default.jpg';
         }
         
         $proveedor->save();

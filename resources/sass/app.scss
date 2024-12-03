@@ -7,6 +7,10 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
 .welcome-txt {
     font-weight: 900;
     font-size: 4.5em;

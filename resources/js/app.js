@@ -1,5 +1,7 @@
 import './bootstrap';
 import bootstrapBundleMin from 'bootstrap/dist/js/bootstrap.bundle.min';
+import ApexCharts from 'apexcharts';
+window.ApexCharts = ApexCharts;
 
 document.addEventListener('DOMContentLoaded', function() {
 

@@ -42,20 +42,22 @@
                             <div class="col-md-6">
                                 <div class="d-flex">                            
                                     <label for="tipo" class="form-label">Tipo</label>
-                                    <a href="#" class="text-primary fw-medium d-flex flex-grow-1 link-underline link-underline-opacity-0 justify-content-end" data-bs-toggle="modal" data-bs-target="#addCategoria">
+                                    <a href="#" class="text-primary fw-medium d-flex flex-grow-1 link-underline link-underline-opacity-0 justify-content-end" data-bs-toggle="modal" data-bs-target="#addTipo">
                                         Agregar un tipo +
                                     </a>
                                 </div>
                                 <select class="form-select bg-white" id="tipo" name="tipo" required>
                                     <option selected disabled>Selecciona un tipo de cliente</option>
                                     @foreach ($categorias as $categoria)
-                                        <option 
-                                            value="{{ $categoria->id }}" 
-                                            @isset($cliente) 
-                                                {{ $categoria->id == $cliente->tipo ? 'selected' : '' }} 
-                                            @endisset>
-                                            {{ $categoria->nombre }}
-                                        </option>
+                                        @if ($categoria->tipo == 'persona')
+                                            <option 
+                                                value="{{ $categoria->id }}" 
+                                                @isset($cliente) 
+                                                    {{ $categoria->id == $cliente->tipo ? 'selected' : '' }} 
+                                                @endisset>
+                                                {{ $categoria->nombre }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -69,13 +71,15 @@
                                 <select class="form-select bg-white" id="categoria_id" name="categoria_id" required>
                                     <option selected disabled>Selecciona una categoria</option>
                                     @foreach ($categorias as $categoria)
-                                        <option 
-                                            value="{{ $categoria->id }}" 
-                                            @isset($cliente) 
-                                                {{ $categoria->id == $cliente->categoria_id ? 'selected' : '' }} 
-                                            @endisset>
-                                            {{ $categoria->nombre }}
-                                        </option>
+                                        @if ($categoria->tipo == 'producto')
+                                            <option 
+                                                value="{{ $categoria->id }}" 
+                                                @isset($cliente) 
+                                                    {{ $categoria->id == $cliente->categoria_id ? 'selected' : '' }} 
+                                                @endisset>
+                                                {{ $categoria->nombre }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
