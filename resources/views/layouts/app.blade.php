@@ -22,18 +22,22 @@
     @stack('scripts')
 
     <!-- Livewire Styles -->
-    @livewireStyles 
+    @livewireStyles
 </head>
 <body>
     <div id="app">
-    
+
         @include('components.header')
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    
+
+    @stack('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <!-- Livewire Scripts -->
     @livewireScripts
 </body>
