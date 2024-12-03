@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use OwenIt\Auditing\Models\Audit;
 use App\Models\Almacen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Support\Facades\Auth;
 
 class AlmacenController extends Controller {
     
@@ -108,8 +110,19 @@ class AlmacenController extends Controller {
     }
 
     public function show(Almacen $almacen) {
-        return view('almacenes.show', [
-            'almacen' => $almacen
-        ]);
+
+        
+        $data = [10, 41, 35];
+        $categories = ['Seccion A', 'Congelados', 'Sotano'];
+
+        $log = Audit::where('auditable_id', $almacen->id)
+                    ->where('auditable_type', Almacen::class)
+                    ->where('event', 'created')
+                    ->latest()
+                    ->first();
+        $theCreador = $log ? User::find($log->user_id) : null;
+
+        return view('almacenes.show', compact('almacen', 'theCreador', 'data', 'categories'));
+
     }
 }

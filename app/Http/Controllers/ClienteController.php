@@ -91,8 +91,6 @@ class ClienteController extends Controller {
             $img = $request->file('img')->storeAs('img/clientes', $nombre, 'public');
             $cliente->img = '/storage/img/clientes/'.$nombre;
 
-        } elseif (!$request->hasFile('img') && $cliente->img !== '/storage/img/persona-default.jpg') {
-            $cliente->img = '/storage/img/persona-default.jpg';
         }
         
         $cliente->save();
@@ -107,4 +105,11 @@ class ClienteController extends Controller {
         return redirect()->route('clientes.index')->with('status', 'el Cliente ha sido eliminado');
         
     }
+
+    public function show(Cliente $cliente)
+    {
+        return view('clientes.show', compact('cliente'));
+
+    }
+
 }

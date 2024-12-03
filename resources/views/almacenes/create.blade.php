@@ -30,9 +30,9 @@
                 <!-- paso no. 1 -->
                 <div id="paso_1" class="col">
                     <!-- nombre almacen -->
-                    <div class="float-label position-relative mb-3">
-                        <input type="text" class="form-control bg-white" id="nombre" placeholder=" " name="nombre" required>
-                        <label for="nombre" class="form-label m-0">Nombre del almacen</label>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del almacen</label>
+                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
                     </div>
                     <!-- pais y estado -->
                     <div class="row mb-3">
@@ -70,9 +70,9 @@
                         </div>
                     </div>
                     <!-- colonia / calles -->
-                    <div class="float-label position-relative mb-3">
-                        <input type="text" class="form-control bg-white" id="colonia" placeholder=" " name="colonia"  required>
-                        <label for="colonia" class="form-label m-0">Colonia y calle</label>
+                    <div class="mb-3">
+                        <label for="colonia" class="form-label">Colonia y calle</label>
+                        <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
                     </div>
                     <!-- subir img -->
                     <div class="mb-4">

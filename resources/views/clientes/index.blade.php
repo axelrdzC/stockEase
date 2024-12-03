@@ -80,7 +80,11 @@
                                             {{ $cliente->categoria ? $cliente->categoria->nombre : 'Sin categoría' }}
                                         </small>                                        
                                         <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                            <span class="fw-medium">{{ $cliente->tipo ? $cliente->tipo : 'Sin tipo' }}</span>
+                                            @foreach ($categorias as $categoria)
+                                                @if ($categoria->tipo == 'persona' && $categoria->id == $cliente->tipo)
+                                                    <span class="fw-medium">{{ $categoria->nombre ? $categoria->nombre : 'Sin tipo' }}</span>
+                                                @endif
+                                            @endforeach
                                         </small>
                                     </div>
                                 </div>

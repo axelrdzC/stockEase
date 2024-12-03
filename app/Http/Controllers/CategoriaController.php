@@ -23,7 +23,7 @@ class CategoriaController extends Controller
         $nwCategoria = new Categoria;
         $nwCategoria->nombre = $request->input('nombre');
         $nwCategoria->descripcion = $request->input('descripcion');
-        $nwCategoria->tipo = 'producto';
+        $nwCategoria->tipo = $request->input('tipo');
 
         $nwCategoria->save();
 
