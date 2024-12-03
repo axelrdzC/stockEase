@@ -16,7 +16,7 @@
                     <!-- desc -->
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3" required></textarea>
+                        <textarea class="form-control bg-white" id="descripcion" name="descripcion" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

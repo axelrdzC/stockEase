@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 class CategoriaController extends Controller
 {
+    use \OwenIt\Auditing\Auditable;
 
     public function index() {
         $categorias = Categoria::latest()->paginate(10);
@@ -17,9 +19,11 @@ class CategoriaController extends Controller
     public function create() { return view('categorias.create'); }
 
     public function store(Request $request) {
+        
         $nwCategoria = new Categoria;
-        $nwCategoria-> nombre = $request->input('nombre');
-        $nwCategoria-> descripcion = $request->input('descripcion');
+        $nwCategoria->nombre = $request->input('nombre');
+        $nwCategoria->descripcion = $request->input('descripcion');
+        $nwCategoria->tipo = 'producto';
 
         $nwCategoria->save();
 

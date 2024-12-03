@@ -30,9 +30,9 @@
                 <!-- paso no. 1 -->
                 <div id="paso_1" class="col">
                     <!-- nombre almacen -->
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre del almacen</label>
-                        <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
+                    <div class="float-label position-relative mb-3">
+                        <input type="text" class="form-control bg-white" id="nombre" placeholder=" " name="nombre" required>
+                        <label for="nombre" class="form-label m-0">Nombre del almacen</label>
                     </div>
                     <!-- pais y estado -->
                     <div class="row mb-3">
@@ -70,9 +70,9 @@
                         </div>
                     </div>
                     <!-- colonia / calles -->
-                    <div class="mb-3">
-                        <label for="colonia" class="form-label">Colonia y calle</label>
-                        <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
+                    <div class="float-label position-relative mb-3">
+                        <input type="text" class="form-control bg-white" id="colonia" placeholder=" " name="colonia"  required>
+                        <label for="colonia" class="form-label m-0">Colonia y calle</label>
                     </div>
                     <!-- subir img -->
                     <div class="mb-4">
@@ -90,28 +90,41 @@
                 <div id="paso_2" class="col" style="display:none;">
                     <!-- capacidad total -->
                     <div class="mb-3">
-                        <label for="capacidad" class="form-label">Capacidad total del almacen</label>
+                        <label for="capacidad" class="form-label">Capacidad total del almacen (unidades)</label>
                         <input type="number" class="form-control bg-white" id="capacidad" name="capacidad" required>
                     </div>
                     <!-- secciones (opc) -->
                     <div id="secciones-container">
+                        <h2 class="mt-4">Seccionar</h2>
+                        <p class="lh-sm">
+                            Divida su almacen en pequenas secciones para tener un mejor control del almacenamiento interno.
+                            Este paso es opcional y siempre puede crear secciones despues
+                        </p>
+                        <hr></hr>
                         <!-- seccion -->
                         <div class="row mb-2 seccion-field">
                             <div class="col-md-6">
                                 <label for="seccion" class="form-label">Nombre de la seccion</label>
-                                <input type="text" class="form-control bg-white" id="seccion" name="seccion">
+                                <input type="text" class="form-control bg-white" id="seccion_name" name="seccion">
                             </div>
                             <div class="col-md-6">
                                 <label for="seccion_capacidad" class="form-label">Capacidad</label>
-                                <input type="text" class="form-control bg-white" id="seccion_capacidad" name="seccion_capacidad">
+                                <input type="number" class="form-control bg-white 
+                                @error('seccion_capacidad') is-invalid @enderror focus-ring input-blur" id="seccion_capacidad" name="seccion_capacidad">
                             </div>
+                            @error('seccion_capacidad')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <!-- add more secciones -->
-                    <div class="mb-3">
-                        <button type="button" class="text-primary fw-medium border-0 bg-transparent" onclick="addSeccion()">
+                    <div class="d-flex mb-3">
+                        <button type="button" class="text-primary fw-medium border-0 bg-transparent d-flex flex-grow-1" onclick="addSeccion()">
                             Agregar otra seccion +
                         </button>
+                        <button type="button" class="btn btn-outline-danger p-0 px-2 align-items-end" onclick="removeSeccion(this)">Eliminar</button>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
@@ -124,37 +137,4 @@
     </div>
 </div>
 
-<script>
-
-    function makeUbicacion() {
-        const pais = document.getElementById('pais').value
-        const estado = document.getElementById('estado').value
-        const ciudad = document.getElementById('ciudad').value
-        const codigo_p = document.getElementById('codigo_p').value
-        const colonia = document.getElementById('colonia').value
-
-        const ubicacion = `${ciudad} ${estado}, ${pais}.  ${calle}, CP. ${codigoPostal}`.trim()
-        document.getElementById('ubicacion').value = ubicacion
-    }
-
-    document.getElementById('pais').addEventListener('input', actualizarDireccionCompleta)
-    document.getElementById('estado').addEventListener('input', actualizarDireccionCompleta)
-    document.getElementById('ciudad').addEventListener('input', actualizarDireccionCompleta)
-    document.getElementById('codigo_postal').addEventListener('input', actualizarDireccionCompleta)
-    document.getElementById('calle').addEventListener('input', actualizarDireccionCompleta)
-
-    function updateFileName(input) {
-        const fileText = document.querySelector('.file-text');
-        if (input.files && input.files[0]) {
-            fileText.innerHTML = input.files[0].name + ". ";
-            const link = document.createElement("a");
-            link.className = "text-primary fw-bold link-underline link-underline-opacity-0";
-            link.href = "#";
-            link.textContent = "Cambiar imagen";
-            link.onclick = (e) => { e.preventDefault(); input.click(); };
-            fileText.appendChild(link);
-        }
-    }
-
-</script>
 @endsection

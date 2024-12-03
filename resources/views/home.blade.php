@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="col px-5">
     
     <!-- header de la seccion -->
@@ -40,6 +41,8 @@
 
     <!-- almacenes & productos -->
     <div class="d-flex justify-content-center gap-3 w-100">
+
+        <!-- almacenes -->
         <div class="col-4 p-0">
             <div class="card shadow-sm bg-white border-0 p-4">
 
@@ -51,7 +54,7 @@
                 </div>
 
                 <div class="d-flex mt-2 flex-column">
-                    @foreach ($almacenes->take(3) as $almacen)
+                    @foreach ($almacenes->sortByDesc('created_at')->take(3) as $almacen)
                         <button class="d-flex border-0 rounded bg-transparent px-0 py-2 gap-3 align-items-center justify-content-between">
                             <div class="d-flex">
                                 <img src="{{ asset($almacen->img ?? 'storage/img/almacen.png') }}" alt="almacen"
@@ -83,72 +86,10 @@
                 </div>
             </div>
         </div>
-        <div class="col p-0">
-            <div class="card shadow-sm bg-white border-0 p-4 h-100">
 
-                <div class="d-flex align-items-center gap-4">
-                    <div class="fs-5 fw-semibold m-0">Productos</div>
-                    <div class="btn-group" role="group">
-                        <input type="radio" class="btn-check" name="productos" id="masVendidos" autocomplete="off" checked>
-                        <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="masVendidos">MAS VENDIDOS</label>
-
-                        <input type="radio" class="btn-check" name="productos" id="menosVendidos" autocomplete="off">
-                        <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="menosVendidos">MENOS VENDIDOS</label>
-
-                        <input type="radio" class="btn-check" name="productos" id="nivelBajoStock" autocomplete="off">
-                        <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="nivelBajoStock">NIVEL BAJO DE STOCK</label>
-
-                        <input type="radio" class="btn-check" name="productos" id="nivelAltoStock" autocomplete="off">
-                        <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="nivelAltoStock">NIVEL ALTO DE STOCK</label>
-                    </div>
-                </div>
-
-                <div id="productCarousel" class="carousel slide mt-4" data-bs-ride="carousel" style="background-color: white">
-
-                    <div class="carousel-indicators">
-                        @foreach ($productos->chunk(5) as $index => $chunk)
-                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $index }}" 
-                                    class="{{ $index === 0 ? 'active' : '' }}" 
-                                    aria-current="{{ $index === 0 ? 'true' : '' }}" 
-                                    aria-label="Slide {{ $index + 1 }}"></button>
-                        @endforeach
-                    </div>
-                    
-                
-                    <div class="carousel-inner">
-                        @foreach ($productos->chunk(6) as $index => $chunk)
-                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                <div class="row g-3">
-                                    @foreach ($chunk as $producto)
-                                        <div class="col-6 col-md-4 col-lg-2">
-                                            <div class="card bg-transparent">
-                                                <img src="{{ asset($producto->img ?? 'storage/img/producto.jpeg') }}" 
-                                                    class="card-img-top" 
-                                                    alt="{{ $producto->nombre }}">
-                                                <div class="card-body text-truncate py-0 text-center">
-                                                    <h5 class="fs-6">{{ $producto->nombre }}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                
-                    <!-- Controles de navegación -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
-                    </button>
-                </div>
-                
-            </div>
-        </div>
+        <!-- productos -->
+        @livewire('homeProductos-component')
+        
     </div>
 </div>
 

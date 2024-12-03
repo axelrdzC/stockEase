@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Almacen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use OwenIt\Auditing\Contracts\Auditable;
 
 class AlmacenController extends Controller {
+    
+    use \OwenIt\Auditing\Auditable;
 
     # bloquear edicion / creacion / eliminacion para empleados normales
     public function __construct() {
@@ -75,6 +78,7 @@ class AlmacenController extends Controller {
             'ciudad' => 'required',
             'colonia' => 'required',
             'codigo_p' => 'required',
+            'capacidad' => 'required',
             'img'=>'nullable|image'
         ]);
 
@@ -85,8 +89,8 @@ class AlmacenController extends Controller {
             }
 
             $nombre = $almacen->id.'.'.$request->file('img')->getClientOriginalExtension();
-            $img = $request->file('img')->storeAs('img/proveedores', $nombre, 'public');
-            $almacen->img = '/storage/img/proveedores/'.$nombre;
+            $img = $request->file('img')->storeAs('img/almacenes', $nombre, 'public');
+            $almacen->img = '/storage/img/almacenes/'.$nombre;
 
         }
 

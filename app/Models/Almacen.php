@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Almacen extends Model
+class Almacen extends Model implements Auditable
 {
-    use HasFactory;
+    use HasFactory, \OwenIt\Auditing\Auditable;
 
     protected $table = 'almacenes';
 
