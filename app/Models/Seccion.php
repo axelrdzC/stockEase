@@ -6,25 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class Almacen extends Model implements Auditable
+class Seccion extends Model implements Auditable
 {
     use HasFactory, \OwenIt\Auditing\Auditable;
 
-    protected $table = 'almacenes';
+    protected $table = 'secciones';
 
     protected $fillable = [
         'nombre',
-        'pais',
-        'estado',
-        'ciudad',
-        'colonia',
-        'codigo_p',
         'capacidad',
-        'img',
+        'almacen_id'
     ];
-    
-    public function secciones()
+
+    public function almacen()
     {
-        return $this->hasMany(Seccion::class, 'almacen_id');
+        return $this->belongsTo(Almacen::class, 'almacen_id');
+    }
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class, 'seccion_id');
     }
 }

@@ -10,7 +10,7 @@
             @csrf @method('PATCH')
                 <div class="text-center position-relative mb-5">
                     <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" 
-                    class="rounded-circle profile-img" style="width: 180px; height: 180px;">
+                    class="rounded-circle profile-img" style="width: 180px; height: 180px; object-fit: cover;">
                     <label for="img" style="width: 180px" class="change-image-label position-absolute top-50 start-50 translate-middle h-100 d-flex align-items-center justify-content-center text-white fw-medium">
                         Cambiar
                         <input type="file" id="img" name="img" class="d-none" value="{{ $user->img }}" accept="image/*">

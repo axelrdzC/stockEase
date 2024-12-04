@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeccionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ProductoController;
@@ -51,6 +52,9 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{almacen}', [AlmacenController::class, 'destroy'])->name('almacenes.destroy');
             Route::get('/{almacen}', [AlmacenController::class, 'show'])->name('almacenes.show');
         });
+
+        # secciones maybe
+        Route::get('secciones/{seccion}', [SeccionController::class, 'show'])->name('secciones.show');
 
         # vistas categorias
         Route::group(['prefix' => '/categoria'], function() {

@@ -48,14 +48,17 @@
                                     </a>
                                 </div>
                                 <select class="form-select bg-white" id="id_categoria" name="id_categoria" required>
+                                    <option selected disabled>Selecciona una categoria</option>
                                     @foreach ($categorias as $categoria)
-                                        <option 
-                                            value="{{ $categoria->id }}" 
-                                            @isset($proveedor) 
-                                                {{ $categoria->id == $proveedor->id_categoria ? 'selected' : '' }} 
-                                            @endisset>
-                                            {{ $categoria->nombre }}
-                                        </option>
+                                        @if ($categoria->tipo == 'producto')
+                                            <option 
+                                                value="{{ $categoria->id }}" 
+                                                @isset($proveedor) 
+                                                    {{ $categoria->id == $proveedor->categoria_id ? 'selected' : '' }} 
+                                                @endisset>
+                                                {{ $categoria->nombre }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>   
                             </div>

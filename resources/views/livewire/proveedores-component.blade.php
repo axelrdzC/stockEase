@@ -26,7 +26,7 @@
                         <!-- filtro orden abc -->
                         <div class="mb-3">
                             <small class="form-label">ORDENAR POR</small>
-                            <select wire:model.live="order" class="form-select selects">
+                            <select wire:model.live="order" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
                                 <option value="asc">ALFABETICO: A-Z</option>
                                 <option value="desc">ALFABETICO: Z-A</option>
@@ -35,11 +35,15 @@
                         <!-- filtro por tipo -->
                         <div class="mb-3">
                             <small class="form-label">CATEGORÍA</small>
-                            <select wire:model.live="category" class="form-select selects">
+                            <select wire:model.live="category" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
-                                @foreach($categorias as $categoria)
-                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                @endforeach 
+                                @foreach ($categorias as $categoria)
+                                    @if ($categoria->tipo == 'persona')
+                                        <option 
+                                            value="{{ $categoria->id }}"> {{ $categoria->nombre }}
+                                        </option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                         <!-- boton reset filtros -->
