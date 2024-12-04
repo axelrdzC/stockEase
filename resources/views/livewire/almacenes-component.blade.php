@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <small class="form-label">ORDENAR POR</small>
-                            <select wire:model.live="order" class="form-select selects">
+                            <select wire:model.live="order" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
                                 <option value="asc">Alfabético: A-Z</option>
                                 <option value="desc">Alfabético: Z-A</option>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="mb-3">
                             <small class="form-label">NIVEL DE OCUPACIÓN</small>
-                            <select wire:model.live="capacidad" class="form-select selects">
+                            <select wire:model.live="capacidad" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
                                 <option value="bajo">0%-25%</option>
                                 <option value="medio">25%-50%</option>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-3">
                             <small class="form-label">UBICACIÓN</small>
-                            <select wire:model.live="pais" class="form-select selects">
+                            <select wire:model.live="pais" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
                                 @foreach($almacenes->unique('pais') as $almacen)
                                     <option value="{{ $almacen->pais }}">{{ $almacen->pais }}</option>

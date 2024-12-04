@@ -36,7 +36,8 @@
                 <!-- left side: foto y nombres -->
                 <div class="d-flex align-items-center pe-4" style="border-right: 1px solid #dee2e6; width: 45rem;">
                     <div class="text-center me-4">
-                        <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" class="rounded-circle" style="width: 120px; height: 120px;">
+                        <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" class="rounded-circle" 
+                        style="width: 120px; height: 120px; object-fit: cover;">
                     </div>
                     <div class="row ms-0">
                         <h2 class="fs-1 fw-bold m-0 p-0">{{ $user->name }}</h2>
@@ -86,7 +87,7 @@
         @can('editar clientes')
             <div class="col-2">
                 <div class="d-flex flex-column gap-2">
-                    <a type="button" onclick="" class="shadow-sm flex-grow-1 btn bg-white text-nowrap p-2 px-4 fw-medium w-100 d-flex align-items-center justify-content-start gap-3">
+                    <a class="shadow-sm flex-grow-1 btn bg-white text-nowrap p-3 px-4 fw-medium w-100 d-flex align-items-center gap-3">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22.3594 13.6209C24.1031 13.3759 25.4456 11.8809 25.4494 10.0697C25.4494 8.28466 24.1481 6.80466 22.4419 6.52466" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M24.6611 17.8129C26.3499 18.0654 27.5286 18.6566 27.5286 19.8754C27.5286 20.7141 26.9736 21.2591 26.0761 21.6016" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -99,7 +100,7 @@
                             Gestionar usuarios
                         </div>
                     </a>
-                    <a type="button" onclick="" class="shadow-sm flex-grow-1 btn bg-white text-nowrap p-2 px-4 fw-medium w-100 d-flex align-items-center justify-content-start gap-3">
+                    <a class="shadow-sm flex-grow-1 btn bg-white text-nowrap p-3 px-4 fw-medium w-100 d-flex align-items-center gap-3">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4175 3.43762H9.58125C5.805 3.43762 3.4375 6.11137 3.4375 9.89512V20.1051C3.4375 23.8889 5.79375 26.5626 9.58125 26.5626H20.4163C24.205 26.5626 26.5625 23.8889 26.5625 20.1051V9.89512C26.5625 6.11137 24.205 3.43762 20.4175 3.43762Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3614 15.0002C13.3614 16.2789 12.3252 17.3152 11.0464 17.3152C9.7677 17.3152 8.73145 16.2789 8.73145 15.0002C8.73145 13.7214 9.7677 12.6852 11.0464 12.6852H11.0502C12.3264 12.6864 13.3614 13.7227 13.3614 15.0002Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -133,7 +134,7 @@
                             $ruta = $auditableType . 's.show';
                             $prefijo = 'un';
 
-                            if (in_array($auditableType, ['proveedor', 'almacen', 'orden'])) {
+                            if (in_array($auditableType, ['proveedor', 'almacen', 'orden', 'seccion'])) {
                                 $ruta = $auditableType . 'es.show';
                             } elseif ($auditableType == 'categoria') {
                                 $prefijo = 'una';

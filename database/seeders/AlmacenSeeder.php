@@ -12,61 +12,55 @@ class AlmacenSeeder extends Seeder
      */
     public function run(): void
     {
-        Almacen::create([
-            'nombre' => 'Zona',
-            'pais' => 'Estados Unidos',
-            'estado' => 'Nuevo León',
-            'ciudad' => 'Ciudad Victoria',
-            'colonia' => 'Zona Centro, Calle Hidalgo',
-            'codigo_p' => '09876',
-            'seccion' => 'a',
-            'capacidad' => 2000,
-            'img' => null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $almacenes = [
+            [
+                'nombre' => 'Zona Norte',
+                'pais' => 'México',
+                'estado' => 'Nuevo León',
+                'ciudad' => 'Monterrey',
+                'colonia' => 'Zona Centro, Calle Hidalgo',
+                'codigo_p' => '64000',
+                'capacidad' => 2000,
+                'img' => null,
+            ],
+            [
+                'nombre' => 'Zona Sur',
+                'pais' => 'México',
+                'estado' => 'Nuevo León',
+                'ciudad' => 'Guadalupe',
+                'colonia' => 'Colonia Las Fuentes',
+                'codigo_p' => '67170',
+                'capacidad' => 1500,
+                'img' => null,
+            ],
+            [
+                'nombre' => 'Zona Este',
+                'pais' => 'México',
+                'estado' => 'Nuevo León',
+                'ciudad' => 'San Nicolás',
+                'colonia' => 'Residencial Los Robles',
+                'codigo_p' => '66400',
+                'capacidad' => 1800,
+                'img' => null,
+            ],
+            [
+                'nombre' => 'Zona Oeste',
+                'pais' => 'México',
+                'estado' => 'Nuevo León',
+                'ciudad' => 'Apodaca',
+                'colonia' => 'Valle de Huinalá',
+                'codigo_p' => '66648',
+                'capacidad' => 1700,
+                'img' => null,
+            ],
+        ];
 
-        Almacen::create([
-            'nombre' => 'Zona',
-            'pais' => 'Estados Unidos',
-            'estado' => 'Nuevo León',
-            'ciudad' => 'Ciudad Victoria',
-            'colonia' => 'Zona Centro, Calle Hidalgo',
-            'codigo_p' => '09876',
-            'seccion' => 'a',
-            'capacidad' => 2000,
-            'img' => null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        Almacen::create([
-            'nombre' => 'Zona',
-            'pais' => 'Estados Unidos',
-            'estado' => 'Nuevo León',
-            'ciudad' => 'Ciudad Victoria',
-            'colonia' => 'Zona Centro, Calle Hidalgo',
-            'codigo_p' => '09876',
-            'seccion' => 'a',
-            'capacidad' => 1500,
-            'img' => null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        Almacen::create([
-            'nombre' => 'Eusexua',
-            'pais' => 'Estados Unidos',
-            'estado' => 'Nuevo León',
-            'ciudad' => 'Ciudad Victoria',
-            'colonia' => 'Zona Centro, Calle Hidalgo',
-            'codigo_p' => '09876',
-            'seccion' => 'a',
-            'capacidad' => 1500,
-            'img' => null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        
+        foreach ($almacenes as $almacen) {
+            Almacen::create(array_merge($almacen, [
+                'img' => $almacen['img'] ?? '/storage/img/almacen.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]));
+        }
     }
 }

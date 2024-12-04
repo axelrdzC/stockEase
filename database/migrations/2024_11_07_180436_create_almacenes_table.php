@@ -19,9 +19,8 @@ return new class extends Migration
             $table->string('ciudad');
             $table->string('colonia');
             $table->string('codigo_p');
-            $table->string('seccion')->nullable();
-            $table->integer('capacidad');
-            $table->string('img')->nullable();
+            $table->integer('capacidad')->default(0);
+            $table->string('img')->nullable()->default('/storage/img/almacen.png'); 
             $table->timestamps();
         });
     }

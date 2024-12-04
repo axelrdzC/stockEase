@@ -6,9 +6,19 @@ window.ApexCharts = ApexCharts;
 document.addEventListener('DOMContentLoaded', function() {
 
     function removeSeccion(button) {
+        console.log("Intentando eliminar una sección...");
         const seccion = button.closest('.seccion-field');
         if (seccion) {
-            seccion.remove();
+            if (document.querySelectorAll('.seccion-field').length === 1) {
+                alert("Debe haber al menos una sección.");
+                return;
+            } else {
+                console.log("Sección encontrada y eliminada.");
+                seccion.remove();
+            }
+            
+        } else {
+            console.error("No se encontró el contenedor '.seccion-field'.");
         }
     }
     
@@ -84,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (ogSeccion) {
             // clonanding
             const newSeccion = ogSeccion.cloneNode(true);
+            newSeccion.classList.add('seccion-field')
 
             seccionConter++;
             const selectField = newSeccion.querySelector('#seccion_name');
