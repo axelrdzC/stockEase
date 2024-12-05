@@ -1,21 +1,21 @@
 <!-- Scrollable modal -->
 <div class="modal fade" id="verProductos">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content bg-white">
+        <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de productos</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="col">
+            <div class="modal-body px-2">
+                <div class="col d-flex flex-column gap-3">
                     @foreach ($productos as $producto)
-                        <div class="card shadow-sm bg-white border-0 m-0 mb-3">
+                        <div class="card rounded bg-white border-0 shadow-sm m-0">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="col-1 p-0">
                                     <img src="{{asset($producto->img ?? 'storage/img/producto.jpeg') }}" alt="" 
-                                    class="w-100" style="height: 6em; object-fit: cover;">
+                                    class="w-100" style="height: 4em; object-fit: cover;">
                                 </div>
-                                <div class="d-flex flex-column" style="width: 18rem;">
+                                <div class="d-flex flex-column" style="width: 17rem;">
                                     <h1 class="fs-5 fw-bold d-inline-block text-truncate pe-5">{{ $producto->nombre }}</h1>
                                     <div class="d-flex gap-2">
                                         <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria->nombre }}</small>

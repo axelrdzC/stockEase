@@ -135,7 +135,7 @@
                         <!-- unidad de medida -->
                         <div class="mb-3">
                             <label for="unidad_medida" class="form-label">Unidad de medida</label>
-                            <input type="number" class="form-control bg-white" id="unidad_medida" name="unidad_medida" 
+                            <input type="text" class="form-control bg-white" id="unidad_medida" name="unidad_medida" 
                             @isset($producto) value="{{ $producto->unidad_medida }}" @endisset required>
                         </div>
                         <!-- precio -->
@@ -169,22 +169,29 @@
                                     <select class="form-select bg-white" id="almacen_id" name="almacen_id" required>
                                         <option selected disabled>Seleccione un almacen</option>
                                         @foreach ($almacenes as $almacen)
-                                            <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
+                                            <option 
+                                                value="{{ $almacen->id }}" 
+                                                @isset($producto) 
+                                                    {{ $almacen->id == $producto->almacen_id ? 'selected' : '' }} 
+                                                @endisset>
+                                                {{ $almacen->nombre }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cantidad_producto" class="form-label">Cantidad almacenada</label>
-                                    <input type="text" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto" required>
+                                    <input type="text" class="form-control bg-white" id="cantidad_producto" name="cantidad_producto"
+                                    @isset($producto) value="{{ $producto->cantidad_producto }}" @endisset required>
                                 </div>
                             </div>
                         </div>
-                        <!-- add more ubis -->
+                        <!-- add more ubis 
                         <div class="mb-3">
                             <button type="button" class="text-primary fw-medium border-0 bg-transparent" onclick="addUbi()">
                                 Agregar otra ubicacion +
                             </button>
-                        </div>
+                        </div> -->
                         <!-- botones -->
                         <div class="d-flex justify-content-between gap-3">
                             <button type="button" class="btn btn-light flex-fill border" onclick="prevStep(3,2)">Regresar</button>

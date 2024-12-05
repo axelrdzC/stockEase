@@ -106,6 +106,7 @@
                             <div class="col-md-6">
                                 <label for="secciones[nombre][]" class="form-label">Nombre de la sección</label>
                                 <input type="text" class="form-control bg-white" name="secciones[0][nombre]" placeholder="Ej. Sección A">
+                                <button type="button" class="btn btn-outline-danger mt-3" onclick="removeSeccion(this)">Eliminar</button>
                             </div>
                             <div class="col-md-6">
                                 <label for="secciones[capacidad][]" class="form-label">Capacidad</label>
@@ -118,7 +119,6 @@
                         <button type="button" class="text-primary fw-medium border-0 bg-transparent d-flex flex-grow-1" onclick="addSeccion()">
                             Agregar otra seccion +
                         </button>
-                        <button type="button" class="btn btn-outline-danger p-0 px-2 align-items-end" onclick="removeSeccion(this)">Eliminar</button>
                     </div>
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">

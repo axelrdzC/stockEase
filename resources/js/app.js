@@ -4,23 +4,44 @@ import ApexCharts from 'apexcharts';
 window.ApexCharts = ApexCharts;
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // add un nuevo campo de seccion
+    function addSeccion() {
+        
+        const seccionesContainer = document.getElementById('secciones-container');
+    
+        const currentSections = seccionesContainer.querySelectorAll('.seccion-field');
+        const newIndex = currentSections.length;
+    
+        const newSeccion = document.createElement('div');
+        newSeccion.className = 'row mb-3 seccion-field';
+        newSeccion.innerHTML = `
+            <div class="col-md-6">
+                <label for="secciones[${newIndex}][nombre]" class="form-label">Nombre de la sección</label>
+                <input type="text" class="form-control bg-white" name="secciones[${newIndex}][nombre]" placeholder="Ej. Sección ${String.fromCharCode(65 + newIndex)}">
+                <button type="button" class="btn btn-outline-danger mt-3" onclick="removeSeccion(this)">Eliminar</button>
+            </div>
+            <div class="col-md-6">
+                <label for="secciones[${newIndex}][capacidad]" class="form-label">Capacidad</label>
+                <input type="number" class="form-control bg-white" name="secciones[${newIndex}][capacidad]" placeholder="Ej. 100">
+            </div>
+        `;
+    
+        seccionesContainer.appendChild(newSeccion);
+    }
+
+    window.addSeccion = addSeccion;
 
     function removeSeccion(button) {
-        console.log("Intentando eliminar una sección...");
-        const seccion = button.closest('.seccion-field');
-        if (seccion) {
-            if (document.querySelectorAll('.seccion-field').length === 1) {
-                alert("Debe haber al menos una sección.");
-                return;
-            } else {
-                console.log("Sección encontrada y eliminada.");
-                seccion.remove();
-            }
-            
+
+        const seccionField = button.closest('.seccion-field'); 
+        if (seccionField) {
+            seccionField.remove();
         } else {
-            console.error("No se encontró el contenedor '.seccion-field'.");
+            console.error('No se encontró la sección a eliminar.');
         }
     }
+    
     
     window.removeSeccion = removeSeccion;
 
@@ -82,39 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addUbi = addUbi;
-    
-    
-    // add un nuevo campo de seccion
-    let seccionConter = 1;
-    function addSeccion() {
-        // contenedor
-        const container = document.getElementById('secciones-container');
-        const ogSeccion = container.querySelector('.seccion-field');
-        
-        if (ogSeccion) {
-            // clonanding
-            const newSeccion = ogSeccion.cloneNode(true);
-            newSeccion.classList.add('seccion-field')
-
-            seccionConter++;
-            const selectField = newSeccion.querySelector('#seccion_name');
-            const inputField = newSeccion.querySelector('#seccion_capacidad');
-
-            // Actualizar los atributos para que sean únicos
-            selectField.id = `seccion_name_${seccionConter}`;
-            selectField.name = `seccion_name_${seccionConter}`;
-            inputField.id = `seccion_capacidad_${seccionConter}`;
-            inputField.name = `seccion_capacidad_${seccionConter}`;
-
-            // Limpiar valores de los campos para el nuevo conjunto
-            selectField.value = '';
-            inputField.value = '';
-
-            container.appendChild(newSeccion);
-        }
-    }
-
-    window.addSeccion = addSeccion;
 
 });
 
