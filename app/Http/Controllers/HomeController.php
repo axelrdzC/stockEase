@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Almacen;
+use App\Models\Producto;
 
 class HomeController extends Controller
 {
@@ -35,7 +37,14 @@ class HomeController extends Controller
         for ($i = 1; $i <= 12; $i++) {
             $stockMensual[] = $datos[$i] ?? 0; // Si no hay datos, colocar 0
         }
-        return view('home', compact('stockMensual'));
+
+        $almacenes = Almacen::all()->map(function ($almacen) {
+            $productos = Producto::where('almacen_id', $almacen->id)->get();
+            $almacen->porcentaje = $productos->sum('cantidad_producto') / $almacen->capacidad * 100;
+            return $almacen;
+        });
+
+        return view('home', compact('stockMensual', 'almacenes'));
     }
 
 }

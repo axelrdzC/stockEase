@@ -38,7 +38,7 @@
                             <select wire:model.live="category" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
                                 @foreach ($categorias as $categoria)
-                                    @if ($categoria->tipo == 'persona')
+                                    @if ($categoria->tipo == 'producto')
                                         <option 
                                             value="{{ $categoria->id }}"> {{ $categoria->nombre }}
                                         </option>

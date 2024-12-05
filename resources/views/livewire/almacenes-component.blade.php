@@ -80,7 +80,15 @@
                                         
                                         <!-- opciones SOLO ADMINS -->
                                         @can('editar almacenes')
+                                            <div class="d-flex justify-content mt-2">
+                                                <div class="progress w-100" role="progressbar" aria-valuenow="{{ $almacen->porcentaje }}" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar" style="width: {{ $almacen->porcentaje }}%"></div>
+                                                </div>
+                                            </div>
                                             <div class="d-flex justify-content-end mt-2">
+                                                <div class="p-2">
+                                                    <p class="fw-medium fs-5 m-0">{{ round($almacen->porcentaje, 2) }}%</p>
+                                                </div>
                                                 <a class="p-2" href="#" data-bs-toggle="modal" data-bs-target="#editar-{{ $almacen->id }}">
                                                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11.9562 17.5358H18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
