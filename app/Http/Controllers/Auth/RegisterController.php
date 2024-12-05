@@ -47,13 +47,33 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+{
+    return Validator::make($data, [
+        'name' => ['required', 'string', 'regex:/^[\pL\s]+$/u', 'min:3', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => [
+            'required',
+            'string',
+            'min:8',
+            'max:20',
+            'confirmed',
+            'regex:/^(?=.*[A-Za-z])(?=.*\d).+$/',
+        ],
+    ], [
+        // Mensajes personalizados
+        'name.required' => 'El nombre es obligatorio.',
+        'name.regex' => 'El nombre solo puede contener letras y espacios.',
+        'email.required' => 'El correo electrónico es obligatorio.',
+        'email.email' => 'Debes ingresar un correo electrónico válido.',
+        'email.unique' => 'El correo electrónico ya está registrado.',
+        'password.required' => 'La contraseña es obligatoria.',
+        'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+        'password.regex' => 'La contraseña debe contener al menos una letra y un número.',
+        'password.confirmed' => 'Las contraseñas no coinciden.',
+    ]);
+}
+
+
 
     /**
      * Create a new user instance after a valid registration.
