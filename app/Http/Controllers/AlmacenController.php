@@ -127,10 +127,10 @@ class AlmacenController extends Controller
 
     public function destroy(Almacen $almacen)
     {
-        // Eliminar secciones asociadas
+        # delete asociated secciones
         $almacen->secciones()->delete();
 
-        // Eliminar imagen si no es la predeterminada
+        # eliminar img del storage si es personalizade
         if ($almacen->img && $almacen->img !== '/storage/img/almacen.png') {
             Storage::disk('public')->delete(str_replace('/storage/', '', $almacen->img));
         }
@@ -144,8 +144,25 @@ class AlmacenController extends Controller
         $productos = Producto::where('almacen_id', $almacen->id)->get();
         $secciones = $almacen->secciones; 
 
-        $data = $secciones->pluck('capacidad')->toArray();
-        $categories = $secciones->pluck('nombre')->toArray();
+        # para productos asignado a alguna seccion get nombres y espacio ocupado por todos sus productos
+        $seccionados = $secciones->map(function ($seccion) {
+            return [
+                'nombre' => $seccion->nombre,
+                'capacidad' => $seccion->productos->sum('cantidad_producto'),
+            ];
+        });
+
+        # para productos sin seccion get productos, sumar su cantidad para obtener la capacidad
+        $noSeccionados = $productos->filter(function ($producto) {
+            return $producto->seccion_id === null;
+        });
+        $capacidadNoSeccionados = $noSeccionados->sum('cantidad_producto');
+
+        $capacidad = $seccionados->pluck('capacidad')->toArray();
+        $nombreSeccion = $seccionados->pluck('nombre')->toArray();
+
+        $capacidadTotalUsada = array_sum($capacidad) + $capacidadNoSeccionados;
+        $pCapacidad = round(($capacidadTotalUsada / $almacen->capacidad ) * 100, 2);
 
         $log = Audit::where('auditable_id', $almacen->id)
                     ->where('auditable_type', Almacen::class)
@@ -154,7 +171,8 @@ class AlmacenController extends Controller
                     ->first();
         $theCreador = $log ? User::find($log->user_id) : null;
 
-        return view('almacenes.show', compact('almacen', 'theCreador', 'data', 'categories', 'secciones', 'productos'));
+        return view('almacenes.show', compact('almacen', 'theCreador', 
+        'capacidad', 'nombreSeccion', 'secciones', 'productos', 'capacidadNoSeccionados', 'pCapacidad'));
 
     }
 }
