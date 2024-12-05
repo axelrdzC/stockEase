@@ -77,7 +77,7 @@ class AlmacenController extends Controller
     }
 
     public function update(Request $request, Almacen $almacen)
-    {
+    { 
         $request->validate([
             'nombre' => 'required',
             'pais' => 'required',
@@ -172,7 +172,7 @@ class AlmacenController extends Controller
         $theCreador = $log ? User::find($log->user_id) : null;
 
         return view('almacenes.show', compact('almacen', 'theCreador', 
-        'capacidad', 'nombreSeccion', 'secciones', 'productos', 'capacidadNoSeccionados', 'pCapacidad'));
+        'capacidad', 'nombreSeccion', 'secciones', 'productos', 'capacidadNoSeccionados', 'pCapacidad', 'noSeccionados'));
 
     }
 }

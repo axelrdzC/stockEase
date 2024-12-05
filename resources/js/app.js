@@ -144,4 +144,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Registra la función en window
+    window.redirectToSlide = function(selectedIndex, updatedLabels, carouselId) {
+        // Verifica si el índice seleccionado es para "Productos sin sección"
+        if (updatedLabels[selectedIndex] === "Productos sin sección") {
+            // Si selecciona "Productos sin sección", muestra ese slide
+            const carousel = document.getElementById(carouselId);
+            const carouselInstance = new bootstrapBundleMin.Carousel(carousel);
+            carouselInstance.to(updatedLabels.length - 1); // Mueve al último slide (Productos sin sección)
+        } else {
+            // Si selecciona cualquier otra sección, mueve al slide correspondiente
+            const carousel = document.getElementById(carouselId);
+            const carouselInstance = new bootstrapBundleMin.Carousel(carousel);
+            carouselInstance.to(selectedIndex); // Mueve al slide correspondiente al índice
+        }
+    };
+    
+
 });

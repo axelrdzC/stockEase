@@ -1,46 +1,69 @@
-<div class="d-flex flex-column gap-3 fw-bold fs-4 mb-4 w-100">
-    Administrar espacios
-    <div id="secciones-carousel" class="carousel slide" data-bs-ride="carousel">
+<div class="col gap-3 mb-4 w-100">
+    <div class="fw-bold fs-4 mb-3">
+        Administrar espacios
+    </div>
+    <div id="secciones-carousel" class="carousel slide">
         <div class="carousel-inner">
-            @foreach ($secciones as $index => $seccion)
-            <div class="border border-primary rounded p-4 carousel-item {{ $index === 0 ? 'active' : '' }}">
-                <div>
-                    <div>{{ $seccion->nombre }}</div>
-                    <small class="fw-normal fs-6">Capacidad: {{ $seccion->capacidad }}</small>
-                    <div class="d-flex w-50 gap-3 align-items-center pe-2">
-                        <p class="fw-medium fs-6 m-0">25%</p>
-                        <div class="progress w-100" role="progressbar">
-                            <div class="progress-bar" style="width: 25%"></div>
+            @if (count($secciones) > 0)
+                @foreach ($secciones as $index => $seccion)
+                    <div class="border border-primary rounded p-4 carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <div>
+                            <div class="fw-bold fs-4">{{ $seccion->nombre }}</div>
+                            <small class="fw-normal fs-6">Capacidad: {{ $seccion->capacidad }}</small>
+                            <div class="d-flex w-50 gap-3 align-items-center pe-2">
+                                <!-- Aquí agregamos el progreso dinámico -->
+                                <p class="fw-medium fs-6 m-0">{{ number_format(($seccion->productos_actuales / $seccion->capacidad) * 100, 2) }}%</p>
+                                <div class="progress w-100" role="progressbar">
+                                    <div class="progress-bar" style="width: {{ ($seccion->productos_actuales / $seccion->capacidad) * 100 }}%"></div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <div class="fw-normal fs-6">Últimos productos:</div>
+                            </div>
+                            <div><button class="btn btn-outline-primary">Ver más</button></div>
                         </div>
                     </div>
-                    <hr>
-                    <div>
-                        <div class="fw-normal fs-6">Últimos productos:</div>
-                    </div>
-                    <div><button class="btn btn-outline-primary">Ver más</button></div>
-                </div>
-            </div>
-            @endforeach
-            <!-- Espacio para "Productos sin sección" -->
-            <div id="productos-sin-seccion" class="border border-warning rounded p-4 carousel-item">
+                @endforeach
+            @endif
+            <!-- Item "Productos sin sección" -->
+            <div id="productos-sin-seccion" class="border border-warning rounded p-4 carousel-item {{ count($secciones) === 0 ? 'active' : '' }}">
                 <div>
-                    <div>Productos sin sección</div>
+                    <div class="fw-bold fs-4 ">Productos sin sección</div>
                     <small class="fw-normal fs-6">Productos aún no asignados.</small>
                     <hr>
-                    <div id="lista-productos-sin-seccion">
-                        <!-- Los productos se insertarán dinámicamente -->
+                    <div id="lista-productos-sin-seccion" class="d-flex">
+                        <!-- Productos se insertarán dinámicamente -->
+                        
+                        @if (count($noSeccionados) > 0)
+                            @foreach ($noSeccionados->take(5) as $producto)
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <button type="button" class="card bg-transparent pt-1 w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ $producto->nombre }}">
+                                    <img src="{{ asset($producto->img ?? 'storage/img/producto.jpeg') }}" 
+                                        class="card-img-top w-100" style="height: 9em; object-fit: cover;"
+                                        alt="{{ $producto->nombre }}">
+                                    <div class="card-body w-100 py-0 text-center">
+                                        <small class="fs-6 m-1 text-truncate"> 
+                                            {{ $producto->cantidad_producto . ' unidades' }}
+                                        </small>
+                                    </div>
+                                </button>
+                            </div>
+                            @endforeach
+                        @else
+                            <p>No hay productos asignados todavía.</p>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#secciones-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#secciones-carousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#secciones-carousel" data-bs-slide="next" aria-label="Next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
     </div>
 </div>
+
+
 <div id="chart"></div>
 
 <script>
@@ -56,8 +79,6 @@
         const updatedSeries = [...data, capacidadNoSeccionados, espacioLibre];
         const updatedLabels = [...secciones, 'Productos sin sección', 'Espacio libre'];
 
-        const carousel = document.getElementById('secciones-carousel');
-
         const options = {
             chart: {
                 type: 'donut',
@@ -66,18 +87,8 @@
                 events: {
                     dataPointSelection: (event, chartContext, config) => {
                         const selectedIndex = config.dataPointIndex;
-                        const selectedCategory = updatedLabels[selectedIndex];
-
-                        if (selectedCategory === 'Productos sin sección') {
-                            // Ir al slide de "Productos sin sección"
-                            new bootstrap.Carousel(carousel).to(secciones.length);
-                            renderProductosSinSeccion();
-                        } else if (selectedCategory === 'Espacio libre') {
-                            alert('El espacio libre no está asociado a ninguna sección.');
-                        } else {
-                            // Ir al slide correspondiente a la sección
-                            new bootstrap.Carousel(carousel).to(selectedIndex);
-                        }
+                        // Llama a la función global
+                        window.redirectToSlide(selectedIndex, updatedLabels, 'secciones-carousel');
                     }
                 }
             },
@@ -89,10 +100,6 @@
 
         const chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
-
-        function renderProductosSinSeccion() {
-            const productosContainer = document.getElementById('lista-productos-sin-seccion');
-            productosContainer.innerHTML = '';
-        }
     });
 </script>
+
