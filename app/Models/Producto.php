@@ -19,9 +19,15 @@ class Producto extends Model implements Auditable
         'cantidad_producto', 
         'img',
         'almacen_id', 
+        'seccion_id', 
         'proveedor_id', 
         'categoria_id'
     ];
+
+    public function seccion()
+    {
+        return $this->belongsTo(Seccion::class, 'seccion_id');
+    }
 
     public function almacen()
     {

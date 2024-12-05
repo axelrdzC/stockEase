@@ -1,101 +1,21 @@
-<div>
-    <div class="col px-5">
-        
-        <!-- header de la seccion -->
-        @section('titulo-seccion', 'Productos')
-        @section('buscador', 'Escriba el nombre de un producto aqui')
-        @section('add-boton')
-            <!-- add producto -->
-            @can('crear productos')
-                <div class="col-2">
-                    <div class="d-flex align-items-center">
-                        <button type="button" onclick="window.location.href='{{ route('productos.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
-                            Agregar producto +
-                        </button>
-                    </div>
-                </div>
-            @endcan
-        @endsection
-        @include('components.tituloSeccion')
-
-        <!-- contenedor productos -->
-        <div class="d-flex gap-4">
-            <!-- filtros -->
-            <div class="d-flex h-100" style="width: 18rem;">
-                <div class="card border-0 bg-white shadow-sm w-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Filtros</h5>
-                        <!-- filtro orden abc -->
-                        <div class="mb-3">
-                            <small class="form-label">ORDENAR POR</small>
-                            <select wire:model.live="order" class="bg-white form-select selects">
-                                <option value="">Seleccionar</option>
-                                <option value="asc">Alfabético: A-Z</option>
-                                <option value="desc">Alfabético: Z-A</option>
-                                <option value="price_asc">Precio: Menor a Mayor</option>
-                                <option value="price_desc">Precio: Mayor a Menor</option>
-                            </select>
-                        </div>
-                        <!-- filtro por categoria -->
-                        <div class="mb-3">
-                            <small class="form-label">CATEGORIA</small>
-                            <select wire:model.live="category" class="bg-white form-select selects">
-                                <option value="">Seleccionar</option>
-                                @foreach ($categorias as $categoria)
-                                    @if ($categoria->tipo == 'producto')
-                                        <option 
-                                            value="{{ $categoria->id }}"> {{ $categoria->nombre }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        <!-- filtro por precio -->
-                        <div class="mb-3">
-                            <small class="form-label">PRECIO</small>
-                            <select wire:model.live="price" class="bg-white form-select selects">
-                                <option value="">Seleccionar</option>
-                                <option value="1">$0 - $200</option>
-                                <option value="2">$200 - $500</option>
-                                <option value="3">$500 - $1000</option>
-                                <option value="4">+$1000</option>
-                            </select>
-                        </div>
-                        <!-- filtro por Stock -->
-                        <div class="mb-3">
-                            <small class="form-label">ESTADO DE STOCK</small>
-                            <select wire:model.live="stock" class="bg-white form-select selects">
-                                <option value="">Seleccionar</option>
-                                <option value="alto">Alto</option>
-                                <option value="normal">Normal</option>
-                                <option value="bajo">Bajo</option>
-                                <option value="agotado">Agotado</option>
-                            </select>
-                        </div>
-                        <!-- boton reset filtros -->
-                        <button type="button" wire:click="resetFilters" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm mt-2">
-                            <svg width="25" height="24" class="nav-icon me-2" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.8301 16.5928H4.52942" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M13.6405 6.90042H19.9412" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.22629 6.84625C9.22629 5.5506 8.16813 4.5 6.86314 4.5C5.55816 4.5 4.5 5.5506 4.5 6.84625C4.5 8.14191 5.55816 9.19251 6.86314 9.19251C8.16813 9.19251 9.22629 8.14191 9.22629 6.84625Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 16.5538C20.5 15.2581 19.4426 14.2075 18.1376 14.2075C16.8318 14.2075 15.7737 15.2581 15.7737 16.5538C15.7737 17.8494 16.8318 18.9 18.1376 18.9C19.4426 18.9 20.5 17.8494 20.5 16.5538Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Restablecer filtros
-                        </button>
-                    </div>
-                </div>
+<!-- Scrollable modal -->
+<div class="modal fade" id="verProductos">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de productos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!-- tabla d productos -->
-            <div class="container p-0 flex-grow-1">
-                <div class="col">
+            <div class="modal-body px-2">
+                <div class="col d-flex flex-column gap-3">
                     @foreach ($productos as $producto)
-                        <div class="card shadow-sm bg-white border-0 m-0 mb-3">
+                        <div class="card rounded bg-white border-0 shadow-sm m-0">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="col-1 p-0">
                                     <img src="{{asset($producto->img ?? 'storage/img/producto.jpeg') }}" alt="" 
-                                    class="w-100" style="height: 6em; object-fit: cover;">
+                                    class="w-100" style="height: 4em; object-fit: cover;">
                                 </div>
-                                <div class="d-flex flex-column" style="width: 27rem;">
+                                <div class="d-flex flex-column" style="width: 17rem;">
                                     <h1 class="fs-5 fw-bold d-inline-block text-truncate pe-5">{{ $producto->nombre }}</h1>
                                     <div class="d-flex gap-2">
                                         <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $producto->categoria->nombre }}</small>
@@ -165,5 +85,5 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>

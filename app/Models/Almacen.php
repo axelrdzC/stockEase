@@ -20,9 +20,12 @@ class Almacen extends Model implements Auditable
         'ciudad',
         'colonia',
         'codigo_p',
-        'seccion',
         'capacidad',
-        'img'
+        'img',
     ];
     
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class, 'almacen_id');
+    }
 }

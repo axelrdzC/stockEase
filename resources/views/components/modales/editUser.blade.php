@@ -10,7 +10,7 @@
             @csrf @method('PATCH')
                 <div class="text-center position-relative mb-5">
                     <img src="{{ asset(Auth::user()->img ?? 'storage/img/persona-default.jpg') }}" alt="User Photo" 
-                    class="rounded-circle profile-img" style="width: 180px; height: 180px;">
+                    class="rounded-circle profile-img" style="width: 180px; height: 180px; object-fit: cover;">
                     <label for="img" style="width: 180px" class="change-image-label position-absolute top-50 start-50 translate-middle h-100 d-flex align-items-center justify-content-center text-white fw-medium">
                         Cambiar
                         <input type="file" id="img" name="img" class="d-none" value="{{ $user->img }}" accept="image/*">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <!-- ubicacion -->
-                <div class="float-label position-relative mb-4">
+                <div class="float-label position-relative mb-5">
                     <input type="direccion" class="form-control bg-white" id="direccion" placeholder=" " value="{{ $user->direccion }}" name="direccion" required>
                     <label for="direccion" class="form-label m-0">Ubicacion</label>
                 </div>

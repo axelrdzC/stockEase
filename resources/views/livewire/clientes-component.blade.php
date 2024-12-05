@@ -1,22 +1,24 @@
 <div>
     <div class="col px-5">
+        
         <!-- header de la seccion -->
-        @section('titulo-seccion', 'Proveedores')
-        @section('buscador', 'Escriba el nombre de un proveedor aqui')
+        @section('titulo-seccion', 'Clientes')
+        @section('buscador', 'Escriba el nombre de un cliente aqui')
         @section('add-boton')
-            <!-- add proveedor -->
-            @can('crear proveedores')
+            <!-- add cliente -->
+            @can('crear clientes')
                 <div class="col-2">
                     <div class="d-flex align-items-center">
-                        <button type="button" onclick="window.location.href='{{ route('proveedores.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
-                            Agregar proveedor +
+                        <button type="button" onclick="window.location.href='{{ route('clientes.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                            Agregar cliente +
                         </button>
                     </div>
                 </div>
             @endcan
         @endsection
         @include('components.tituloSeccion')
-        <!-- contenedor Proveedores -->
+        
+        <!-- contenedor clientes -->
         <div class="d-flex gap-4">
             <!-- filtros -->
             <div class="d-flex h-100" style="width: 18rem;">
@@ -26,7 +28,7 @@
                         <!-- filtro orden abc -->
                         <div class="mb-3">
                             <small class="form-label">ORDENAR POR</small>
-                            <select wire:model.live="order" class="bg-white form-select selects">
+                            <select wire:model.live="order" class="form-select selects">
                                 <option value="">Seleccionar</option>
                                 <option value="asc">ALFABETICO: A-Z</option>
                                 <option value="desc">ALFABETICO: Z-A</option>
@@ -34,15 +36,11 @@
                         </div>
                         <!-- filtro por tipo -->
                         <div class="mb-3">
-                            <small class="form-label">CATEGORÍA</small>
-                            <select wire:model.live="category" class="bg-white form-select selects">
+                            <small class="form-label">TIPO</small>
+                            <select wire:model.live="tipo" class="form-select selects">
                                 <option value="">Seleccionar</option>
-                                @foreach ($categorias as $categoria)
-                                    @if ($categoria->tipo == 'producto')
-                                        <option 
-                                            value="{{ $categoria->id }}"> {{ $categoria->nombre }}
-                                        </option>
-                                    @endif
+                                @foreach($clientes->unique('tipo') as $cliente)
+                                    <option value="{{ $cliente->tipo }}">{{ $cliente->tipo }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -59,48 +57,54 @@
                     </div>
                 </div>
             </div>
-            <!-- tabla d proveedores -->
+            <!-- tabla d clientes -->
             <div class="container p-0 flex-grow-1">
                 <div class="col">
-                    @foreach ($proveedores as $proveedor)
+                    @foreach ($clientes as $cliente)
                         <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="col-1 p-0">
-                                    <img src="{{ asset($proveedor->img ?? 'storage/img/persona-default.jpg') }}" alt=""class="rounded-circle"
+                                    <img src="{{ asset($cliente->img ?? 'storage/img/persona-default.jpg') }}" alt=""class="rounded-circle"
                                     style="width: 80px; height: 80px; object-fit: cover;">
                                 </div>
                                 <div class="d-flex flex-column" style="width: 18rem;">
                                     <div class="d-flex flex-column">
-                                        <h1 class="fs-5 fw-bold">{{ $proveedor->nombre }}</h1>
+                                        <h1 class="fs-5 fw-bold">{{ $cliente->nombre }}</h1>
                                         <div class="d-flex gap-2">
-                                            <small class="fw-medium text-white rounded bg-primary p-1 px-2">{{ $proveedor->categoria->nombre }}</small>
+                                            <small class="fw-medium text-white rounded bg-primary p-1 px-2">
+                                                {{ $cliente->categoria ? $cliente->categoria->nombre : 'Sin categoría' }}
+                                            </small>                                        
                                             <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                                Cantidad en stock: <span class="fw-medium">{{ $proveedor->productos->sum('cantidad_producto') }}</span>
+                                                @foreach ($categorias as $categoria)
+                                                    @if ($categoria->tipo == 'persona' && $categoria->id == $cliente->tipo)
+                                                        <span class="fw-medium">{{ $categoria->nombre ? $categoria->nombre : 'Sin tipo' }}</span>
+                                                    @endif
+                                                @endforeach
                                             </small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1">
                                     <div class="col-4">
-                                        <small class="row">Correo</small>
-                                        <small class="row fs-6 fw-bold">{{ $proveedor->email }}</small>
-                                    </div>
-                                    <div class="col-4">
                                         <small class="row">Direccion</small>
                                         <small class="row fs-6 fw-bold">
                                             <span class="d-inline-block text-truncate p-0" style="max-width: 150px;">
-                                                {{ $proveedor->direccion }}
+                                                {{ $cliente->direccion }}
                                             </span>
                                         </small>
                                     </div>
                                     <div class="col-4">
                                         <small class="row">Teléfono</small>
-                                        <small class="row fs-6 fw-bold">{{ $proveedor->telefono }}</small>
+                                        <small class="row fs-6 fw-bold">{{ $cliente->telefono }}</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <small class="row">Correo</small>
+                                        <small class="row fs-6 fw-bold">{{ $cliente->email }}</small>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <!-- ver mas opcs solo si tiene permisos si no solo show -->
-                                    @can('editar proveedores')
+                                    <!-- ver mas opcs si y solo si puede editar clientes si no solo habilitar show -->
+                                    @can('editar clientes')
                                         <div class="dropdown">
                                             <button type="button" class="btn rounded-3 border-2 btn-outline-secondary p-0" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="svgs">
@@ -111,31 +115,30 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="#">Ver</a></li>
-                                                <li><a class="dropdown-item" href="{{ route('proveedores.edit', $proveedor) }}">Editar</a></li>
-                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $proveedor->id }}">Eliminar</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('clientes.edit', $cliente) }}">Editar</a></li>
+                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $cliente->id }}">Eliminar</a></li>
                                             </ul>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="eliminar-{{ $proveedor->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <form action="{{ route('proveedores.destroy', $proveedor) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="deleteModalLabel">Eliminar Proveedor</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>¿Está seguro de que desea eliminar el proveedor <strong>{{ $proveedor->nombre }}</strong>?</p>
-                                                                <p>Esto también eliminará <strong>{{ $proveedor->productos->count() }}</strong> productos asociados.</p>
-                                                                <p>&emsp;Con una cantidad de <strong>{{ $proveedor->productos->sum('cantidad_producto') }}</strong> unidades.</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                            <!-- el modal aka mensajito de confirmacion -->
+                                            <div class="modal fade" id="eliminar-{{ $cliente->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirme su accion</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="">Esta seguro de querer borrar el siguiente cliente: </p>
+                                                        <p class="m-0"> Nombre: {{ $cliente->nombre }} </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <form action="{{ route('clientes.destroy', $cliente) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-primary">Eliminar cliente</button>
+                                                        </form>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
