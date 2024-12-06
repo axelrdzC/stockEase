@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <!-- ubicacion -->
-                <div class="float-label position-relative mb-4">
+                <div class="float-label position-relative mb-5">
                     <input type="direccion" class="form-control bg-white" id="direccion" placeholder=" " value="{{ $user->direccion }}" name="direccion" required>
                     <label for="direccion" class="form-label m-0">Ubicacion</label>
                 </div>

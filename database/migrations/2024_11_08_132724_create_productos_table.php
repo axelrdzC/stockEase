@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('SKU')->unique();
             $table->decimal('precio', 8, 2);
             $table->integer('cantidad_producto');
-            $table->double('unidad_medida');
+            $table->string('unidad_medida');
             $table->string('img')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('almacen_id');

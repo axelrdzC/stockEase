@@ -25,7 +25,7 @@
                             <label class="btn btn-primary text-nowrap p-1 px-2 me-1 fw-medium" for="always">DESDE EL PRINCIPIO</label>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-0 mt-3">
                     <!-- mostrar grafica si ya hay para (TODO) -->
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
