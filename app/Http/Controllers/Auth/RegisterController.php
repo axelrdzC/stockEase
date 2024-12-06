@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'regex:/^(?=.*[A-Za-z])(?=.*\d).+$/',
         ],
     ], [
-        // Mensajes personalizados
+        
         'name.required' => 'El nombre es obligatorio.',
         'name.regex' => 'El nombre solo puede contener letras y espacios.',
         'email.required' => 'El correo electrónico es obligatorio.',
