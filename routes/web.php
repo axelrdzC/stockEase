@@ -54,7 +54,14 @@ Route::middleware('auth')->group(function () {
         });
 
         # secciones maybe
-        Route::get('secciones/{seccion}', [SeccionController::class, 'show'])->name('secciones.show');
+        Route::group(['prefix' => '/secciones'], function() {
+            Route::get('/', [SeccionController::class, 'index'])->name('secciones.index');
+            Route::get('/{seccion}', [SeccionController::class, 'show'])->name('secciones.show');
+            Route::get('/{seccion}/edit', [SeccionController::class, 'edit'])->name('secciones.edit');
+            Route::patch('/{seccion}', [SeccionController::class, 'update'])->name('secciones.update');
+            Route::post('/', [SeccionController::class, 'store'])->name('secciones.store');
+        });
+        
 
         # vistas categorias
         Route::group(['prefix' => '/categoria'], function() {
