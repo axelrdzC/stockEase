@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $datos = DB::table('productos')
+        $datosMensuales = DB::table('productos')
         ->selectRaw('MONTH(created_at) as mes, SUM(cantidad_producto) as total_stock')
         ->groupBy('mes')
         ->pluck('total_stock', 'mes')
@@ -35,7 +35,23 @@ class HomeController extends Controller
         // Crear un array con los valores de cada mes
         $stockMensual = [];
         for ($i = 1; $i <= 12; $i++) {
-            $stockMensual[] = $datos[$i] ?? 0; // Si no hay datos, colocar 0
+            $stockMensual[] = $datosMensuales[$i] ?? 0; // Si no hay datos, colocar 0
+        }
+
+        $inicio = '2023';
+        $actual = date('Y');
+
+        $datosAnuales = DB::table('productos')
+        ->selectRaw('YEAR(created_at) as year, SUM(cantidad_producto) as total_stock')
+        ->whereYear('created_at', '>=', $inicio)
+        ->groupBy('year')
+        ->pluck('total_stock', 'year')
+        ->toArray();
+
+        $categoriaDeAnios = range($inicio, $actual);
+        $stockDesdeElPrincipio = [];
+        foreach ($categoriaDeAnios as $anios) {
+            $stockDesdeElPrincipio[] = $datosAnuales[$anios] ?? 0;
         }
 
         $almacenes = Almacen::all()->map(function ($almacen) {
@@ -44,7 +60,7 @@ class HomeController extends Controller
             return $almacen;
         });
 
-        return view('home', compact('stockMensual', 'almacenes'));
+        return view('home', compact('stockMensual', 'categoriaDeAnios', 'stockDesdeElPrincipio', 'almacenes'));
     }
 
 }

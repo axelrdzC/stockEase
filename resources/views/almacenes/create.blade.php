@@ -34,45 +34,10 @@
                         <label for="nombre" class="form-label">Nombre del almacen</label>
                         <input type="text" class="form-control bg-white" id="nombre" name="nombre" required>
                     </div>
-                    <!-- pais y estado -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="pais" class="form-label">País</label>
-                            <select class="form-select bg-white" id="pais" name="pais" required>
-                                <option selected disabled>Selecciona un país</option>
-                                <option value="México">México</option>
-                                <option value="Estados Unidos">Estados Unidos</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="estado" class="form-label">Estado</label>
-                            <select class="form-select bg-white" id="estado" name="estado" required>
-                                <option selected disabled>Selecciona un estado</option>
-                                <option value="Tamaulipas">Tamaulipas</option>
-                                <option value="Nuevo León">Nuevo León</option>
-                                <option value="Nuevo Leon">Nuevo León</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- ciudad y CP -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="ciudad" class="form-label">Ciudad</label>
-                            <select class="form-select bg-white" id="ciudad" name="ciudad" required>
-                                <option selected disabled>Selecciona una ciudad</option>
-                                <option value="Ciudad Victoria">Ciudad Victoria</option>
-                                <option value="Tampico">Tampico</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="codigo_p" class="form-label">Código Postal</label>
-                            <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" required>
-                        </div>
-                    </div>
-                    <!-- colonia / calles -->
+                    <!-- ubicacion -->
                     <div class="mb-3">
-                        <label for="colonia" class="form-label">Colonia y calle</label>
-                        <input type="text" class="form-control bg-white" id="colonia" name="colonia" required>
+                        <label for="ubicacion" class="form-label">Ubicacion</label>
+                        <input type="text" class="form-control bg-white" id="ubicacion" name="ubicacion" required>
                     </div>
                     <!-- subir img -->
                     <div class="mb-4">

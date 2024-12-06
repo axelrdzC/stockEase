@@ -14,11 +14,7 @@ return new class extends Migration
         Schema::create('almacenes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('pais');
-            $table->string('estado');
-            $table->string('ciudad');
-            $table->string('colonia');
-            $table->string('codigo_p');
+            $table->string('ubicacion');
             $table->integer('capacidad')->default(0);
             $table->string('img')->nullable()->default('/storage/img/almacen.png'); 
             $table->timestamps();

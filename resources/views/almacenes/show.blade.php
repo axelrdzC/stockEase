@@ -39,7 +39,7 @@
                 <div class="col">
                     <small class="fs-6 fw-medium"> Ubicacion </small>
                     <div class=""> 
-                        {{ $almacen->pais . ', ' . $almacen->estado. ', ' . $almacen->ciudad. '. ' . $almacen->colonia . ', CP. ' . $almacen->codigo_p}} 
+                        {{ $almacen->ubicacion }} 
                     </div>
                 </div>
                 <div class="col">

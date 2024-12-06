@@ -41,44 +41,10 @@
                             <label for="capacidad" class="form-label">Capacidad total (unidades)</label>
                             <input type="number" class="form-control bg-white" id="capacidad" name="capacidad" value="{{ $almacen->capacidad }}" required>
                         </div>
-                        <!-- pais y estado -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="pais" class="form-label">País</label>
-                                <select class="form-select bg-white" id="pais" name="pais" required>
-                                    <option selected disabled>Selecciona un país</option>
-                                    <option value="México" {{ $almacen->pais == 'México' ? 'selected' : '' }}>México</option>
-                                    <option value="Estados Unidos" {{ $almacen->pais == 'Estados Unidos' ? 'selected' : '' }}>Estados Unidos</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="estado" class="form-label">Estado</label>
-                                <select class="form-select bg-white" id="estado" name="estado" required>
-                                    <option selected disabled>Selecciona un estado</option>
-                                    <option value="Tamaulipas" {{ $almacen->estado == 'Tamaulipas' ? 'selected' : '' }}>Tamaulipas</option>
-                                    <option value="Nuevo León" {{ $almacen->estado == 'Nuevo León' ? 'selected' : '' }}>Nuevo Leon</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- ciudad y CP -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="ciudad" class="form-label">Ciudad</label>
-                                <select class="form-select bg-white" id="ciudad" name="ciudad" required>
-                                    <option selected disabled>Selecciona una ciudad</option>
-                                    <option value="Ciudad Victoria" {{ $almacen->ciudad == 'Ciudad Victoria' ? 'selected' : '' }}>Ciudad Victoria</option>
-                                    <option value="Tampico" {{ $almacen->ciudad == 'Tampico' ? 'selected' : '' }}>Tampico</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="codigo_p" class="form-label">Código Postal</label>
-                                <input type="number" class="form-control bg-white" id="codigo_p" name="codigo_p" value="{{ $almacen->codigo_p }}" required>
-                            </div>
-                        </div>
-                        <!-- colonia / calles -->
+                        <!-- ubicacion -->
                         <div class="mb-3">
-                            <label for="colonia" class="form-label">Colonia y calle</label>
-                            <input type="text" class="form-control bg-white" id="colonia" name="colonia" value="{{ $almacen->colonia }}"required>
+                            <label for="ubicacion" class="form-label">Ubicación</label>
+                            <input type="text" class="form-control bg-white" id="ubicacion" name="ubicacion" value="{{ $almacen->ubicacion }}"required>
                         </div>
                     </div>
                 </div>

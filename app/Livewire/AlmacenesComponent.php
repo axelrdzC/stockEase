@@ -41,9 +41,7 @@ class AlmacenesComponent extends Component
 
         $querito->where(function ($query) {
             $query->where('nombre', 'like', '%' . $this->search .  '%')
-            ->orWhere('estado', 'like', '%' . $this->search .  '%')
-            ->orWhere('ciudad', 'like', '%' . $this->search .  '%')
-            ->orWhere('codigo_p', 'like', '%' . $this->search .  '%');
+            ->orWhere('ubicacion', 'like', '%' . $this->search .  '%');
         });
 
         $almacenes = $querito->paginate(10);

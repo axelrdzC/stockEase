@@ -57,6 +57,10 @@
     document.addEventListener("DOMContentLoaded", function () {
         var chartContainer = document.querySelector("#chart");
 
+        const dataAnual = @json($stockMensual); 
+        const dataDesdeElPrincipio = @json($stockDesdeElPrincipio); 
+        const categoriaDeAnios = @json($categoriaDeAnios);
+
         // Limpia cualquier gráfico anterior
         if (chartContainer.innerHTML) {
             chartContainer.innerHTML = "";
@@ -71,7 +75,7 @@
             },
             series: [{
                 name: 'stock',
-                data: @json($stockMensual)
+                data: dataAnual,
             }],
             xaxis: {
                 categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
@@ -79,6 +83,34 @@
         };
         var chart = new ApexCharts(chartContainer, options);
         chart.render();
+
+        document.querySelectorAll('input[name="graphics"]').forEach((input) => {
+            input.addEventListener('change', function () {
+                if (chart) {
+                    if (this.id === 'esteAno') {
+                        chart.updateOptions({
+                            series: [{
+                                name: 'Stock',
+                                data: dataAnual,
+                            }],
+                            xaxis: {
+                                categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                            },
+                        });
+                    } else if (this.id === 'always') {
+                        chart.updateOptions({
+                            series: [{
+                                name: 'Stock',
+                                data: dataDesdeElPrincipio,
+                            }],
+                            xaxis: {
+                                categories: categoriaDeAnios,
+                            },
+                        });
+                    }
+                }
+            });
+        });
     });
 </script>
 @endpush

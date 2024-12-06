@@ -24,6 +24,7 @@
             <div class="d-flex h-100" style="width: 18rem;">
                 <div class="card border-0 bg-white shadow-sm w-100">
                     <div class="card-body">
+                        <h5 class="card-title">Filtros</h5>
                         <div class="mb-3">
                             <small class="form-label">ORDENAR POR</small>
                             <select wire:model.live="order" class="bg-white form-select selects">
@@ -40,15 +41,6 @@
                                 <option value="medio">25%-50%</option>
                                 <option value="alto">50%-75%</option>
                                 <option value="lleno">75%-100%</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <small class="form-label">UBICACIÓN</small>
-                            <select wire:model.live="pais" class="bg-white form-select selects">
-                                <option value="">Seleccionar</option>
-                                @foreach($almacenes->unique('pais') as $almacen)
-                                    <option value="{{ $almacen->pais }}">{{ $almacen->pais }}</option>
-                                @endforeach
                             </select>
                         </div>
                         <button type="button" wire:click="resetFilters" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm mt-2">
@@ -75,20 +67,12 @@
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 10.5005C14.5 9.11924 13.3808 8 12.0005 8C10.6192 8 9.5 9.11924 9.5 10.5005C9.5 11.8808 10.6192 13 12.0005 13C13.3808 13 14.5 11.8808 14.5 10.5005Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9995 21C10.801 21 4.5 15.8984 4.5 10.5633C4.5 6.38664 7.8571 3 11.9995 3C16.1419 3 19.5 6.38664 19.5 10.5633C19.5 15.8984 13.198 21 11.9995 21Z" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
-                                            {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }}
+                                            {{ $almacen->ubicacion }}
                                         </small>
                                         
                                         <!-- opciones SOLO ADMINS -->
                                         @can('editar almacenes')
-                                            <div class="d-flex justify-content mt-2">
-                                                <div class="progress w-100" role="progressbar" aria-valuenow="{{ $almacen->porcentaje }}" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar" style="width: {{ $almacen->porcentaje }}%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-end mt-2">
-                                                <div class="p-2">
-                                                    <p class="fw-medium fs-5 m-0">{{ round($almacen->porcentaje, 2) }}%</p>
-                                                </div>
+                                            <div class="d-flex justify-content-end mt-2">                                            
                                                 <a class="p-2" href="#" data-bs-toggle="modal" data-bs-target="#editar-{{ $almacen->id }}">
                                                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11.9562 17.5358H18" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

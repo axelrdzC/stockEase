@@ -14,11 +14,7 @@ class Almacen extends Model implements Auditable
 
     protected $fillable = [
         'nombre',
-        'pais',
-        'estado',
-        'ciudad',
-        'colonia',
-        'codigo_p',
+        'ubicacion',
         'capacidad',
         'img',
     ];

@@ -36,11 +36,7 @@ class AlmacenController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'pais' => 'required|string',
-            'estado' => 'required|string',
-            'ciudad' => 'required|string',
-            'codigo_p' => 'required|integer',
-            'colonia' => 'required|string',
+            'ubicacion' => 'required|string',
             'capacidad' => 'required|integer',
             'secciones.*.nombre' => 'nullable|string|max:255',
             'secciones.*.capacidad' => 'nullable|integer|min:1',
@@ -48,7 +44,7 @@ class AlmacenController extends Controller
         
 
         $almacen = Almacen::create($request->only([
-            'nombre', 'pais', 'estado', 'ciudad', 'colonia', 'codigo_p', 'capacidad'
+            'nombre', 'ubicacion', 'capacidad'
         ]));
 
         // Guardar imagen si se proporciona
@@ -80,11 +76,7 @@ class AlmacenController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'pais' => 'required',
-            'estado' => 'required',
-            'ciudad' => 'required',
-            'colonia' => 'required',
-            'codigo_p' => 'required',
+            'ubicacion' => 'required',
             'capacidad' => 'required',
             'img' => 'nullable|image',
             'secciones' => 'nullable|array', // Validación para las secciones
@@ -94,7 +86,7 @@ class AlmacenController extends Controller
         ]);
 
         $almacen->update($request->only([
-            'nombre', 'pais', 'estado', 'ciudad', 'colonia', 'codigo_p', 'capacidad'
+            'nombre', 'ubicacion', 'capacidad'
         ]));
 
         // Actualizar imagen si se proporciona una nueva
