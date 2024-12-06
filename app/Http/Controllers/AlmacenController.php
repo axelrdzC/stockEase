@@ -152,6 +152,13 @@ class AlmacenController extends Controller
             ];
         });
 
+        $seccionadosEspacio = $secciones->map(function ($seccion) {
+            return [
+                'nombre' => $seccion->nombre,
+                'capacidad' => $seccion->capacidad,
+            ];
+        });
+
         # para productos sin seccion get productos, sumar su cantidad para obtener la capacidad
         $noSeccionados = $productos->filter(function ($producto) {
             return $producto->seccion_id === null;
@@ -159,9 +166,10 @@ class AlmacenController extends Controller
         $capacidadNoSeccionados = $noSeccionados->sum('cantidad_producto');
 
         $capacidad = $seccionados->pluck('capacidad')->toArray();
+        $apartado = $seccionadosEspacio->pluck('capacidad')->toArray();
         $nombreSeccion = $seccionados->pluck('nombre')->toArray();
 
-        $capacidadTotalUsada = array_sum($capacidad) + $capacidadNoSeccionados;
+        $capacidadTotalUsada = array_sum(array: $capacidad) + $capacidadNoSeccionados;
         $pCapacidad = round(($capacidadTotalUsada / $almacen->capacidad ) * 100, 2);
 
         $log = Audit::where('auditable_id', $almacen->id)
@@ -172,7 +180,7 @@ class AlmacenController extends Controller
         $theCreador = $log ? User::find($log->user_id) : null;
 
         return view('almacenes.show', compact('almacen', 'theCreador', 
-        'capacidad', 'nombreSeccion', 'secciones', 'productos', 'capacidadNoSeccionados', 'pCapacidad', 'noSeccionados'));
+        'capacidad', 'apartado', 'nombreSeccion', 'secciones', 'productos', 'capacidadNoSeccionados', 'pCapacidad', 'noSeccionados'));
 
     }
 }

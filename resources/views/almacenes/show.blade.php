@@ -9,7 +9,7 @@
     style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('{{ asset($almacen->img ?? 'storage/img/almacen.png') }}'); 
     height: 16em; background-size: cover; background-position: center;">
 
-        <div class="row text-center shadow-sm d-flex justify-content-center">
+        <div class="row text-center d-flex justify-content-center">
             <div class="fs-1 fw-semibold" style="color: white">{{ $almacen->nombre }}</div>
             <div style="color: white">
                 Agregado el <span class="fw-medium">

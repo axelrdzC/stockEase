@@ -160,6 +160,5 @@ document.addEventListener('DOMContentLoaded', function () {
             carouselInstance.to(selectedIndex); // Mueve al slide correspondiente al índice
         }
     };
-    
 
 });
