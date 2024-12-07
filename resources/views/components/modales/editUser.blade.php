@@ -1,5 +1,5 @@
 <!-- el modal aka formulario edit user -->
-<div class="offcanvas offcanvas-end bg-white p-3" style="width: 30em" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas offcanvas-end bg-white p-3" style="width: 30em" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="static">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasRightLabel">Modificar sus datos</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -29,10 +29,13 @@
                 <!-- telefono y correo -->
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <div class="float-label position-relative">
-                            <input type="text" class="form-control bg-white" id="telefono" placeholder=" " value="{{ $user->telefono }}" name="telefono" required>
-                            <label for="telefono" class="form-label m-0">Telefono</label>
-                        </div>
+                    <div class="float-label position-relative">
+                        <input type="text" class="form-control bg-white {{ $errors->has('telefono') ? 'is-invalid' : '' }}" id="telefono" placeholder=" " value="{{ old('telefono', $user->telefono) }}" name="telefono">
+                        <label for="telefono" class="form-label m-0">Teléfono</label>
+                        @if ($errors->has('telefono'))
+                            <span class="text-danger">{{ $errors->first('telefono') }}</span>
+                        @endif
+                    </div>
                     </div>
                     <div class="col-md-6">
                         <div class="float-label position-relative">
@@ -50,4 +53,4 @@
                 <button type="submit" class="w-100 btn btn-primary">Actualizar</button>
         </form>    
     </div>
-</div>¿
+</div>

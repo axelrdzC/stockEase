@@ -27,13 +27,26 @@ class UsuarioController extends Controller
     public function update(Request $request, User $user) {
     
         $request->validate([
-            'name' => 'required',
-            'name_completo' => 'nullable',
-            'email' => 'required',
-            'telefono' => 'nullable',
-            'direccion' => 'nullable',
-            'img' => 'nullable|image', 
+            'name' => 'required|string|max:255',
+            'name_completo' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'telefono' => 'nullable|regex:/^[0-9]{10}$/',
+            'direccion' => 'nullable|string|max:500',
+            'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no puede exceder 255 caracteres.',
+            'name_completo.max' => 'El nombre completo no puede exceder 255 caracteres.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe tener un formato válido.',
+            'email.unique' => 'Este correo electrónico ya está en uso.',
+            'telefono.regex' => 'El número de teléfono debe tener exactamente 10 dígitos.',
+            'direccion.max' => 'La dirección no puede exceder 500 caracteres.',
+            'img.image' => 'El archivo debe ser una imagen válida.',
+            'img.mimes' => 'La imagen debe ser de tipo jpg, jpeg, png o gif.',
+            'img.max' => 'La imagen no puede exceder los 2 MB.',
         ]);
+        
 
         if ($request->hasFile('img')) {
 
