@@ -4,7 +4,7 @@
       <h5 class="offcanvas-title" id="offcanvasRightLabel">Modificar sus datos</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body  d-flex align-items-center">
+    <div class="offcanvas-body d-flex align-items-center">
         <!-- formulario -->
         <form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
             @csrf @method('PATCH')

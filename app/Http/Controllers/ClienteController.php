@@ -88,7 +88,7 @@ class ClienteController extends Controller {
     }
 
     public function update(Request $request, Cliente $cliente) {
-    
+
         $request->validate([
             'nombre' => 'required|string|max:255', 
             'email' => 'required|email|max:255|unique:clientes,email,' . $cliente->id, 
