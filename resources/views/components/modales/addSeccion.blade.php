@@ -22,6 +22,11 @@
                             <input type="text" class="form-control bg-white" id="capacidad" placeholder=" " name="capacidad" required>
                             <label for="capacidad" class="form-label m-0">Capacidad</label>
                         </div>
+
+
+                        <!-- campo oculto POR SI es que hay productos seleccionados -->
+                        <input type="hidden" id="productos-seleccionados" name="productos_seleccionados" value="">
+
                         <button type="submit" class="w-100 btn btn-primary" style="height: 2.5em">Aceptar</button>
                     </div>
                 </div>

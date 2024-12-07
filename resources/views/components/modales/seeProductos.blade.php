@@ -137,7 +137,7 @@
                 </nav>
 
                 <div class="col d-flex flex-column gap-3">
-                    @foreach ($productos as $producto)
+                    @foreach ($noSeccionados as $producto)
                         <div class="card rounded bg-white border-0 shadow-sm m-0">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="form-check">

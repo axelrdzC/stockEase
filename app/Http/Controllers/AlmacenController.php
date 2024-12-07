@@ -227,7 +227,7 @@ class AlmacenController extends Controller
 
         $capacidadTotalUsada = array_sum(array: $capacidad) + $capacidadNoSeccionados;
         $pCapacidad = round(($capacidadTotalUsada / $almacen->capacidad ) * 100, 2);
-
+        
         $log = Audit::where('auditable_id', $almacen->id)
                     ->where('auditable_type', Almacen::class)
                     ->where('event', 'created')

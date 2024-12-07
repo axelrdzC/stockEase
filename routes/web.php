@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{seccion}', [SeccionController::class, 'show'])->name('secciones.show');
             Route::get('/{seccion}/edit', [SeccionController::class, 'edit'])->name('secciones.edit');
             Route::patch('/{seccion}', [SeccionController::class, 'update'])->name('secciones.update');
-            Route::post('/', [SeccionController::class, 'store'])->name('secciones.store');
+            Route::post('/{almacen}', [SeccionController::class, 'store'])->name('secciones.store');
         });
         
 

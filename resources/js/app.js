@@ -164,11 +164,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const navbarSeleccion = document.getElementById('checkboxChoices');
     const checkboxes = document.querySelectorAll('.producto-checkbox');
     const productosSeleccionados = document.getElementById('productosSeleccionados');
     const buttons = document.querySelectorAll('#destroyAll-btn, #moveSection-btn, #moveStore-btn');
     const dropdownToggle = document.getElementById('moveSectionDropdown'); // Dropdown Toggle
+
+    const productosSeleccionadosInput = document.getElementById('productos-seleccionados');
 
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
@@ -194,6 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             dropdownToggle.disabled = cantidadSeleccionados === 0; // Habilitar dropdown si hay selección
+
+            const idsSeleccionados = seleccionados.map(cb => cb.value); // Obtén los IDs de los productos seleccionados
+            productosSeleccionadosInput.value = idsSeleccionados.join(',');
         });
     });
 });
