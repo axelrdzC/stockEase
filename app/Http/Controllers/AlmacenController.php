@@ -235,8 +235,18 @@ class AlmacenController extends Controller
                     ->first();
         $theCreador = $log ? User::find($log->user_id) : null;
 
-        return view('almacenes.show', compact('almacen', 'theCreador', 
-        'capacidad', 'apartado', 'nombreSeccion', 'secciones', 'productos', 'capacidadNoSeccionados', 'pCapacidad', 'noSeccionados'));
+        return view('almacenes.show', 
+        compact(
+            'almacen', 
+            'theCreador', 
+            'capacidad', 
+            'apartado', 
+            'nombreSeccion', 
+            'secciones', 
+            'productos', 
+            'capacidadNoSeccionados', 
+            'pCapacidad', 
+            'noSeccionados'));
 
     }
 }

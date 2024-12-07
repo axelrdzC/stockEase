@@ -162,3 +162,38 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navbarSeleccion = document.getElementById('checkboxChoices');
+    const checkboxes = document.querySelectorAll('.producto-checkbox');
+    const productosSeleccionados = document.getElementById('productosSeleccionados');
+    const buttons = document.querySelectorAll('#destroyAll-btn, #moveSection-btn, #moveStore-btn');
+    const dropdownToggle = document.getElementById('moveSectionDropdown'); // Dropdown Toggle
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const seleccionados = [...checkboxes].filter(cb => cb.checked);
+            const cantidadSeleccionados = seleccionados.length;
+
+            // Mostrar u ocultar la navbar
+            if (cantidadSeleccionados > 0) {
+                navbarSeleccion.classList.remove('d-none');
+            } else {
+                navbarSeleccion.classList.add('d-none');
+            }
+
+            // Actualizar texto de productos seleccionados
+            productosSeleccionados.textContent = 
+                cantidadSeleccionados === 1 
+                ? `${cantidadSeleccionados} producto seleccionado` 
+                : `${cantidadSeleccionados} productos seleccionados`;
+
+            // Habilitar o deshabilitar los botones y el dropdown
+            buttons.forEach(button => {
+                button.disabled = cantidadSeleccionados === 0;
+            });
+
+            dropdownToggle.disabled = cantidadSeleccionados === 0; // Habilitar dropdown si hay selección
+        });
+    });
+});

@@ -2,7 +2,7 @@
     <div class="fw-bold fs-4 mb-3">
         Administrar espacios
     </div>
-    <div id="secciones-carousel" class="carousel slide">
+    <div id="secciones-carousel w-100" class="carousel slide">
         <div class="carousel slide" id="carouselSecciones" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @if (count($secciones) > 0)
@@ -42,11 +42,11 @@
                     <div>
                         <div class="d-flex align-items-center fw-bold fs-4">Productos sin sección
                         </div>
-                        <small class="fw-normal fs-6">Capacidad del almacen: {{ $almacen->capacidad }}</small>
+                        <small class="fw-normal fs-6"> {{ $capacidadNoSeccionados }} productos sin una seccion asignada</small>
                         <div class="d-flex w-75 gap-3 align-items-center pe-2">
-                            <p class="fw-medium fs-6 m-0"> %</p>
+                            <p class="fw-medium fs-6 m-0"> {{ number_format(($capacidadNoSeccionados / $almacen->capacidad) * 100, 2) }}%</p>
                             <div class="progress w-100" role="progressbar">
-                                <div class="progress-bar" style="width: 10%"></div>
+                                <div class="progress-bar" style="width: {{ ($capacidadNoSeccionados / $almacen->capacidad) * 100 }}%"></div>
                             </div>
                         </div>
                         <hr>
@@ -71,12 +71,12 @@
                             @endif
                         </div>
                         <div class="mt-3">
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editar-{{ $almacen->id }}">
-                                Editar seccion
-                            </button>
                             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#productos-{{ $almacen->id }}">
                                 Administrar productos
                             </button>
+                            
+                            @include('components.modales.seeProductos')
+
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,8 @@
         const secciones = @json($nombreSeccion);
         const capacidadNoSeccionados = @json($capacidadNoSeccionados);
 
-        const espacioLibre = capacidadTotal - apartados.reduce((sum, val) => sum + val, 0);
+        const espacioOcupadoPorSecciones = apartados.reduce((sum, val) => sum + val, 0);
+        const espacioLibre = capacidadTotal - espacioOcupadoPorSecciones - capacidadNoSeccionados;
 
         const updatedSeries = [...apartados, capacidadNoSeccionados, espacioLibre];
         const updatedLabels = [...secciones, 'Productos sin sección', 'Espacio libre'];

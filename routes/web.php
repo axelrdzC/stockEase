@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
             Route::patch('/{producto}', [ProductoController::class, 'update'])->name('productos.update');
             Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+            Route::delete('/destroyAll', [ProductoController::class, 'destroyAll'])->name('productos.destroyAll');
         });
 
         # vistas almacenes
