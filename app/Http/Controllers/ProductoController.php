@@ -90,6 +90,17 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')->with('status', 'el producto ha sido eliminado');
     }
 
+    public function destroyAll(Request $request) {
+
+        $productoIds = $request->input('productos'); // Productos seleccionados
+        // Realiza alguna acción con los productos seleccionados
+        // Ejemplo: Eliminar productos seleccionados
+        Producto::whereIn('id', $productoIds)->delete();
+
+        return redirect()->back()->with('success', 'Acción realizada con éxito.');
+
+    }
+
     public function show(Producto $producto)
     {
         return view('productos.show', compact('producto'));
