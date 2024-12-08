@@ -46,7 +46,7 @@ class ClienteController extends Controller {
             'telefono' => 'required|regex:/^[0-9]{10}$/', 
             'direccion' => 'required|string|max:500', 
             'categoria_id' => 'required|exists:categorias,id', 
-            'tipo' => 'required|in:regular,premium,vip', 
+            'tipo' => 'required',
             'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
         ], [
             
@@ -62,7 +62,6 @@ class ClienteController extends Controller {
             'categoria_id.required' => 'La categoría es obligatoria.',
             'categoria_id.exists' => 'La categoría seleccionada no existe.',
             'tipo.required' => 'El tipo de cliente es obligatorio.',
-            'tipo.in' => 'El tipo de cliente debe ser regular, premium o vip.',
             'img.image' => 'El archivo debe ser una imagen válida.',
             'img.mimes' => 'La imagen debe ser de tipo jpg, jpeg, png o gif.',
             'img.max' => 'La imagen no puede exceder los 2 MB.',
@@ -95,7 +94,7 @@ class ClienteController extends Controller {
             'telefono' => 'required|regex:/^[0-9]{10}$/', 
             'direccion' => 'required|string|max:500',
             'categoria_id' => 'required|exists:categorias,id', 
-            'tipo' => 'required|in:regular,premium,vip', 
+            'tipo' => 'required',
             'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
         ], [
             
@@ -111,7 +110,6 @@ class ClienteController extends Controller {
             'categoria_id.required' => 'La categoría es obligatoria.',
             'categoria_id.exists' => 'La categoría seleccionada no existe.',
             'tipo.required' => 'El tipo de cliente es obligatorio.',
-            'tipo.in' => 'El tipo de cliente debe ser regular, premium o vip.',
             'img.image' => 'El archivo debe ser una imagen válida.',
             'img.mimes' => 'La imagen debe ser de tipo jpg, jpeg, png o gif.',
             'img.max' => 'La imagen no puede exceder los 2 MB.',
