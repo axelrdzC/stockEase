@@ -56,10 +56,17 @@ class UsuarioController extends Controller
 
     public function show(User $user)
     {
-
+        $users = User::latest()->paginate(10); 
         $actividadReciente = Audit::where('user_id', $user->id)->latest()->take(5)->get();
-        return view('users.show', compact('user', 'actividadReciente'));
+        return view('users.show', compact('user', 'users', 'actividadReciente'));
+    }
 
+    public function destroy(User $user)
+    {
+        $authUserId = auth()->id();
+        $user->delete();
+
+        return redirect()->route('users.show', ['user' => $authUserId])->with('success', 'Usuario eliminado exitosamente');
     }
 
 }

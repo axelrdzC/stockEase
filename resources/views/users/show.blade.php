@@ -87,7 +87,7 @@
         @can('editar clientes')
             <div class="col-2">
                 <div class="d-flex flex-column gap-2">
-                    <a class="shadow-sm flex-grow-1 btn bg-white text-nowrap p-3 px-4 fw-medium w-100 d-flex align-items-center gap-3">
+                    <a class="shadow-sm flex-grow-1 btn bg-white text-nowrap p-3 px-4 fw-medium w-100 d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#userModal">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22.3594 13.6209C24.1031 13.3759 25.4456 11.8809 25.4494 10.0697C25.4494 8.28466 24.1481 6.80466 22.4419 6.52466" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M24.6611 17.8129C26.3499 18.0654 27.5286 18.6566 27.5286 19.8754C27.5286 20.7141 26.9736 21.2591 26.0761 21.6016" stroke="#53545C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -114,7 +114,7 @@
                 </div>
             </div>
         @endcan
-    
+    @include('components.modales.manageUsers', ['users' => $users])
     </div>
 
     <!-- actividad -->
