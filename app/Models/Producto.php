@@ -43,4 +43,8 @@ class Producto extends Model implements Auditable
         return $this->belongsTo(Proveedor::class, 'proveedor_id');
     }
     
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
 }

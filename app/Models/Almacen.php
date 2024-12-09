@@ -24,4 +24,9 @@ class Almacen extends Model implements Auditable
     {
         return $this->hasMany(Seccion::class, 'almacen_id');
     }
+
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
 }

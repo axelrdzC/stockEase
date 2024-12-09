@@ -9,6 +9,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\InformeController;
+use App\Http\Controllers\NotifController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('users.destroy');
 
     Route::get('/configuracion', [App\Http\Controllers\ConfigController::class, 'show'])->name('configuracion');
+    Route::get('/notificaciones', [NotifController::class, 'index'])->name('notificaciones.index');
+    Route::get('/notificaciones/{id}', [NotifController::class, 'show'])->name('notificaciones.mostrar');
 
     Route::group(['namespace' => 'App\Http\Controllers'], function() {
 
