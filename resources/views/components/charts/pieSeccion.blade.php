@@ -31,36 +31,43 @@
         
                             <div class="d-flex mb-3">
                                 @foreach ($seccion->productos->take(5) as $producto)
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <button type="button" class="card bg-transparent pt-1 w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ $producto->nombre }}">
-                                        <img src="{{ asset($producto->img ?? 'storage/img/producto.jpeg') }}" 
-                                            class="card-img-top w-100" style="height: 9em; object-fit: cover;" 
-                                            alt="{{ $producto->nombre }}">
-                                        <div class="card-body w-100 py-0 text-center">
-                                            <small class="fs-6 m-1 text-truncate">
-                                                {{ $producto->cantidad_producto . ' unidades' }}
-                                            </small>
-                                        </div>
-                                    </button>
-                                </div>
-                            @endforeach
+                                    <div class="col-6 col-md-4 col-lg-2">
+                                        <button type="button" class="card bg-transparent pt-1 w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ $producto->nombre }}">
+                                            <img src="{{ asset($producto->img ?? 'storage/img/producto.jpeg') }}" 
+                                                class="card-img-top w-100" style="height: 9em; object-fit: cover;" 
+                                                alt="{{ $producto->nombre }}">
+                                            <div class="card-body w-100 py-0 text-center">
+                                                <small class="fs-6 m-1 text-truncate">
+                                                    {{ $producto->cantidad_producto . ' unidades' }}
+                                                </small>
+                                            </div>
+                                        </button>
+                                    </div>
+                                @endforeach
                             </div>
         
                             <div>
+
                                 <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editar-{{ $seccion->id }}">
                                     Editar seccion
                                 </button>
-                                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#productos-{{ $seccion->id }}">
+                                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#productos-secc-{{ $seccion->id }}">
                                     Administrar productos
                                 </button>
-        
+
                                 @include('components.modales.editSeccion')
+                                @include('components.modales.seeProductosSeccion')
+                                @include('components.modales.addSeccion')
+                                
                             </div>
+                            
         
                         </div>
                     </div>
                 @endforeach
+
             @endif
+
             <div id="productos-sin-seccion" class="border border-warning rounded p-4 carousel-item {{ count($secciones) === 0 ? 'active' : '' }}">
                 <div>
                     <div class="d-flex align-items-center fw-bold fs-4">Productos sin sección
@@ -90,19 +97,23 @@
                                 </div>
                             @endforeach
                         @else
-                            <p>No hay productos asignados todavía.</p>
+                            <p>No hay productos sin seccion todavía.</p>
                         @endif
                     </div>
-                    <div class="mt-3">
-                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#productos-{{ $almacen->id }}">
-                            Administrar productos
-                        </button>
-                        
-                        @include('components.modales.seeProductos')
-        
-                    </div>
+                    @if (count($noSeccionados) > 0)
+                        <div class="mt-3">
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#productos-{{ $almacen->id }}">
+                                Administrar productos
+                            </button>
+                        </div>
+                    @endif
                 </div>
+                
+                @include('components.modales.seeProductos')
+                @include('components.modales.addSeccion')
+
             </div>
+            
         </div>
 
         <button class="carousel-control-next" type="button" data-bs-target="#secciones-carousel" data-bs-slide="next" aria-label="Next">

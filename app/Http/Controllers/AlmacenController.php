@@ -14,12 +14,16 @@ class AlmacenController extends Controller
 {
     use \OwenIt\Auditing\Auditable;
 
+    # dar acceso solo a los q tienen los permisos
     public function __construct()
     {
         $this->middleware('can:crear almacenes', ['only' => ['create', 'store']]);
         $this->middleware('can:editar almacenes', ['only' => ['edit', 'update']]);
         $this->middleware('can:eliminar almacenes', ['only' => ['destroy']]);
     }
+
+
+    # CRUD
 
     public function index()
     {
@@ -176,6 +180,9 @@ class AlmacenController extends Controller
 
     public function show(Almacen $almacen) {
 
+        $almacenes = Almacen::all()->filter(function ($a) use ($almacen) {
+            return $a->id !== $almacen->id;  // excluir el almacen actual
+        });
         $productos = Producto::where('almacen_id', $almacen->id)->get();
         $secciones = $almacen->secciones; 
 
@@ -225,7 +232,9 @@ class AlmacenController extends Controller
             'productos', 
             'capacidadNoSeccionados', 
             'pCapacidad', 
-            'noSeccionados'));
+            'noSeccionados',
+            'almacenes'));
 
     }
+
 }

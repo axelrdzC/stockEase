@@ -164,42 +164,79 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    const modales = document.querySelectorAll('.modal'); // Seleccionamos todos los modales
 
-    const navbarSeleccion = document.getElementById('checkboxChoices');
-    const checkboxes = document.querySelectorAll('.producto-checkbox');
-    const productosSeleccionados = document.getElementById('productosSeleccionados');
-    const buttons = document.querySelectorAll('#destroyAll-btn, #moveSection-btn, #moveStore-btn');
-    const dropdownToggle = document.getElementById('moveSectionDropdown'); // Dropdown Toggle
+    modales.forEach(modal => {
+        const navbarSeleccion = modal.querySelector('#checkboxChoices'); // Navbar dentro de cada modal
+        const checkboxes = modal.querySelectorAll('.producto-checkbox'); // Checkboxes dentro de cada modal
+        const productosSeleccionados = modal.querySelector('#productosSeleccionados');
+        const buttons = modal.querySelectorAll('#destroyAll-btn, #moveSection-btn, #moveStore-btn');
+        const dropdownToggle = modal.querySelector('#moveSectionDropdown');
+        const dropdownAlmacen = modal.querySelector('#moveAlmacenDropdown');
+        const productosSeleccionadosInputs = modal.querySelectorAll('.productos-seleccionados-input');
 
-    const productosSeleccionadosInput = document.getElementById('productos-seleccionados');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const seleccionados = [...checkboxes].filter(cb => cb.checked);
+                const cantidadSeleccionados = seleccionados.length;
 
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const seleccionados = [...checkboxes].filter(cb => cb.checked);
-            const cantidadSeleccionados = seleccionados.length;
+                // Mostrar u ocultar la navbar
+                if (cantidadSeleccionados > 0) {
+                    navbarSeleccion.classList.remove('d-none');
+                } else {
+                    navbarSeleccion.classList.add('d-none');
+                }
 
-            // Mostrar u ocultar la navbar
-            if (cantidadSeleccionados > 0) {
-                navbarSeleccion.classList.remove('d-none');
-            } else {
-                navbarSeleccion.classList.add('d-none');
-            }
+                // Actualizar texto de productos seleccionados
+                productosSeleccionados.textContent = 
+                    cantidadSeleccionados === 1 
+                    ? `${cantidadSeleccionados} producto seleccionado` 
+                    : `${cantidadSeleccionados} productos seleccionados`;
 
-            // Actualizar texto de productos seleccionados
-            productosSeleccionados.textContent = 
-                cantidadSeleccionados === 1 
-                ? `${cantidadSeleccionados} producto seleccionado` 
-                : `${cantidadSeleccionados} productos seleccionados`;
+                // Habilitar o deshabilitar los botones y el dropdown
+                buttons.forEach(button => {
+                    button.disabled = cantidadSeleccionados === 0;
+                });
 
-            // Habilitar o deshabilitar los botones y el dropdown
-            buttons.forEach(button => {
-                button.disabled = cantidadSeleccionados === 0;
+                dropdownToggle.disabled = cantidadSeleccionados === 0;
+                dropdownAlmacen.disabled = cantidadSeleccionados === 0;
+
+                // Actualizar el valor de todos los campos ocultos
+                const idsSeleccionados = seleccionados.map(cb => cb.value).join(',');
+                productosSeleccionadosInputs.forEach(input => {
+                    input.value = idsSeleccionados;
+                });
             });
-
-            dropdownToggle.disabled = cantidadSeleccionados === 0; // Habilitar dropdown si hay selección
-
-            const idsSeleccionados = seleccionados.map(cb => cb.value); // Obtén los IDs de los productos seleccionados
-            productosSeleccionadosInput.value = idsSeleccionados.join(',');
         });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const proveedorSelect = document.getElementById('proveedor_id');
+    const productosContainer = document.getElementById('productos-container');
+    const productosSelect = document.getElementById('producto_id');
+    const productosOptions = productosSelect.options;
+
+    proveedorSelect.addEventListener('change', function () {
+        const proveedorId = this.value;
+
+        if (proveedorId) {
+            // Muestra el contenedor de productos
+            productosContainer.style.display = 'block';
+
+            // Filtra los productos según el proveedor seleccionado
+            Array.from(productosOptions).forEach(option => {
+                if (option.dataset.proveedor === proveedorId) {
+                    option.style.display = 'block'; // Mostrar producto
+                } else {
+                    option.style.display = 'none'; // Ocultar producto
+                    option.selected = false; // Deseleccionar si estaba seleccionado
+                }
+            });
+        } else {
+            // Oculta el contenedor de productos si no hay proveedor seleccionado
+            productosContainer.style.display = 'none';
+            productosSelect.value = ""; // Limpia las selecciones de productos
+        }
     });
 });

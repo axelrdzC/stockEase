@@ -59,7 +59,7 @@
                         <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="d-flex flex-column" style="width: 27rem;">
-                                    <h1 class="fs-5 fw-bold">Orden: {{ $orden->numero_orden }}</h1>
+                                    <h1 class="fs-5 fw-bold">Orden: {{ $orden->id }}</h1>
                                     <div class="d-flex gap-2">
                                         <small class="fw-medium text-white rounded-xl bg-primary p-1 px-2">Estado: {{ $orden->estado }}</small>
                                         <small class="rounded-xl bg-white border border-secondary-subtle p-1 px-2">

@@ -11,16 +11,27 @@ class Orden extends Model
 
     protected $table = 'ordenes';
 
+    // App\Models\Orden.php
     protected $fillable = [
-        'numero_orden',
+        'nombre',
         'proveedor_id',
+        'producto_id',
+        'cantidad',
         'estado',
         'fecha',
-        'total',
+        'tipo'
     ];
 
     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class, 'proveedor_id');
     }
+
+    public function productos()
+    {
+        return $this->belongsToMany(Producto::class, 'orden_producto')
+                    ->withPivot('cantidad', 'subtotal')
+                    ->withTimestamps();
+    }
+
 }

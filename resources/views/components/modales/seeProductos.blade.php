@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<!-- modal scroll POR SECCION -->
+<!-- modal scroll SIN SECCION -->
 <div class="modal fade" id="productos-{{ $almacen->id }}">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content bg-white">
@@ -107,8 +107,10 @@
 
                         <form method="POST" action="{{ route('productos.destroyAll') }}" id="destroyAll">
                             @csrf
+                            @method('DELETE')
+                            <input type="hidden" class="productos-seleccionados-input" name="productos_seleccionados" value="">
                             <button type="submit" class="btn btn-outline-light" id="destroyAll-btn" disabled>Eliminar</button>
-                        </form>
+                        </form>                        
 
                         <div class="btn-group">
                             <button class="btn btn-outline-light dropdown-toggle" type="button" id="moveSectionDropdown" data-bs-toggle="dropdown" aria-expanded="false" disabled>
@@ -120,19 +122,36 @@
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#crear-{{ $almacen->id }}">Nueva sección</a>
                                 </li>
                                 <!-- Opción para sección existente -->
-                                <li>
-                                    <form method="POST" action="{{ route('productos.destroyAll') }}" id="moveToExistingSection">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item">Sección existente</button>
-                                    </form>
-                                </li>
+                                @foreach ($secciones as $seccion)
+                                    <li>
+                                        <form method="POST" action="{{ route('productos.moveToSection', $seccion) }}">
+                                            @csrf
+                                            <input type="hidden" class="productos-seleccionados-input" name="productos_seleccionados" value="">
+                                            <button type="submit" class="dropdown-item">{{ $seccion->nombre }}</button>
+                                        </form>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
 
-                        <form method="POST" action="{{ route('productos.destroyAll') }}" id="moveStore">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-light" id="moveStore-btn" disabled>Mover de almacen</button>
-                        </form>
+                        
+                        <div class="btn-group">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="moveAlmacenDropdown" data-bs-toggle="dropdown" aria-expanded="false" disabled>
+                                Mover de almacen
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="moveAlmacenDropdown">
+                                @foreach ($almacenes as $almacen)
+                                    <li>
+                                        <form method="POST" action="{{ route('productos.moveToAlmacen', $almacen) }}">
+                                            @csrf
+                                            <input type="hidden" class="productos-seleccionados-input" name="productos_seleccionados" value="">
+                                            <button type="submit" class="dropdown-item">{{ $almacen->nombre }}</button>
+                                        </form>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        
                     </div>
                 </nav>
 
@@ -181,31 +200,10 @@
                                             <li><a class="dropdown-item" href="{{ route('productos.edit', $producto) }}">Editar</a></li>
                                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminar-{{ $producto->id }}">Eliminar</a></li>
                                         </ul>
-                                            <!-- el modal aka mensajito de confirmacion -->
-                                            <div class="modal fade" id="eliminar-{{ $producto->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirme su accion</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="">Esta seguro de querer borrar el siguiente producto: </p>
-                                                        <p class="m-0"> Nombre: {{ $producto->nombre }} </p>
-                                                        <p class="m-0"> SKU: {{ $producto->SKU }} </p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <form action="{{ route('productos.destroy', $producto) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-primary">Eliminar producto</button>
-                                                        </form>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    
+                                    @include('components.modales.deleteProducto')
+                                    
                                 </div>
                             </div>
                         </div>
@@ -215,6 +213,3 @@
         </div>
     </div>
 </div>
-
-
-@include('components.modales.addSeccion')

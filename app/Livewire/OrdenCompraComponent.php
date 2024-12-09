@@ -16,7 +16,7 @@ class OrdenCompraComponent extends Component
         $querito = Orden::query();
 
         $querito->where(function ($query){
-            $query->where('numero_orden', 'like', '%'.$this->search.'%')
+            $query->where('id', 'like', '%'.$this->search.'%')
             ->orWhere('fecha', 'like', '%'.$this->search.'%')
             ->orWhere('total', 'like', '%'.$this->search.'%');
         });

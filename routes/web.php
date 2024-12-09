@@ -40,7 +40,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
             Route::patch('/{producto}', [ProductoController::class, 'update'])->name('productos.update');
             Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
-            Route::delete('/destroyAll', [ProductoController::class, 'destroyAll'])->name('productos.destroyAll');
+            Route::delete('/', [ProductoController::class, 'destroyAll'])->name('productos.destroyAll');
+            Route::post('/moveToSection/{seccion}', [ProductoController::class, 'moveToSection'])->name('productos.moveToSection');
+            Route::post('/moveToAlmacen/{almacen}', [ProductoController::class, 'moveToAlmacen'])->name('productos.moveToAlmacen');
         });
 
         # vistas almacenes
@@ -53,6 +55,7 @@ Route::middleware('auth')->group(function () {
             Route::patch('/{almacen}', [AlmacenController::class, 'update'])->name('almacenes.update');
             Route::delete('/{almacen}', [AlmacenController::class, 'destroy'])->name('almacenes.destroy');
             Route::get('/{almacen}', [AlmacenController::class, 'show'])->name('almacenes.show');
+
         });
 
         # secciones maybe

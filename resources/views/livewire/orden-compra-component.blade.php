@@ -20,26 +20,23 @@
             </div>
         </div>
         <div class="row align-items-center mb-4">
-            <div class="col-8">
+            <div class="col-6">
                 <div class="d-flex position-relative">
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         VER TODAS
                     </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         COMPLETADAS
                     </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         EN PROCESO
                     </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         CANCELADAS
-                    </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
-                        BORRADORES
                     </button>
                 </div>
             </div>
-            <div class="col-md-2 p-0">
+            <div class="col-md-2 d-flex flex-grow-1 ms-3 p-0">
                     <input class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" type="search" wire:model.live="search" placeholder="Buscar una orden" aria-label="Search">
                     <button class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-2" type="button">
                     </button>
@@ -59,7 +56,7 @@
                         <div class="card shadow-sm bg-white border-0 m-0 mb-3">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="d-flex flex-column" style="width: 27rem;">
-                                    <h1 class="fs-5 fw-bold">Orden: {{ $orden->numero_orden }}</h1>
+                                    <h1 class="fs-5 fw-bold">Orden: {{ $orden->id }}</h1>
                                     <div class="d-flex gap-2">
                                         <small class="fw-medium text-white rounded-xl bg-primary p-1 px-2">Estado: {{ $orden->estado }}</small>
                                         <small class="rounded-xl bg-white border border-secondary-subtle p-1 px-2">
