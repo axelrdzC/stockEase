@@ -39,8 +39,8 @@
                             <small class="form-label">TIPO</small>
                             <select wire:model.live="tipo" class="bg-white form-select selects">
                                 <option value="">Seleccionar</option>
-                                @foreach($clientes->unique('tipo') as $cliente)
-                                    <option value="{{ $cliente->tipo }}">{{ $cliente->tipo }}</option>
+                                @foreach($tipos as $tipo)
+                                    <option value="{{ $tipo }}">{{ $tipo }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -75,11 +75,7 @@
                                                 {{ $cliente->categoria ? $cliente->categoria->nombre : 'Sin categoría' }}
                                             </small>                                        
                                             <small class="rounded bg-white border border-secondary-subtle p-1 px-2">
-                                                @foreach ($categorias as $categoria)
-                                                    @if ($categoria->tipo == 'persona' && $categoria->id == $cliente->tipo)
-                                                        <span class="fw-medium">{{ $categoria->nombre ? $categoria->nombre : 'Sin tipo' }}</span>
-                                                    @endif
-                                                @endforeach
+                                                {{ $cliente->tipo }}
                                             </small>
                                         </div>
                                     </div>

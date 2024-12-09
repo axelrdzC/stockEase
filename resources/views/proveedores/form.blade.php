@@ -31,6 +31,7 @@
                     <form @yield('action') method="POST" class="shadow-sm bg-white p-4 rounded w-100" enctype="multipart/form-data">
                         @yield('method')
                         @csrf
+                        <input type="hidden" name="returnUrl" value="{{ request('returnUrl') }}">
                         <!-- paso no. 1 -->
                         <div id="paso_1" class="col">
                             <!-- nombre proveedor -->

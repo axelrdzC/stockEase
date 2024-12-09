@@ -33,9 +33,11 @@ class ClientesComponent extends Component
 
         $clientes = $querito->paginate(10);
 
+        $tipos = Cliente::select('tipo')->distinct()->pluck('tipo');
+
         $categorias = Categoria::all();
 
-        return view('livewire.clientes-component', compact('clientes', 'categorias'));
+        return view('livewire.clientes-component', compact('clientes', 'categorias', 'tipos'));
     }
 
     public function resetFilters(){

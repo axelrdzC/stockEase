@@ -61,6 +61,11 @@ class ProveedorController extends Controller {
         
         $proveedor->save();
 
+        $returnUrl = $request->input('returnUrl');
+        if ($returnUrl) {
+            return redirect($returnUrl)->with('success', 'Proveedor agregado exitosamente');
+        }
+
         return redirect()->route('proveedores.index')->with('success', 'proveedor agregado exitosamente');
     }
 

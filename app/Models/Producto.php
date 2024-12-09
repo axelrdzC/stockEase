@@ -50,4 +50,8 @@ class Producto extends Model implements Auditable
                     ->withTimestamps();
     }
     
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
 }

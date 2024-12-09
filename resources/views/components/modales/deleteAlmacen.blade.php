@@ -11,7 +11,7 @@
                         <img src="{{ asset('img/almacen.png') }}" alt="" class="rounded-3">
                     </div> 
                     <p class="mt-4"> Nombre: <strong> {{ $almacen->nombre }} </strong></p>
-                    <p class="m-0 text-wrap"> Ubicación: <strong> {{ $almacen->pais }} , {{ $almacen->estado }}, {{ $almacen->ciudad }}, {{ $almacen->codigo_p }}, {{ $almacen->colonia }} </strong></p>    
+                    <p class="m-0 text-wrap"> Ubicación: <strong> {{ $almacen->ubicacion }} </strong></p>    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

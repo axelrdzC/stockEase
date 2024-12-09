@@ -35,11 +35,12 @@
                                                 'admin' => 'ADMIN',
                                                 'empleado' => 'EMPLEADO'
                                             ];
+                                            $userRoles = $user->getRoleNames();
                                         @endphp
-                                        @foreach ($roles as $role => $label)
-                                            @role($role)
-                                                {{ $label }}
-                                            @endrole
+                                        @foreach ($userRoles as $userRole)
+                                            @if (array_key_exists($userRole, $roles))
+                                                {{ $roles[$userRole] }}
+                                            @endif
                                         @endforeach
                                     </td>
                                     <td>                            

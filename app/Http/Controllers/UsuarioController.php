@@ -58,8 +58,17 @@ class UsuarioController extends Controller
     {
         $users = User::latest()->paginate(10); 
         $actividadReciente = Audit::where('user_id', $user->id)->latest()->take(5)->get();
+        
+        foreach ($actividadReciente as $actividad) {
+            $actividad->changes = [
+                'old' => $actividad->old_values,
+                'new' => $actividad->new_values,
+            ];
+        }
+
         return view('users.show', compact('user', 'users', 'actividadReciente'));
     }
+
 
     public function destroy(User $user)
     {
