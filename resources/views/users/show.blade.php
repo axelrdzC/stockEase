@@ -49,11 +49,12 @@
                                     'admin' => 'ADMIN',
                                     'empleado' => 'EMPLEADO'
                                 ];
+                                $userRoles = $user->getRoleNames();
                             @endphp
-                            @foreach ($roles as $role => $label)
-                                @role($role)
-                                    {{ $label }}
-                                @endrole
+                            @foreach ($userRoles as $userRole)
+                                @if (array_key_exists($userRole, $roles))
+                                    {{ $roles[$userRole] }}
+                                @endif
                             @endforeach
                         </small>
                     </div>
@@ -123,45 +124,58 @@
             <div class="card-body p-0">
                 <h5 class="card-title">Actividad</h5>
                 <hr class="my-3 border-bottom">
-                 @foreach ($actividadReciente as $actividad)
-                
+                @foreach ($actividadReciente as $actividad)
                     <div class="col p-4 mb-2 rounded shadow-sm bg-white">
-
-                       @php
-
+                        @php
                             $auditableType = strtolower(class_basename($actividad->auditable_type));
-                            $oldValues = $actividad->old_values;
-                            $ruta = $auditableType . 's.show';
-                            $prefijo = 'un';
-
-                            if (in_array($auditableType, ['proveedor', 'almacen', 'orden', 'seccion'])) {
-                                $ruta = $auditableType . 'es.show';
-                            } elseif ($auditableType == 'categoria') {
-                                $prefijo = 'una';
-                            }
-
-                            $nombre = $actividad->auditable && !empty($actividad->auditable->nombre)
-                                      ? $actividad->auditable->nombre
-                                      : ($oldValues['nombre'] ?? 'Nombre no disponible');
-
-                            $mensaje = $user->name . ' ' . $actividad->event . ' ' . $prefijo . ' ' . $auditableType . ': ' . $nombre;
-                                                    
+                            $nombre = $actividad->auditable->nombre ?? $actividad->old_values['nombre'] ?? 'Nombre no disponible';
                         @endphp
-                    
-                        <div class="fw-bold"> 
+
+                        <div class="fw-bold">
                             {{ \Carbon\Carbon::parse($actividad->created_at)->translatedFormat('d \d\e F \d\e Y\, h:i a') }}
                         </div>
-                        <div class="d-flex align-items-center gap-3">
-
-                            {{ $mensaje }}
-        
-                            @if ($ruta != 'categorias.show' && $actividad->auditable)
-                                <a href="{{ route($ruta, $actividad->auditable_id) }}" class="btn btn-primary p-0 px-3">
-                                    Ver
-                                </a>
-                            @endif
+                        <div class="d-flex align-items-center justify-content-between gap-3">
+                            <span>
+                                {{ $user->name }} realizó {{ $actividad->event }} en {{ $auditableType }}: {{ $nombre }}
+                            </span>
+                            <button class="btn btn-primary p-0 px-3" data-bs-toggle="modal" data-bs-target="#actividadModal{{ $actividad->id }}">
+                                Ver detalles
+                            </button>
                         </div>       
                     </div>    
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="actividadModal{{ $actividad->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $actividad->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel{{ $actividad->id }}">Detalles del cambio</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Evento:</strong> {{ $actividad->event }}</p>
+                                    <p><strong>Modelo:</strong> {{ $auditableType }}</p>
+                                    <p><strong>Fecha:</strong> {{ $actividad->created_at->format('d/m/Y h:i A') }}</p>
+                                    <hr>
+                                    <h6>Cambios:</h6>
+                                    <ul>
+                                        @foreach ($actividad->changes['old'] as $key => $oldValue)
+                                            @if (array_key_exists($key, $actividad->changes['new']))
+                                                <li>
+                                                    <strong>{{ $key }}:</strong> 
+                                                    <span class="text-danger">{{ $oldValue }}</span> → 
+                                                    <span class="text-success">{{ $actividad->changes['new'][$key] }}</span>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
