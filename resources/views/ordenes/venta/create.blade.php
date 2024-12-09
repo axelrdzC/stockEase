@@ -5,14 +5,14 @@
 @section('content')
 <div class="col px-5">
     <div class="text-center">
-        <small class="text-muted fs-6">Generar Orden de Compra</small>
+        <small class="text-muted fs-6">Generar Orden de Venta</small>
         <h2 class="fw-bold">INFORMACION GENERAL</h2>
     </div>
     <div class="d-flex justify-content-center">
         <div class="row w-75 p-4">
             <div class="col-md-8 mx-auto">
                 <!-- formulario -->
-                <form method="POST" action="{{ route('ordenes.compra.store') }}" class="shadow-sm bg-white p-4 rounded">
+                <form method="POST" action="{{ route('ordenes.venta.store') }}" class="shadow-sm bg-white p-4 rounded">
                     @csrf
                     <!-- numero orden -->
                     <div class="mb-3">
@@ -22,21 +22,21 @@
 
                     <!-- proveedor -->
                     <div class="mb-3">
-                        <label for="proveedor_id" class="form-label">Proveedor</label>
-                        <select name="proveedor_id" id="proveedor_id" class="form-select bg-white" required>
-                            @foreach ($proveedores as $proveedor)
-                                <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+                        <label for="cliente_id" class="form-label">Cliente</label>
+                        <select name="cliente_id" id="cliente_id" class="form-select bg-white" required>
+                            @foreach ($clientes as $cliente)
+                                <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                             @endforeach
                         </select>
                     </div>
                     
                     <!-- Selección de producto único -->
                     <div class="row mb-4">
-                        <div class="col-md-6" id="productos-container" style="display: none;">
+                        <div class="col-md-6" id="productos-container">
                             <label for="producto_id" class="form-label">Producto</label>
                             <select name="producto_id" id="producto_id" class="form-select bg-white" required>
-                                @foreach ($productos as $producto)
-                                    <option value="{{ $producto->id }}" data-proveedor="{{ $producto->proveedor_id }}">
+                                @foreach ($productos as $producto)"
+                                    <option value="{{ $producto->id }}">
                                         {{ $producto->nombre }} - ${{ $producto->precio }}
                                     </option>
                                 @endforeach
@@ -66,7 +66,7 @@
                     
                     <!-- tipo (hidden) -->
                     <div class="mb-3">
-                        <input type="hidden" name="tipo" id="tipo" value="compra" required>
+                        <input type="hidden" name="tipo" id="tipo" value="venta" required>
                     </div>
 
                     <!-- total (hidden) -->

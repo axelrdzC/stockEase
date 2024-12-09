@@ -15,11 +15,13 @@ class Orden extends Model
     protected $fillable = [
         'nombre',
         'proveedor_id',
+        'cliente_id',
         'producto_id',
         'cantidad',
         'estado',
         'fecha',
-        'tipo'
+        'tipo',
+        'total'
     ];
 
     public function proveedor()
@@ -27,11 +29,9 @@ class Orden extends Model
         return $this->belongsTo(Proveedor::class, 'proveedor_id');
     }
 
-    public function productos()
+    public function cliente()
     {
-        return $this->belongsToMany(Producto::class, 'orden_producto')
-                    ->withPivot('cantidad', 'subtotal')
-                    ->withTimestamps();
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
 }

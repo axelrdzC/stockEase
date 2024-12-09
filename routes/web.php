@@ -116,9 +116,13 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => '/ordenes/venta'], function() {
 
             Route::get('/', [OrdenController::class, 'indexVenta'])->name('ordenes.venta.index');
+            Route::get('/create', [OrdenController::class, 'createVenta'])->name('ordenes.venta.create');
+            Route::post('/', [OrdenController::class, 'storeVenta'])->name('ordenes.venta.store');
+            Route::get('/{orden}/edit', [OrdenController::class, 'editVenta'])->name('ordenes.venta.edit');
+            Route::patch('/{orden}', [OrdenController::class, 'updateVenta'])->name('ordenes.venta.update');
+            Route::delete('/{orden}', [OrdenController::class, 'destroyVenta'])->name('ordenes.venta.destroy');
 
         });
-
 
         # rutas de informes
         Route::group(['prefix' => '/informes'], function() {

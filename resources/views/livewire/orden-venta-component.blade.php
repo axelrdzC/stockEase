@@ -20,40 +20,38 @@
             </div>
         </div>
         <div class="row align-items-center mb-4">
-            <div class="col-8">
+            <div class="col-6">
                 <div class="d-flex position-relative">
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         VER TODAS
                     </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         COMPLETADAS
                     </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         EN PROCESO
                     </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
+                    <button class="form-control fw-medium border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
                         CANCELADAS
-                    </button>
-                    <button class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm me-2">
-                        BORRADORES
                     </button>
                 </div>
             </div>
-            <div class="col-md-2 p-0">
+            <div class="col-md-2 d-flex flex-grow-1 ms-3 p-0">
                     <input class="form-control border-secondary px-4 p-2 bg-white border-0 shadow-sm" type="search" wire:model.live="search" placeholder="Buscar una orden" aria-label="Search">
                     <button class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent me-2" type="button">
                     </button>
             </div>
             <div class="col-2">
-                <button type="button" onclick="window.location.href='{{ route('ordenes.compra.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
+                <button type="button" onclick="window.location.href='{{ route('ordenes.venta.create') }}'" class="btn btn-primary text-nowrap p-2 px-4 fw-medium w-100 shadow-sm">
                     Agregar orden +
                 </button>
             </div>
         </div>
+        
         <!-- Contenedor de órdenes -->
         <div class="d-flex gap-4">
             <!-- Lista de órdenes -->
-            <div class="container p-0 flex-grow-1">
+            <div class="row p-0 flex-grow-1">
                 <div class="col">
                     @foreach ($ordenes as $orden)
                         <div class="card shadow-sm bg-white border-0 m-0 mb-3">
@@ -69,8 +67,8 @@
                                 </div>
                                 <div class="d-flex flex-grow-1">
                                     <div class="col-4">
-                                        <small class="row">Proveedor</small>
-                                        <small class="row fs-6 fw-bold">{{ $orden->proveedor->nombre }}</small>
+                                        <small class="row">Cliente</small>
+                                        <small class="row fs-6 fw-bold">{{ $orden->cliente->nombre }}</small>
                                     </div>
                                     <div class="col-4">
                                         <small class="row">Total</small>
@@ -88,9 +86,9 @@
                                             </svg>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{{ route('ordenes.edit', $orden) }}">Editar</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('ordenes.venta.edit', $orden) }}">Editar</a></li>
                                             <li>
-                                                <form action="{{ route('ordenes.destroy', $orden) }}" method="POST">
+                                                <form action="{{ route('ordenes.venta.destroy', $orden) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">Eliminar</button>

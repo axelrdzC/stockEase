@@ -17,24 +17,19 @@ return new class extends Migration
             $table->enum('estado', ['pendiente', 'completada', 'cancelada']); 
             $table->date('fecha'); 
             $table->decimal('total', 10, 2); 
+            $table->decimal('cantidad', 10, 2); 
             $table->string('tipo');
             
-            $table->unsignedBigInteger('proveedor_id');
+            $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('cascade');
             
-            $table->timestamps(); 
-        });
-
-        Schema::create('orden_producto', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('orden_id');
             $table->unsignedBigInteger('producto_id');
-            $table->integer('cantidad');
-            $table->decimal('subtotal', 10, 2);
-            $table->timestamps();
-        
-            $table->foreign('orden_id')->references('id')->on('ordenes')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
+
+            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            
+            $table->timestamps(); 
         });
         
     }
@@ -44,7 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orden_producto');
         Schema::dropIfExists('ordenes');
     }
 };
