@@ -41,31 +41,13 @@ class ClienteController extends Controller {
     public function store(Request $request)
     {   
         $request->validate([
-            'nombre' => 'required|string|max:255', 
-            'email' => 'required|email|max:255|unique:clientes,email',
-            'telefono' => 'required|regex:/^[0-9]{10}$/', 
-            'direccion' => 'required|string|max:500', 
-            'categoria_id' => 'required|exists:categorias,id', 
-            'tipo' => 'required|in:regular,premium,vip', 
-            'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
-        ], [
-            
-            'nombre.required' => 'El nombre es obligatorio.',
-            'nombre.max' => 'El nombre no puede tener más de 255 caracteres.',
-            'email.required' => 'El correo electrónico es obligatorio.',
-            'email.email' => 'El correo electrónico debe tener un formato válido.',
-            'email.unique' => 'Este correo electrónico ya está registrado.',
-            'telefono.required' => 'El número de teléfono es obligatorio.',
-            'telefono.regex' => 'El número de teléfono debe tener exactamente 10 dígitos.',
-            'direccion.required' => 'La dirección es obligatoria.',
-            'direccion.max' => 'La dirección no puede exceder los 500 caracteres.',
-            'categoria_id.required' => 'La categoría es obligatoria.',
-            'categoria_id.exists' => 'La categoría seleccionada no existe.',
-            'tipo.required' => 'El tipo de cliente es obligatorio.',
-            'tipo.in' => 'El tipo de cliente debe ser regular, premium o vip.',
-            'img.image' => 'El archivo debe ser una imagen válida.',
-            'img.mimes' => 'La imagen debe ser de tipo jpg, jpeg, png o gif.',
-            'img.max' => 'La imagen no puede exceder los 2 MB.',
+            'nombre' => 'required', 
+            'email' => 'required', 
+            'telefono' => 'required', 
+            'direccion' => 'required',
+            'categoria_id' => 'required', 
+            'tipo' => 'required', 
+            'img' => 'nullable',
         ]);
 
         $cliente = Cliente::create($request->all());
@@ -90,31 +72,13 @@ class ClienteController extends Controller {
     public function update(Request $request, Cliente $cliente) {
 
         $request->validate([
-            'nombre' => 'required|string|max:255', 
-            'email' => 'required|email|max:255|unique:clientes,email,' . $cliente->id, 
-            'telefono' => 'required|regex:/^[0-9]{10}$/', 
-            'direccion' => 'required|string|max:500',
-            'categoria_id' => 'required|exists:categorias,id', 
-            'tipo' => 'required|in:regular,premium,vip', 
-            'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
-        ], [
-            
-            'nombre.required' => 'El nombre es obligatorio.',
-            'nombre.max' => 'El nombre no puede tener más de 255 caracteres.',
-            'email.required' => 'El correo electrónico es obligatorio.',
-            'email.email' => 'El correo electrónico debe tener un formato válido.',
-            'email.unique' => 'Este correo electrónico ya está registrado.',
-            'telefono.required' => 'El número de teléfono es obligatorio.',
-            'telefono.regex' => 'El número de teléfono debe tener exactamente 10 dígitos.',
-            'direccion.required' => 'La dirección es obligatoria.',
-            'direccion.max' => 'La dirección no puede exceder los 500 caracteres.',
-            'categoria_id.required' => 'La categoría es obligatoria.',
-            'categoria_id.exists' => 'La categoría seleccionada no existe.',
-            'tipo.required' => 'El tipo de cliente es obligatorio.',
-            'tipo.in' => 'El tipo de cliente debe ser regular, premium o vip.',
-            'img.image' => 'El archivo debe ser una imagen válida.',
-            'img.mimes' => 'La imagen debe ser de tipo jpg, jpeg, png o gif.',
-            'img.max' => 'La imagen no puede exceder los 2 MB.',
+            'nombre' => 'required', 
+            'email' => 'required', 
+            'telefono' => 'required', 
+            'direccion' => 'required',
+            'categoria_id' => 'required', 
+            'tipo' => 'required', 
+            'img' => 'nullable', 
         ]);
 
         if ($request->hasFile('img')) {

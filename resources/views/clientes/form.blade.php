@@ -51,9 +51,9 @@
                                     @foreach ($categorias as $categoria)
                                         @if ($categoria->tipo == 'persona')
                                             <option 
-                                                value="{{ $categoria->id }}" 
+                                                value="{{ $categoria->nombre }}" 
                                                 @isset($cliente) 
-                                                    {{ $categoria->id == $cliente->tipo ? 'selected' : '' }} 
+                                                    {{ $categoria->nombre == $cliente->tipo ? 'selected' : '' }} 
                                                 @endisset>
                                                 {{ $categoria->nombre }}
                                             </option>
