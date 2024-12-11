@@ -24,5 +24,10 @@ class Cliente extends Model implements Auditable
     {
         return $this->belongsTo(Categoria::class, 'categoria_id');
     }
+
+    public function ordenes()
+    {
+        return $this->hasMany(Orden::class, 'cliente_id'); 
+    }
     
 }

@@ -15,11 +15,12 @@ class OrdenCompraComponent extends Component
     {
         $querito = Orden::query();
 
-        $querito->where(function ($query){
-            $query->where('id', 'like', '%'.$this->search.'%')
-            ->orWhere('fecha', 'like', '%'.$this->search.'%')
-            ->orWhere('total', 'like', '%'.$this->search.'%');
-        });
+        $querito->where('tipo', 'compra') // Filtra por tipo 'compra'
+                ->where(function ($query) {
+                    $query->where('id', 'like', '%'.$this->search.'%')
+                        ->orWhere('fecha', 'like', '%'.$this->search.'%')
+                        ->orWhere('total', 'like', '%'.$this->search.'%');
+                });
 
         $ordenes = $querito->paginate(10);
 

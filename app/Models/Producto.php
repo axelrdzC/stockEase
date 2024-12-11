@@ -42,13 +42,6 @@ class Producto extends Model implements Auditable
     public function proveedor() {
         return $this->belongsTo(Proveedor::class, 'proveedor_id');
     }
-
-    public function productos()
-    {
-        return $this->belongsToMany(Producto::class, 'orden_producto')
-                    ->withPivot('cantidad', 'subtotal')
-                    ->withTimestamps();
-    }
     
     public function inventarios()
     {

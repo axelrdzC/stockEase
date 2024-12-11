@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Orden;
 use App\Models\Producto;
 use App\Models\Proveedor;
@@ -27,8 +28,6 @@ class OrdenController extends Controller
 
     public function storeCompra(Request $request)
     {
-        
-        // Validar los datos
         $validated = $request->validate([
             'nombre' => 'nullable|string|max:255',
             'proveedor_id' => 'required|exists:proveedores,id',
@@ -38,28 +37,24 @@ class OrdenController extends Controller
             'fecha' => 'required|date',
             'tipo' => 'required'
         ]);
-
-        // Obtener el producto y calcular el subtotal
+    
+        // Obtén el producto relacionado
         $producto = Producto::findOrFail($validated['producto_id']);
-        $subtotal = $producto->precio * $validated['cantidad'];
-
-        // Crear la orden
-        $orden = Orden::create([
-            'nombre' => $validated['nombre'] ?? null,
-            'proveedor_id' => $validated['proveedor_id'],
-            'estado' => $validated['estado'],
-            'fecha' => $validated['fecha'],
-            'total' => $subtotal,
-        ]);
-
-        // Asociar el producto a la orden
-        $orden->productos()->attach($producto->id, [
-            'cantidad' => $validated['cantidad'],
-            'subtotal' => $subtotal,
-        ]);
-
+    
+        // Calcula el total
+        $precio = $producto->precio;
+        $total = $validated['cantidad'] * $precio;
+        $validated['total'] = $total;
+    
+        // Incrementa la cantidad del producto
+        $producto->cantidad_producto += $validated['cantidad'];
+        $producto->save(); // Guarda los cambios
+    
+        // Crea la orden
+        Orden::create($validated);
+    
         return redirect()->route('ordenes.compra.index')->with('success', 'Orden agregada exitosamente');
-    }
+    }    
 
     public function editCompra(Orden $orden) { return view('ordenes.compra.edit', ['orden' => $orden]); }
 
@@ -89,5 +84,45 @@ class OrdenController extends Controller
         $ordenes = Orden::latest()->paginate(10); 
         return view('ordenes.venta.index', compact('ordenes'));
     }
+
+    public function createVenta() { 
+
+        $productos = Producto::all();
+        $clientes = Cliente::all();
+
+        return view('ordenes.venta.create', compact('productos', 'clientes')); 
+    }
+
+    public function storeVenta(Request $request)
+    { 
+        $validated = $request->validate([
+            'nombre' => 'nullable|string|max:255',
+            'cliente_id' => 'required|exists:clientes,id',
+            'producto_id' => 'required|exists:productos,id',
+            'cantidad' => 'required|integer|min:1',
+            'estado' => 'required|in:pendiente,completada,cancelada',
+            'fecha' => 'required|date',
+            'tipo' => 'required|in:venta',
+        ]);
+
+        $producto = Producto::findOrFail($validated['producto_id']);
+
+        if ($producto->cantidad_producto < $validated['cantidad']) {
+            return redirect()->route('ordenes.venta.index')
+                ->with('error', 'No hay suficiente inventario para completar la venta');
+        }
+
+        $precio = $producto->precio;
+        $total = $validated['cantidad'] * $precio;
+        $validated['total'] = $total;
+
+        $producto->cantidad_producto -= $validated['cantidad'];
+        $producto->save();
+
+        Orden::create($validated);
+
+        return redirect()->route('ordenes.venta.index')->with('success', 'Orden de venta agregada exitosamente');
+    }
+
 
 }
