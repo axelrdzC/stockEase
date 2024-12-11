@@ -40,7 +40,7 @@ class AlmacenController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255|unique:almacenes', 
-            'ubicacion' => 'required|string|regex:/^[\pL\s0-9]+$/u|max:255', 
+            'ubicacion' => 'required|string|regex:/^[\pL\s0-9,]+$/u|max:255', 
             'capacidad' => 'required|integer|min:1', 
             'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
             'secciones' => 'nullable|array', 
@@ -103,7 +103,7 @@ class AlmacenController extends Controller
     { 
         $request->validate([
             'nombre' => 'required|string|max:255|unique:almacenes,nombre,' . $almacen->id, 
-            'ubicacion' => 'required|string|regex:/^[\pL\s0-9]+$/u|max:255', 
+            'ubicacion' => 'required|string|regex:/^[\pL\s0-9,]+$/u|max:255',
             'capacidad' => 'required|integer|min:1', 
             'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
             'secciones' => 'nullable|array', 
@@ -115,7 +115,7 @@ class AlmacenController extends Controller
             'nombre.required' => 'El nombre del almacén es obligatorio.',
             'nombre.unique' => 'Ya existe un almacén con este nombre.',
             'ubicacion.required' => 'El campo ubicacion es obligatorio.',
-            'ubicacion.regex' => 'El campo ubicacion solo puede contener letras, números y espacios.',
+            'ubicacion.regex' => 'El campo ubicacion solo puede contener letras, números, espacios y comas.',
             'capacidad.required' => 'La capacidad del almacén es obligatoria.',
             'capacidad.integer' => 'La capacidad del almacén debe ser un número entero.',
             'capacidad.min' => 'La capacidad del almacén debe ser al menos 1.',
