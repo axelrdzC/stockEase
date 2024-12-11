@@ -34,7 +34,7 @@
                     <div id="paso_1" class="col">
                         <!-- nombre producto -->
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre del clientes</label>
+                            <label for="nombre" class="form-label">Nombre del cliente</label>
                             <input type="text" class="form-control bg-white" id="nombre" name="nombre" 
                             @isset($cliente) value="{{ $cliente->nombre }}" @endisset required>
                         </div>
@@ -51,9 +51,9 @@
                                     @foreach ($categorias as $categoria)
                                         @if ($categoria->tipo == 'persona')
                                             <option 
-                                                value="{{ $categoria->id }}" 
+                                                value="{{ $categoria->nombre }}" 
                                                 @isset($cliente) 
-                                                    {{ $categoria->id == $cliente->tipo ? 'selected' : '' }} 
+                                                    {{ $categoria->nombre == $cliente->tipo ? 'selected' : '' }} 
                                                 @endisset>
                                                 {{ $categoria->nombre }}
                                             </option>
