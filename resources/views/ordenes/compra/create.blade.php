@@ -29,7 +29,7 @@
                             @endforeach
                         </select>
                     </div>
-                    
+
                     <!-- Selección de producto único -->
                     <div class="row mb-4">
                         <div class="col-md-6" id="productos-container" style="display: none;">
@@ -63,7 +63,7 @@
                         <label for="fecha" class="form-label">Fecha</label>
                         <input type="date" name="fecha" id="fecha" class="form-control" required>
                     </div>
-                    
+
                     <!-- tipo (hidden) -->
                     <div class="mb-3">
                         <input type="hidden" name="tipo" id="tipo" value="compra" required>
@@ -73,10 +73,10 @@
                     <div class="mb-3">
                         <input type="hidden" name="total" id="total" value="0" required>
                     </div>
-                    
+
                     <!-- botones -->
                     <div class="d-flex justify-content-between gap-3">
-                        <button type="button" class="btn btn-light flex-fill border" 
+                        <button type="button" class="btn btn-light flex-fill border"
                             onclick="window.location.href='{{ route('ordenes.compra.index') }}'">Regresar</button>
                         <button type="submit" class="btn btn-primary flex-fill">Crear</button>
                     </div>

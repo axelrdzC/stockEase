@@ -47,7 +47,7 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- Contenedor de órdenes -->
         <div class="d-flex gap-4">
             <!-- Lista de órdenes -->
@@ -57,25 +57,41 @@
                         <div class="card shadow-sm bg-white flex-grow-1 border-0 m-0 mb-3">
                             <div class="card-body d-flex align-items-center gap-4 px-4">
                                 <div class="d-flex flex-column" style="width: 27rem;">
-                                    <h1 class="fs-5 fw-bold">Orden: {{ $orden->id }}</h1>
+                                    <h1 class="fs-5 fw-bold">{{ intval($orden->fecha) }} {{ $orden->id }} | {{ $orden->producto->nombre }}</h1>
                                     <div class="d-flex gap-2">
-                                        <small class="fw-medium text-white rounded-xl bg-primary p-1 px-2">Estado: {{ $orden->estado }}</small>
-                                        <small class="rounded-xl bg-white border border-secondary-subtle p-1 px-2">
-                                            Fecha: <span class="fw-medium">{{ $orden->fecha }}</span>
+                                        <small class="fw-medium text-white rounded-pill bg-primary p-1 px-3 border-4">
+                                            <span class="fw-medium">{{ $orden->proveedor->nombre }}</span>
+                                        </small>
+                                        <small class="rounded-pill p-1 px-3 border fw-bold
+                                            @if($orden->estado == 'pendiente') bg-warning text-white border-warning
+                                            @elseif($orden->estado == 'completado') bg-success text-white  border-success
+                                            @elseif($orden->estado == 'cancelado') bg-danger text-white border-danger
+                                            @else bg-secondary text-white border-secondary
+                                            @endif">
+                                            {{ ucfirst($orden->estado) }}
                                         </small>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1">
-                                    <div class="col-4">
-                                        <small class="row">Proveedor</small>
-                                        <small class="row fs-6 fw-bold">{{ $orden->proveedor->nombre }}</small>
+                                    <div class="col-3">
+                                        <small class="row">Fecha</small>
+                                        <small class="row fs-6 fw-bold">{{ $orden->fecha }}</small>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
+                                        <small class="row">Cantidad de Productos</small>
+                                        <small class="row fs-6 fw-bold">{{ $orden->cantidad }}</small>
+                                    </div>
+                                    <div class="col-3">
                                         <small class="row">Total</small>
                                         <small class="row fs-6 fw-bold">${{ number_format($orden->total, 2) }}</small>
                                     </div>
+                                    <div class="col-3">
+                                        <small class="row">Ubicación</small>
+                                        <small class="row fs-6 fw-bold">{{ $orden->producto->almacen->nombre }}</small>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
+                                    @can('editar ordenes')
                                     <!-- Opciones -->
                                     <div class="dropdown">
                                         <button type="button" class="btn rounded-xl-3 border-2 btn-outline-secondary p-0" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,6 +102,7 @@
                                             </svg>
                                         </button>
                                         <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ route('ordenes.compra.show', $orden) }}">Ver</a></li>
                                             <li><a class="dropdown-item" href="{{ route('ordenes.compra.edit', $orden) }}">Editar</a></li>
                                             <li>
                                                 <form action="{{ route('ordenes.compra.destroy', $orden) }}" method="POST">
@@ -96,6 +113,7 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    @endcan
                                 </div>
                             </div>
                         </div>

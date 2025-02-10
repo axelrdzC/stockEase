@@ -16,7 +16,7 @@ class RolesYPermisosSeeder extends Seeder
 
 
         # roles y asi
-        
+
         $roleSuperAdmin = Role::firstOrCreate([
             'name' => 'super-admin',
         ]);
@@ -49,7 +49,7 @@ class RolesYPermisosSeeder extends Seeder
         Permission::firstOrCreate([ 'name' => 'ver almacenes', ]);
 
         Permission::firstOrCreate([ 'name' => 'eliminar almacenes', ]);
-        
+
         # sobre los proveedores
         Permission::firstOrCreate([ 'name' => 'crear proveedores', ]);
 
@@ -68,13 +68,16 @@ class RolesYPermisosSeeder extends Seeder
 
         Permission::firstOrCreate([ 'name' => 'eliminar clientes', ]);
 
+        #sobre las ordenes
+        Permission::firstOrCreate([ 'name' => 'editar ordenes', ]);
+
         # give permisos
         $roleSuperAdmin->givePermissionTo([
             'crear productos',
             'editar productos',
             'ver productos',
             'eliminar productos',
-            
+
             'crear almacenes',
             'editar almacenes',
             'ver almacenes',
@@ -89,8 +92,10 @@ class RolesYPermisosSeeder extends Seeder
             'editar clientes',
             'ver clientes',
             'eliminar clientes',
+
+            'editar ordenes',
         ]);
-        
+
         $roleAdmin->givePermissionTo([
             'crear productos',
             'editar productos',
@@ -111,6 +116,8 @@ class RolesYPermisosSeeder extends Seeder
             'editar clientes',
             'ver clientes',
             'eliminar clientes',
+
+            'editar ordenes',
         ]);
 
         $roleEmpleado->givePermissionTo([
