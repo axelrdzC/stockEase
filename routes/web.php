@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    
+
     /* vistas users  */
     Route::get('/users/{user}', [App\Http\Controllers\UsuarioController::class, 'show'])->name('users.show');
     Route::get('/users/{user}/edit', [App\Http\Controllers\UsuarioController::class, 'edit'])->name('users.edit');
@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
             Route::patch('/{seccion}', [SeccionController::class, 'update'])->name('secciones.update');
             Route::post('/{almacen}', [SeccionController::class, 'store'])->name('secciones.store');
         });
-        
+
 
         # vistas categorias
         Route::group(['prefix' => '/categoria'], function() {
@@ -77,8 +77,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', [CategoriaController::class, 'create'])->name('categorias.create');
             Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
         });
-        
-        # vistas clientes 
+
+        # vistas clientes
         Route::group(['prefix' => '/clientes'], function() {
             Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
             Route::get('/create', [ClienteController::class, 'create'])->name('clientes.create');
@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/', [OrdenController::class, 'indexCompra'])->name('ordenes.compra.index');
             Route::get('/create', [OrdenController::class, 'createCompra'])->name('ordenes.compra.create');
+            Route::get('/{orden}', [OrdenController::class, 'show'])->name('ordenes.compra.show');
             Route::post('/', [OrdenController::class, 'storeCompra'])->name('ordenes.compra.store');
             Route::get('/{orden}/edit', [OrdenController::class, 'editCompra'])->name('ordenes.compra.edit');
             Route::patch('/{orden}', [OrdenController::class, 'updateCompra'])->name('ordenes.compra.update');
@@ -131,5 +132,5 @@ Route::middleware('auth')->group(function () {
             Route::post('/', [InformeController::class, 'store'])->name('informes.store');
             Route::get('/{id}/export-pdf', [InformeController::class, 'exportPDF'])->name('informes.exportPDF');
         });
-    });   
+    });
 });

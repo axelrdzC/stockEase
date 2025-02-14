@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-3">
                                         <small class="row">Cantidad de Productos</small>
-                                        <small class="row fs-6 fw-bold">{{ $orden->cantidad }}</small>
+                                        <small class="row fs-6 fw-bold">{{ round($orden->cantidad) }}</small>
                                     </div>
                                     <div class="col-3">
                                         <small class="row">Total</small>
@@ -102,7 +102,6 @@
                                             </svg>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="{{ route('ordenes.compra.show', $orden) }}">Ver</a></li>
                                             <li><a class="dropdown-item" href="{{ route('ordenes.compra.edit', $orden) }}">Editar</a></li>
                                             <li>
                                                 <form action="{{ route('ordenes.compra.destroy', $orden) }}" method="POST">
